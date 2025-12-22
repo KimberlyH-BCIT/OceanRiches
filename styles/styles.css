@@ -1,0 +1,148 @@
+/* ============================================
+   1. CSS CUSTOM PROPERTIES (VARIABLES)
+   ============================================ */
+:root {
+        /* Color Palette */
+    --color-primary:rgba(89, 229, 239, 1);            /*Electric Aqua  */
+    --color-secondary: rgba(228, 182, 26, 1);         /*Saffron */
+    --color-accent: rgba(251, 225, 52, 1);            /*Bright Gold */
+    --color-background: rgba(11, 12, 12, 1);               /*Onyx */
+    --color-dark-surface: rgba(39, 60, 62, 1);        /*Jet Black */
+    --color-light-surface:rgba(238, 238, 238, 1);                /*Platinum */
+
+   
+    /* Spacing Scale - Using rem for accessibility */
+    --spacing-sm: 0.5rem;               /* 8px at default font size */
+    --spacing-md: 1rem;                 /* 16px at default font size */
+    --spacing-lg: 2rem;                 /* 32px at default font size */
+    --spacing-xl: 3rem;                 /* 48px at default font size */
+    
+    /* Border Radius Scale */
+    --border-radius: 0.5rem;
+    --border-radius-lg: 1rem;
+    
+    /* Border Widths */
+    --border-thin: 0.0625rem;           /* 1px */
+    --border-normal: 0.125rem;          /* 2px */
+    --border-medium: 0.1875rem;         /* 3px */
+    --border-thick: 0.2rem;             /* 3.2px */
+    --border-heavy: 0.25rem;            /* 4px */
+}
+/* ============================================
+   2. ACCESSIBILITY STYLES
+   ============================================
+   
+   WCAG 2.1 Level AA compliance features
+*/
+
+/* ============================================
+   3. BASE & RESET STYLES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full-height layout */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "Macondo";        
+    text-align: center;
+    line-height: 1.5em;
+    font-display: swap;                  /* Prevent invisible text during font load */
+}
+
+   /* ============================================
+   4. LAYOUT SYSTEM
+   ============================================ */
+
+.site-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+.header {
+    background-color: var(--color-background);
+    padding: var(--spacing-md);
+    color: var(--color-primary);
+}
+
+.main-wrapper {
+    flex: 1;
+    padding: var(--spacing-lg);
+}
+
+.footer {
+    background-color: var(--color-light-surface);
+    padding: var(--spacing-md);
+    color: var(--color-secondary);
+    text-shadow: 1px 1px 2px var(--color-dark-surface);
+    text-align: left;
+}
+
+/* ============================================
+   5. COMPONENT STYLES
+   ============================================ */
+
+.primary-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-light-surface);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);  
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.nav-item a {
+    color: var(--color-secondary);
+    text-shadow: 1px 1px 2px var(--color-dark-surface);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+.nav-item a:hover {
+    text-decoration: underline;
+}
+.hero { 
+}
+.content-section {    
+}
+.content-section h2 {
+    
+}
+.content-section p {
+   
+}
+/* ============================================
+   6. TYPOGRAPHY STYLES
+   ============================================ */
+
+.site-title {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);   
+    font-weight: 900;
+    color: var(--color-secondary);
+    text-shadow: 2px 2px 4px var(--color-dark-surface);
+}
+.site-title:hover {
+    text-decoration: underline;
+}
+
+
