@@ -1,38 +1,42 @@
 /* ============================================
    TABLE OF CONTENTS
    ============================================
-   
+
    1. CONSTANTS & CONFIGURATION
       - Animation timing
       - Size multipliers
       - CSS selectors
-   
+      - Mobile breakpoint
+
    2. UTILITY FUNCTIONS
       - calculateEntryPoint
       - calculateRippleSize
       - setRipplePosition
-   
+
    3. RIPPLE EFFECT SYSTEM
       - createRipple
       - removeExistingRipple
       - attachRippleToElement
-   
+
    4. EVENT HANDLERS
       - handleMouseEnter
       - handleMouseLeave
-   
+
    5. RIPPLE INITIALIZATION
       - initializeRippleEffects
-      - initializeWhenReady
-   
+
    6. TAROT CARD 3D FLIP SYSTEM
+      - openFeaturedModal
+      - closeFeaturedModal
+      - initializeFeaturedModal
       - initializeTarotCards
       - flipCard (3D rotation)
-      - initializeTarotWhenReady
 
    7. HAMBURGER MENU TOGGLE
       - initializeHamburgerMenu
-      - initializeHamburgerWhenReady
+
+   8. INITIALIZATION
+      - initializeAll (consolidated initialization)
 
    Note: This module uses IIFE pattern for encapsulation
    ============================================ */
@@ -51,21 +55,24 @@
     const CONFIG = {
         // Animation timing in milliseconds
         RIPPLE_DURATION: 700,
-        
+
         // Size multiplier for ripple diameter
         SIZE_MULTIPLIER: 2.2,
-        
+
         // Push direction multiplier
         PUSH_MULTIPLIER: 1.0,
-        
+
         // CSS classes
         CLASSES: {
             RIPPLE: 'ripple',
             CONTAINER: 'ripple-container'
         },
-        
+
         // Target selectors for ripple effect
-        SELECTORS: '.nav-item a, .article, .article-image, .tag, .portfolio-card'
+        SELECTORS: '.nav-item a, .article, .article-image, .tag, .portfolio-card',
+
+        // Breakpoint for mobile navigation (matches CSS media query)
+        MOBILE_BREAKPOINT: 768
     };
 
     /**
@@ -111,7 +118,6 @@
 
             return entryPoints[entryEdge];
         } catch (error) {
-            console.error('Error calculating entry point:', error);
             // Fallback to center position
             return {
                 x: rect.width / 2,
@@ -146,7 +152,6 @@
 
             return maxDistance * CONFIG.SIZE_MULTIPLIER;
         } catch (error) {
-            console.error('Error calculating ripple size:', error);
             // Fallback to element diagonal
             return Math.sqrt(Math.pow(rect.width, 2) + Math.pow(rect.height, 2));
         }
@@ -169,7 +174,7 @@
             ripple.style.setProperty('--push-x', `${pushX * CONFIG.PUSH_MULTIPLIER}px`);
             ripple.style.setProperty('--push-y', `${pushY * CONFIG.PUSH_MULTIPLIER}px`);
         } catch (error) {
-            console.error('Error setting ripple position:', error);
+            // Error setting ripple position - fail silently
         }
     }
 
@@ -188,7 +193,7 @@
                 existingRipple.remove();
             }
         } catch (error) {
-            console.error('Error removing existing ripple:', error);
+            // Error removing ripple - fail silently
         }
     }
 
@@ -223,7 +228,7 @@
             // Attach ripple to element
             attachRippleToElement(element, ripple);
         } catch (error) {
-            console.error('Error creating ripple:', error);
+            // Error creating ripple - fail silently
         }
     }
 
@@ -245,7 +250,7 @@
                 }, CONFIG.RIPPLE_DURATION);
             });
         } catch (error) {
-            console.error('Error attaching ripple to element:', error);
+            // Error attaching ripple - fail silently
         }
     }
 
@@ -289,7 +294,6 @@
             const rippleElements = document.querySelectorAll(CONFIG.SELECTORS);
 
             if (rippleElements.length === 0) {
-                console.warn('No elements found for ripple effect');
                 return;
             }
 
@@ -304,26 +308,10 @@
                 element.addEventListener('mouseenter', (e) => handleMouseEnter(e, element, state));
                 element.addEventListener('mouseleave', () => handleMouseLeave(element, state));
             });
-
-            console.log(`Ripple effects initialized on ${rippleElements.length} elements`);
         } catch (error) {
-            console.error('Failed to initialize ripple effects:', error);
+            // Failed to initialize ripple effects
         }
     }
-
-    /**
-     * DOM ready handler - initializes ripple effects when DOM is ready
-     */
-    function initializeWhenReady() {
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeRippleEffects);
-        } else {
-            initializeRippleEffects();
-        }
-    }
-
-    // Start ripple effect initialization
-    initializeWhenReady();
 
     // ============================================
     // 6. TAROT CARD 3D FLIP SYSTEM
@@ -343,13 +331,11 @@
         const closeButton = modal ? modal.querySelector('.modal-close') : null;
 
         if (!modal || !modalBody || !closeButton) {
-            console.warn('Featured modal elements not found');
             return;
         }
 
         const back = card.querySelector('.tarot-card-back');
         if (!back) {
-            console.warn('Tarot card back not found');
             return;
         }
 
@@ -390,7 +376,6 @@
         const closeButton = modal ? modal.querySelector('.modal-close') : null;
 
         if (!modal || !closeButton) {
-            console.warn('Featured modal elements not found');
             return;
         }
 
@@ -420,13 +405,10 @@
             const tarotCards = document.querySelectorAll('.tarot-card');
 
             if (tarotCards.length === 0) {
-                console.warn('No tarot cards found');
                 return;
             }
 
             tarotCards.forEach(card => {
-                const cardId = card.getAttribute('data-card-id');
-
                 // Add click event listener
                 card.addEventListener('click', function(e) {
                     // Prevent flip if clicking on interactive elements inside the card
@@ -436,7 +418,7 @@
                         return;
                     }
 
-                    flipCard(card, cardId);
+                    flipCard(card);
                     openFeaturedModal(card);
                 });
 
@@ -444,14 +426,12 @@
                 card.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        flipCard(card, cardId);
+                        flipCard(card);
                     }
                 });
             });
-
-            console.log(`Tarot card flip initialized on ${tarotCards.length} cards`);
         } catch (error) {
-            console.error('Failed to initialize tarot cards:', error);
+            // Failed to initialize tarot cards
         }
     }
 
@@ -459,39 +439,15 @@
      * Flip a tarot card with 3D rotation animation
      * Simply toggles the .flipped class to trigger CSS 3D transform
      * @param {HTMLElement} card - The card element to flip
-     * @param {string} cardId - The unique identifier for the card
      */
-    function flipCard(card, cardId) {
+    function flipCard(card) {
         try {
             // Toggle the flipped state
             card.classList.toggle('flipped');
-
-            // Optional: Log flip state for debugging
-            const isFlipped = card.classList.contains('flipped');
-            console.log(`Card ${cardId} flipped: ${isFlipped}`);
-
         } catch (error) {
-            console.error(`Error flipping card ${cardId}:`, error);
+            // Error flipping card - fail silently
         }
     }
-    
-    /**
-     * Initialize tarot card functionality when DOM is fully loaded
-     * Handles both DOMContentLoaded event and already-loaded state
-     */
-    function initializeTarotWhenReady() {
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeTarotCards);
-        } else {
-            initializeTarotCards();
-        }
-    }
-    
-    // Initialize tarot card functionality
-    initializeTarotWhenReady();
-
-    // Initialize featured modal
-    initializeFeaturedModal();
 
     // ============================================
     // 7. HAMBURGER MENU TOGGLE
@@ -507,7 +463,6 @@
             const navMenu = document.querySelector('.nav-list');
 
             if (!hamburgerButton || !navMenu) {
-                console.warn('Hamburger menu or nav list not found');
                 return;
             }
 
@@ -520,8 +475,6 @@
 
                 // Toggle active class on nav menu
                 navMenu.classList.toggle('active');
-
-                console.log(`Mobile menu ${!isExpanded ? 'opened' : 'closed'}`);
             });
 
             // Close menu when clicking outside
@@ -530,7 +483,6 @@
                     if (navMenu.classList.contains('active')) {
                         hamburgerButton.setAttribute('aria-expanded', 'false');
                         navMenu.classList.remove('active');
-                        console.log('Mobile menu closed (clicked outside)');
                     }
                 }
             });
@@ -541,7 +493,6 @@
                     hamburgerButton.setAttribute('aria-expanded', 'false');
                     navMenu.classList.remove('active');
                     hamburgerButton.focus();
-                    console.log('Mobile menu closed (ESC key)');
                 }
             });
 
@@ -549,32 +500,39 @@
             const navLinks = navMenu.querySelectorAll('.nav-item a');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    if (window.innerWidth < 768) {
+                    if (window.innerWidth < CONFIG.MOBILE_BREAKPOINT) {
                         hamburgerButton.setAttribute('aria-expanded', 'false');
                         navMenu.classList.remove('active');
-                        console.log('Mobile menu closed (nav link clicked)');
                     }
                 });
             });
-
-            console.log('Hamburger menu initialized');
         } catch (error) {
-            console.error('Failed to initialize hamburger menu:', error);
+            // Failed to initialize hamburger menu
         }
+    }
+
+    // ============================================
+    // 8. INITIALIZATION
+    // ============================================
+
+    /**
+     * Initialize all functionality when DOM is ready
+     * Consolidates initialization of ripple effects, tarot cards, featured modal, and hamburger menu
+     */
+    function initializeAll() {
+        initializeRippleEffects();
+        initializeTarotCards();
+        initializeFeaturedModal();
+        initializeHamburgerMenu();
     }
 
     /**
-     * Initialize hamburger menu when DOM is fully loaded
+     * DOM ready handler - initializes all features when DOM is ready
      */
-    function initializeHamburgerWhenReady() {
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeHamburgerMenu);
-        } else {
-            initializeHamburgerMenu();
-        }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeAll);
+    } else {
+        initializeAll();
     }
-
-    // Initialize hamburger menu functionality
-    initializeHamburgerWhenReady();
 
 })();

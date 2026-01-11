@@ -108,10 +108,10 @@
 
                 <!-- Navigation Menu -->
                 <ul class="nav-list" role="list" id="nav-menu">
-                    <li class="nav-item"><a href="#">HOME</a></li>
-                    <li class="nav-item"><a href="#">ABOUT</a></li>
-                    <li class="nav-item"><a href="#">SERVICES</a></li>
-                    <li class="nav-item"><a href="#">CONTACT</a></li>
+                    <li class="nav-item"><a href="#featured-section">HOME</a></li>
+                    <li class="nav-item"><a href="#latest-section">LATEST</a></li>
+                    <li class="nav-item"><a href="#portfolio-section">PORTFOLIO</a></li>
+                    <li class="nav-item"><a href="#footer">CONTACT</a></li>
                 </ul>
             </nav>
         </header>
@@ -120,7 +120,7 @@
         <main class="main-wrapper" id="main-content" tabindex="-1">
             
             <!-- Featured Section: Displays featured articles with tarot card flip effect -->
-            <section class="featured-section" aria-labelledby="featured-heading">
+            <section class="featured-section" id="featured-section" aria-labelledby="featured-heading">
                 <h2 class="section-title" id="featured-heading">Featured Stories</h2>
                 
                 <!-- Featured articles grid: 2-column layout on larger screens -->
@@ -149,6 +149,7 @@
                                     <span class="article-date">January 8, 2026</span>
                                     <span class="article-category">Category: CSS Techniques</span>
                                 </div>
+                                <!-- TODO: Replace with unique article image -->
                                 <img class="article-image" src="assets/images/placeholder-article.jpg" alt="CSS Grid Layout Example" width="800" height="450" />
                                 <p class="article-excerpt">Discover how CSS Grid revolutionizes layout design with powerful two-dimensional control over rows and columns.</p>
                                 <div class="article-body">
@@ -251,7 +252,7 @@
             </section>
 
             <!-- Latest Articles Section: Grid of standard article cards -->
-            <section class="latest-section" aria-labelledby="latest-heading">
+            <section class="latest-section" id="latest-section" aria-labelledby="latest-heading">
                 <h2 class="section-title" id="latest-heading">Latest Articles</h2>
                 
                 <!-- Articles grid: Responsive grid (1-4 columns depending on viewport) -->
@@ -450,6 +451,7 @@
                                     <span class="article-date">January 5, 2026</span>
                                     <span class="article-category">Category: Animation</span>
                                 </div>
+                                <!-- TODO: Replace with unique article image -->
                                 <img class="article-image" src="assets/images/placeholder-article.jpg" alt="CSS Animations" width="800" height="450" />
                                 <p class="article-excerpt">Learn how to create engaging, performant animations using CSS transitions and keyframes.</p>
                                 <div class="article-body">
@@ -487,6 +489,7 @@
                                     <span class="article-date">January 4, 2026</span>
                                     <span class="article-category">Category: Accessibility</span>
                                 </div>
+                        <!-- TODO: Replace with unique article image -->
                         <img class="article-image" src="assets/images/placeholder-article.jpg" alt="Accessibility Icons" width="800" height="450" />
                         <p class="article-excerpt">Building inclusive websites starts with understanding WCAG guidelines and implementing semantic HTML.</p>
                         <div class="article-body">
@@ -524,6 +527,7 @@
                                     <span class="article-date">January 3, 2026</span>
                                     <span class="article-category">Category: Performance</span>
                                 </div>
+                        <!-- TODO: Replace with unique article image -->
                         <img class="article-image" src="assets/images/placeholder-article.jpg" alt="Performance Metrics" width="800" height="450" />
                         <p class="article-excerpt">Fast websites provide better user experiences and rank higher in search results. Learn the key optimization strategies.</p>
                         <div class="article-body">
@@ -542,7 +546,7 @@
             </section>
 
             <!-- Portfolio Projects Section: Showcase of project cards -->
-            <section class="portfolio-section" aria-labelledby="portfolio-heading">
+            <section class="portfolio-section" id="portfolio-section" aria-labelledby="portfolio-heading">
                 <h2 class="section-title" id="portfolio-heading">Portfolio Projects</h2>
                 
                 <!-- Portfolio grid: Interactive project cards with hover effects -->
@@ -564,7 +568,7 @@
         </main>
         
         <!-- Footer: Copyright information with background image -->
-        <footer class="footer" role="contentinfo">
+        <footer class="footer" id="footer" role="contentinfo">
             
             <!-- Responsive footer background image -->
             <img class="site-footer-bg-image"
