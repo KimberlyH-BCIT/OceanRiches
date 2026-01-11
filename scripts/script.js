@@ -30,6 +30,10 @@
       - flipCard (3D rotation)
       - initializeTarotWhenReady
 
+   7. HAMBURGER MENU TOGGLE
+      - initializeHamburgerMenu
+      - initializeHamburgerWhenReady
+
    Note: This module uses IIFE pattern for encapsulation
    ============================================ */
 
@@ -404,5 +408,89 @@
     
     // Initialize tarot card functionality
     initializeTarotWhenReady();
+
+    // ============================================
+    // 7. HAMBURGER MENU TOGGLE
+    // ============================================
+
+    /**
+     * Initialize hamburger menu functionality for mobile navigation
+     * Toggles menu visibility and updates ARIA attributes for accessibility
+     */
+    function initializeHamburgerMenu() {
+        try {
+            const hamburgerButton = document.querySelector('.hamburger-menu');
+            const navMenu = document.querySelector('.nav-list');
+
+            if (!hamburgerButton || !navMenu) {
+                console.warn('Hamburger menu or nav list not found');
+                return;
+            }
+
+            // Toggle menu on hamburger button click
+            hamburgerButton.addEventListener('click', function() {
+                const isExpanded = hamburgerButton.getAttribute('aria-expanded') === 'true';
+
+                // Toggle ARIA attribute
+                hamburgerButton.setAttribute('aria-expanded', !isExpanded);
+
+                // Toggle active class on nav menu
+                navMenu.classList.toggle('active');
+
+                console.log(`Mobile menu ${!isExpanded ? 'opened' : 'closed'}`);
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburgerButton.contains(e.target) && !navMenu.contains(e.target)) {
+                    if (navMenu.classList.contains('active')) {
+                        hamburgerButton.setAttribute('aria-expanded', 'false');
+                        navMenu.classList.remove('active');
+                        console.log('Mobile menu closed (clicked outside)');
+                    }
+                }
+            });
+
+            // Close menu on ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                    hamburgerButton.setAttribute('aria-expanded', 'false');
+                    navMenu.classList.remove('active');
+                    hamburgerButton.focus();
+                    console.log('Mobile menu closed (ESC key)');
+                }
+            });
+
+            // Close menu when clicking on nav links (mobile)
+            const navLinks = navMenu.querySelectorAll('.nav-item a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 768) {
+                        hamburgerButton.setAttribute('aria-expanded', 'false');
+                        navMenu.classList.remove('active');
+                        console.log('Mobile menu closed (nav link clicked)');
+                    }
+                });
+            });
+
+            console.log('Hamburger menu initialized');
+        } catch (error) {
+            console.error('Failed to initialize hamburger menu:', error);
+        }
+    }
+
+    /**
+     * Initialize hamburger menu when DOM is fully loaded
+     */
+    function initializeHamburgerWhenReady() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeHamburgerMenu);
+        } else {
+            initializeHamburgerMenu();
+        }
+    }
+
+    // Initialize hamburger menu functionality
+    initializeHamburgerWhenReady();
 
 })();
