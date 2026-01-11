@@ -324,59 +324,109 @@ body {
     margin-bottom: var(--spacing-lg);
 }
 
-.featured-article {
+/* Override for non-tarot featured articles */
+.featured-article:not(.tarot-card) {
     background: linear-gradient(135deg, rgba(39, 60, 62, 0.6), rgba(39, 60, 62, 0.8));
     border: var(--border-normal) solid var(--color-primary);
 }
 
 /* ============================================
-   TAROT CARD FLIP EFFECT
+   TAROT CARD 3D FLIP EFFECT
+   ============================================
+
+   TECHNIQUE: True 3D CSS transform with backface-visibility
+
+   HTML STRUCTURE (already correct):
+   <article class="tarot-card">
+     <div class="tarot-card-inner">
+       <div class="tarot-card-front">...</div>
+       <div class="tarot-card-back">...</div>
+     </div>
+   </article>
+
+   TRIGGER: JavaScript toggles .flipped class on .tarot-card
+   RESULT: .tarot-card-inner rotates 180deg, revealing back
    ============================================ */
 
-/* Tarot card container - controls the flip animation */
+/* Container - provides 3D perspective depth */
 .tarot-card {
     cursor: pointer;
     perspective: 1000px;
-    min-height: 200px;
-    transition: width 0.4s ease, margin 0.4s ease;
-    overflow: hidden;
-    margin-left: 0;
-    margin-right: 0;
+    min-height: 300px;
+    height: auto;
+    position: relative;
+    transition: transform 0.3s ease;
 }
 
-/* Inner wrapper - this element does the actual flipping */
+/* Subtle lift on hover */
+.tarot-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Inner wrapper - performs the actual rotation */
 .tarot-card-inner {
     position: relative;
     width: 100%;
+    height: 100%;
+    min-height: 200px;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
     transform-style: preserve-3d;
 }
 
-/* Front and back sides of the card */
-.tarot-card-front,
-.tarot-card-back {
-    width: 100%;
-    backface-visibility: hidden;
+/* Flipped state - triggered by JavaScript */
+.tarot-card.flipped .tarot-card-inner {
+    transform: rotateY(180deg);
 }
 
-/* Front side - minimal info (default visible) */
+/* Both sides - positioned absolutely in 3D space */
+.tarot-card-front,
+.tarot-card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+/* Front side - default visible */
 .tarot-card-front {
-    display: block;
-    min-height: 200px;
-    padding: var(--spacing-lg);
+    background: linear-gradient(135deg,
+        rgba(39, 60, 62, 0.6),
+        rgba(39, 60, 62, 0.9));
+    border: var(--border-normal) solid var(--color-primary);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: var(--spacing-lg);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(89, 229, 239, 0.2);
 }
 
-/* Back side - full content (hidden by default) */
+/* Back side - pre-rotated 180deg (hidden initially) */
 .tarot-card-back {
-    display: none;
-    width: 100%;
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg,
+        rgba(39, 60, 62, 0.8),
+        rgba(39, 60, 62, 0.95));
+    border: var(--border-normal) solid var(--color-primary);
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    max-height: 600px;
+    box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(89, 229, 239, 0.3);
 }
 
-/* Ensure all back content elements are visible and styled */
+/* Ensure back content is visible */
 .tarot-card-back .article-header,
 .tarot-card-back .article-meta,
 .tarot-card-back .article-image,
@@ -388,37 +438,18 @@ body {
     visibility: visible;
 }
 
-.tarot-card-back .article-meta {
-    display: flex;
-}
-
+/* Preserve flex layouts in back */
+.tarot-card-back .article-meta,
 .tarot-card-back .tag-list {
     display: flex;
 }
 
-/* Flipped state - triggered by JavaScript */
-.tarot-card.flipped .tarot-card-front {
-    display: none;
-}
-
-.tarot-card.flipped .tarot-card-back {
-    display: block;
-}
-
-/* Animation class for width transition */
-.tarot-card.animating {
-    width: 2%;
-    min-width: 0;
-    padding: 0;
-    border-width: 0;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Style adjustments for front side */
+/* Front side typography */
 .tarot-card-front .article-header h3 {
     font-size: 1.8rem;
     margin-bottom: var(--spacing-md);
+    color: var(--color-accent);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .tarot-card-front .article-meta {

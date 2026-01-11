@@ -60,13 +60,14 @@
         scroll-behavior: auto !important;
     }
 
-    /* Instant flip for tarot cards without width animation */
+    /* Instant flip for tarot cards - no rotation animation */
     .tarot-card-inner {
         transition: none !important;
     }
 
-    .tarot-card.animating .tarot-card-inner {
-        width: 100% !important;
+    .tarot-card.flipped .tarot-card-inner {
+        transform: rotateY(180deg) !important;
+        transition: none !important;
     }
 }
 

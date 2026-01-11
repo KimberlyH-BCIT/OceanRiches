@@ -1,0 +1,38 @@
+FLIP DEBUGGING GUIDE
+====================
+
+The flip wasn't working because of: type="module" in the script tag
+
+FIXED: Removed type="module" from index.html line 349
+
+HOW TO TEST:
+1. Open index.html in browser
+2. Open DevTools (F12) → Console tab
+3. You should see:
+   - "Ripple effects initialized on X elements"
+   - "Tarot card flip initialized on 2 cards"
+
+4. Click on a Featured Stories card
+5. You should see in console:
+   - "Card 1 flipped: true" (or Card 2)
+
+6. Click again:
+   - "Card 1 flipped: false"
+
+WHAT TO LOOK FOR:
+- Front side shows: Title + Author + Date
+- Back side shows: Full article with image + tags
+- Smooth 3D rotation animation (0.8s)
+- Card lifts slightly on hover
+
+TROUBLESHOOTING:
+If you still don't see the flip:
+
+1. Check Console for errors
+2. Verify the cards have class "tarot-card"
+3. Make sure CSS files are loading
+4. Try the test-flip.html file (simplified version)
+
+CSS FILES TO CHECK:
+- styles/styles.css (lines 284-409)
+- styles/responsive.css (lines 63-71)

@@ -25,11 +25,11 @@
       - initializeRippleEffects
       - initializeWhenReady
    
-   6. TAROT CARD FLIP SYSTEM
+   6. TAROT CARD 3D FLIP SYSTEM
       - initializeTarotCards
-      - flipCard
+      - flipCard (3D rotation)
       - initializeTarotWhenReady
-   
+
    Note: This module uses IIFE pattern for encapsulation
    ============================================ */
 
@@ -322,62 +322,72 @@
     initializeWhenReady();
 
     // ============================================
-    // 6. TAROT CARD FLIP SYSTEM
+    // 6. TAROT CARD 3D FLIP SYSTEM
     // ============================================
-    
+
     /**
-     * Initialize tarot card flip functionality for featured articles
+     * Initialize tarot card 3D flip functionality for featured articles
      * Cards display minimal info on front, full content on back
-     * Flip animation triggered by click or keyboard (Enter/Space)
-     * Cards remain flipped until browser refresh
+     * 3D flip animation triggered by click or keyboard (Enter/Space)
+     * Cards can be flipped back and forth
      */
     function initializeTarotCards() {
-        const tarotCards = document.querySelectorAll('.tarot-card');
-        
-        tarotCards.forEach(card => {
-            const cardId = card.getAttribute('data-card-id');
-            
-            // Add click event listener
-            card.addEventListener('click', function(e) {
-                // Prevent flip if clicking on interactive elements
-                if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
-                    return;
-                }
-                
-                flipCard(card, cardId);
-            });
-            
-            // Add keyboard support (Enter and Space keys)
-            card.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
+        try {
+            const tarotCards = document.querySelectorAll('.tarot-card');
+
+            if (tarotCards.length === 0) {
+                console.warn('No tarot cards found');
+                return;
+            }
+
+            tarotCards.forEach(card => {
+                const cardId = card.getAttribute('data-card-id');
+
+                // Add click event listener
+                card.addEventListener('click', function(e) {
+                    // Prevent flip if clicking on interactive elements inside the card
+                    if (e.target.tagName === 'A' ||
+                        e.target.tagName === 'BUTTON' ||
+                        e.target.classList.contains('tag')) {
+                        return;
+                    }
+
                     flipCard(card, cardId);
-                }
+                });
+
+                // Add keyboard support (Enter and Space keys)
+                card.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        flipCard(card, cardId);
+                    }
+                });
             });
-        });
+
+            console.log(`Tarot card flip initialized on ${tarotCards.length} cards`);
+        } catch (error) {
+            console.error('Failed to initialize tarot cards:', error);
+        }
     }
-    
+
     /**
-     * Flip a tarot card with width-shrinking animation
-     * Process: Shrink width to 0%, swap content, expand width to 100%
+     * Flip a tarot card with 3D rotation animation
+     * Simply toggles the .flipped class to trigger CSS 3D transform
      * @param {HTMLElement} card - The card element to flip
-     * @param {string} cardId - The unique identifier for the card (currently unused but kept for future expansion)
+     * @param {string} cardId - The unique identifier for the card
      */
     function flipCard(card, cardId) {
-        const isCurrentlyFlipped = card.classList.contains('flipped');
-        
-        if (!isCurrentlyFlipped) {
-            // Flipping to back side
-            // Step 1: Add animating class to shrink width to 0
-            card.classList.add('animating');
-            
-            // Step 2: After shrinking, swap content and expand
-            setTimeout(() => {
-                card.classList.add('flipped');
-                card.classList.remove('animating');
-            }, 400); // Match the CSS transition duration
+        try {
+            // Toggle the flipped state
+            card.classList.toggle('flipped');
+
+            // Optional: Log flip state for debugging
+            const isFlipped = card.classList.contains('flipped');
+            console.log(`Card ${cardId} flipped: ${isFlipped}`);
+
+        } catch (error) {
+            console.error(`Error flipping card ${cardId}:`, error);
         }
-        // Once flipped, card stays flipped until browser refresh
     }
     
     /**
