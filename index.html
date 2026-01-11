@@ -170,33 +170,79 @@
                             <!-- Front of card (minimal info) -->
                             <div class="tarot-card-front">
                                 <header class="article-header">
-                                    <h3 id="article-2-title">JavaScript ES6+ Features</h3>
+                                    <h3 id="article-2-title">Why Loops Exist (and How to Think in Patterns)</h3>
                                 </header>
                                 <div class="article-meta">
-                                    <span class="article-author">By: Jordan Smith</span>
-                                    <span class="article-date">January 7, 2026</span>
+                                    <span class="article-author">By: Thinh Doan</span>
+                                    <span class="article-date">January 11, 2026</span>
                                 </div>
                             </div>
                             <!-- Back of card (full content) -->
                             <div class="tarot-card-back">
                                 <header class="article-header">
-                                    <h3>JavaScript ES6+ Features Every Developer Should Know</h3>
+                                    <h3>Why Loops Exist (and How to Think in Patterns)</h3>
                                 </header>
                                 <div class="article-meta">
-                                    <span class="article-author">By: Jordan Smith</span>
-                                    <span class="article-date">January 7, 2026</span>
-                                    <span class="article-category">Category: JavaScript Tips</span>
+                                    <span class="article-author">By: Thinh Doan</span>
+                                    <span class="article-date">January 11, 2026</span>
+                                    <span class="article-category">Category: Programming Fundamentals</span>
                                 </div>
-                                <img class="article-image" src="assets/images/placeholder-article.jpg" alt="JavaScript Code Example" width="800" height="450" />
-                                <p class="article-excerpt">Modern JavaScript offers powerful features that make your code cleaner, more efficient, and easier to read.</p>
+                                <img class="article-image" src="assets/images/td_article1.png" alt="Illustration of looping through data patterns" width="800" height="450" />
+                                <p class="article-excerpt">Loops aren’t just syntax—they’re a strategy for working with collections in a clear, repeatable way.</p>
                                 <div class="article-body">
-                                    <p>ES6 and beyond have introduced game-changing features like arrow functions, destructuring, template literals, and async/await. These features dramatically improve code readability and reduce boilerplate.</p>
-                                    <p>Understanding these modern syntax patterns is essential for any JavaScript developer working in today's ecosystem, whether you're building frontend applications or Node.js backends.</p>
+                                    <section class="article">
+                                    <p>
+                                        When I first started with Python, I struggled with the idea of loops.
+                                        They felt inefficient—I couldn’t understand why I couldn’t just “jump”
+                                        straight to the exact piece of data I needed.
+                                    </p>
+
+                                    <p>
+                                        Then I met real-world data: database rows, JSON responses, log files, lists of objects.
+                                        It rarely arrives as a single value. It almost always arrives as a <strong>collection</strong>.
+                                        And because programs process work step by step (reading values from memory and applying instructions),
+                                        the most reliable way to handle a collection is to process it <strong>one item at a time</strong>.
+                                    </p>
+
+                                    <p>
+                                        Once that clicked, I stopped seeing loops as “syntax I have to use” and started treating them as a
+                                        <strong>problem-solving strategy</strong>. Now when I see a dataset, I ask myself what I’m really trying to do:
+                                    </p>
+
+                                    <ul class="framework">
+                                        <li><strong>Find</strong> — Am I searching for one specific match?</li>
+                                        <li><strong>Filter</strong> — Am I keeping only items that meet a condition?</li>
+                                        <li><strong>Transform</strong> — Am I converting each item into a new shape or value?</li>
+                                        <li><strong>Aggregate</strong> — Am I summarizing the set (counting, totaling, finding a max/min)?</li>
+                                    </ul>
+
+                                    <h3>Why this mindset matters</h3>
+
+                                    <p>
+                                        This way of thinking makes your code <strong>language-agnostic</strong>. Whether you use a basic
+                                        <code>for</code> loop for clarity or reach for more expressive tools like list comprehensions,
+                                        <code>sum()</code>, or <code>next()</code>, the underlying logic stays the same:
+                                        you’re iterating over data and applying a rule.
+                                    </p>
+
+                                    <p>
+                                        It also makes debugging simpler. If something goes wrong, you’re not lost in syntax—you can trace
+                                        the iteration and ask: <em>Which item am I on?</em> <em>What condition am I checking?</em>
+                                        <em>What value am I producing or accumulating?</em>
+                                    </p>
+
+                                    <blockquote class="takeaway">
+                                        Iterate → apply logic → produce results.
+                                    </blockquote>
+                                    </section>
+
                                 </div>
                                 <div class="tag-list">
-                                    <span class="tag">JavaScript</span>
-                                    <span class="tag">ES6</span>
-                                    <span class="tag">Best Practices</span>
+                                    <span class="tag">Programming Fundamentals</span>
+                                    <span class="tag">Iteration</span>
+                                    <span class="tag">Algorithms</span>
+                                    <span class="tag">Mental Models</span>
+                                    <span class="tag">Software Design</span>
                                 </div>
                             </div>
                         </div>
