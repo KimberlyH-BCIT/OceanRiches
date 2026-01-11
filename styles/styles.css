@@ -461,6 +461,18 @@ p {
         inset 0 1px 0 rgba(89, 229, 239, 0.2);
 }
 
+/* Extra padding for latest article tarot fronts */
+.latest-section .tarot-card-front {
+    padding-top: calc(var(--spacing-xl) + var(--spacing-md));
+    padding-bottom: var(--spacing-xl);
+}
+
+/* Tighter title sizing for latest article tarot cards */
+.latest-section .tarot-card-front .article-header h3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+}
+
 /* Back side - pre-rotated 180deg (hidden initially) */
 .tarot-card-back {
     transform: rotateY(180deg);
@@ -509,8 +521,8 @@ p {
 
 /* Extra spacing between title and meta border on tarot front */
 .tarot-card-front .article-header + .article-meta {
-    margin-top: var(--spacing-md);
-    padding-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    padding-top: var(--spacing-sm);
 }
 
 /* Latest Articles Grid */
