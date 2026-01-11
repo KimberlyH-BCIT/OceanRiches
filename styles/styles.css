@@ -72,26 +72,75 @@
    theme-able design system.
    */
 :root {
-    /* Color Palette */
-    --color-primary: rgba(89, 229, 239, 1);           /* Electric Aqua */
-    --color-secondary: rgba(228, 182, 26, 1);         /* Saffron */
-    --color-accent: rgba(251, 225, 52, 1);            /* Bright Gold */
-    --color-background: rgba(11, 12, 12, 1);          /* Onyx */
-    --color-dark-surface: rgba(39, 60, 62, 1);        /* Jet Black */
-    --color-light-surface: rgba(238, 238, 238, 1);    /* Platinum */
-    --color-text: rgba(238, 238, 238, 1);             /* Default text color */
+    /* ═══════════════════════════════════════
+       TEAM'S ORIGINAL COLOR NAMES
+       (From design doc - for A05 reference)
+       ═══════════════════════════════════════ */
+    --onyx: rgba(11, 12, 12, 1);                  /* #0b0c0c */
+    --jet-black: rgba(39, 60, 62, 1);             /* #273c3e */
+    --electric-aqua: rgba(89, 229, 239, 1);       /* #59e5ef */
+    --platinum: rgba(238, 238, 238, 1);           /* #eeeeee */
+    --bright-gold: rgba(251, 225, 52, 1);         /* #fbe134 */
+    --saffron: rgba(228, 182, 26, 1);             /* #e4b61a */
     
-    /* Spacing Scale - Using rem for accessibility */
-    --spacing-sm: 0.5rem;               /* 8px at default font size */
-    --spacing-md: 1rem;                 /* 16px at default font size */
-    --spacing-lg: 2rem;                 /* 32px at default font size */
-    --spacing-xl: 3rem;                 /* 48px at default font size */
+    /* ═══════════════════════════════════════
+       FUNCTIONAL ALIASES
+       (Keep existing usage working)
+       ═══════════════════════════════════════ */
+    --color-primary: var(--electric-aqua);
+    --color-secondary: var(--saffron);
+    --color-accent: var(--bright-gold);
+    --color-background: var(--onyx);
+    --color-dark-surface: var(--jet-black);
+    --color-light-surface: var(--platinum);
+    --color-text: var(--platinum);
     
-    /* Border Radius Scale */
+    /* ═══════════════════════════════════════
+       GRADIENT UTILITIES (NEW)
+       (From team design doc)
+       ═══════════════════════════════════════ */
+    --gradient-aqua-gold: linear-gradient(135deg, 
+        var(--electric-aqua) 0%, 
+        var(--bright-gold) 100%);
+    
+    --gradient-mystical: linear-gradient(135deg,
+        var(--jet-black) 0%,
+        var(--onyx) 50%,
+        var(--jet-black) 100%);
+    
+    --gradient-card-glow: linear-gradient(135deg,
+        rgba(89, 229, 239, 0.1) 0%,
+        rgba(251, 225, 52, 0.1) 100%);
+    
+    --gradient-border-shimmer: linear-gradient(90deg,
+        var(--electric-aqua),
+        var(--bright-gold),
+        var(--saffron),
+        var(--bright-gold),
+        var(--electric-aqua));
+    
+    --gradient-radial-glow: radial-gradient(circle at center,
+        rgba(251, 225, 52, 0.3) 0%,
+        rgba(89, 229, 239, 0.2) 40%,
+        transparent 70%);
+    
+    /* ═══════════════════════════════════════
+       SPACING SCALE
+       ═══════════════════════════════════════ */
+    --spacing-sm: 0.5rem;               /* 8px */
+    --spacing-md: 1rem;                 /* 16px */
+    --spacing-lg: 2rem;                 /* 32px */
+    --spacing-xl: 3rem;                 /* 48px */
+    
+    /* ═══════════════════════════════════════
+       BORDER RADIUS SCALE
+       ═══════════════════════════════════════ */
     --border-radius: 0.5rem;
     --border-radius-lg: 1rem;
     
-    /* Border Widths */
+    /* ═══════════════════════════════════════
+       BORDER WIDTHS
+       ═══════════════════════════════════════ */
     --border-thin: 0.0625rem;           /* 1px */
     --border-normal: 0.125rem;          /* 2px */
     --border-medium: 0.1875rem;         /* 3px */
@@ -175,12 +224,11 @@
 html,
 body {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    height: 100%;\n    overflow-x: hidden;
 }
 
 body {
-    font-family: "Macondo", "Georgia", serif;
+    font-family: "Macondo Swash Caps", "Georgia", serif;
     text-align: center;
     line-height: 1.6;
     font-size: 0.9rem;
@@ -210,10 +258,50 @@ body {
     color: var(--color-primary);
     z-index: 1000;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
     align-items: center;
     gap: var(--spacing-sm);
+}
+
+/* Grid layout for mobile */
+.site-logo-image {
+    grid-column: 1 / 3; /* Span both columns */
+    grid-row: 1 / 2;
+    justify-self: center;
+}
+
+.site-title {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    justify-self: center;
+}
+
+.primary-nav {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3; /* Same row as title */
+    justify-self: end;
+}
+
+/* Desktop layout - title and nav on same line */
+@media (min-width: 768px) {
+    .site-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    /* Reset grid properties for desktop */
+    .site-logo-image,
+    .site-title,
+    .primary-nav {
+        grid-column: auto;
+        grid-row: auto;
+        justify-self: auto;
+    }
 }
 
 .site-header-bg-image {
@@ -236,7 +324,7 @@ body {
             drop-shadow(-2px -2px 3px rgba(0, 0, 0, 0.6))
             drop-shadow(1px 1px 2px var(--color-accent))
             drop-shadow(2px 2px 3px rgba(251, 225, 52, 0.4));
-    animation: shimmerLogo 3s ease-in-out 0.5s infinite, breatheLogo 8s ease-in-out infinite;
+    animation: shimmerLogo 3s ease-in-out 0.5s infinite, breatheLogo 4s ease-in-out infinite;
 }
 
 .site-header .primary-nav {
@@ -275,59 +363,109 @@ body {
     margin-bottom: var(--spacing-lg);
 }
 
-.featured-article {
+/* Override for non-tarot featured articles */
+.featured-article:not(.tarot-card) {
     background: linear-gradient(135deg, rgba(39, 60, 62, 0.6), rgba(39, 60, 62, 0.8));
     border: var(--border-normal) solid var(--color-primary);
 }
 
 /* ============================================
-   TAROT CARD FLIP EFFECT
+   TAROT CARD 3D FLIP EFFECT
+   ============================================
+
+   TECHNIQUE: True 3D CSS transform with backface-visibility
+
+   HTML STRUCTURE (already correct):
+   <article class="tarot-card">
+     <div class="tarot-card-inner">
+       <div class="tarot-card-front">...</div>
+       <div class="tarot-card-back">...</div>
+     </div>
+   </article>
+
+   TRIGGER: JavaScript toggles .flipped class on .tarot-card
+   RESULT: .tarot-card-inner rotates 180deg, revealing back
    ============================================ */
 
-/* Tarot card container - controls the flip animation */
+/* Container - provides 3D perspective depth */
 .tarot-card {
     cursor: pointer;
     perspective: 1000px;
-    min-height: 200px;
-    transition: width 0.4s ease, margin 0.4s ease;
-    overflow: hidden;
-    margin-left: 0;
-    margin-right: 0;
+    min-height: 300px;
+    height: auto;
+    position: relative;
+    transition: transform 0.3s ease;
 }
 
-/* Inner wrapper - this element does the actual flipping */
+/* Subtle lift on hover */
+.tarot-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Inner wrapper - performs the actual rotation */
 .tarot-card-inner {
     position: relative;
     width: 100%;
+    height: 100%;
+    min-height: 200px;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
     transform-style: preserve-3d;
 }
 
-/* Front and back sides of the card */
-.tarot-card-front,
-.tarot-card-back {
-    width: 100%;
-    backface-visibility: hidden;
+/* Flipped state - triggered by JavaScript */
+.tarot-card.flipped .tarot-card-inner {
+    transform: rotateY(180deg);
 }
 
-/* Front side - minimal info (default visible) */
+/* Both sides - positioned absolutely in 3D space */
+.tarot-card-front,
+.tarot-card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+/* Front side - default visible */
 .tarot-card-front {
-    display: block;
-    min-height: 200px;
-    padding: var(--spacing-lg);
+    background: linear-gradient(135deg,
+        rgba(39, 60, 62, 0.6),
+        rgba(39, 60, 62, 0.9));
+    border: var(--border-normal) solid var(--color-primary);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: var(--spacing-lg);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(89, 229, 239, 0.2);
 }
 
-/* Back side - full content (hidden by default) */
+/* Back side - pre-rotated 180deg (hidden initially) */
 .tarot-card-back {
-    display: none;
-    width: 100%;
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg,
+        rgba(39, 60, 62, 0.8),
+        rgba(39, 60, 62, 0.95));
+    border: var(--border-normal) solid var(--color-primary);
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    max-height: 600px;
+    box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(89, 229, 239, 0.3);
 }
 
-/* Ensure all back content elements are visible and styled */
+/* Ensure back content is visible */
 .tarot-card-back .article-header,
 .tarot-card-back .article-meta,
 .tarot-card-back .article-image,
@@ -339,37 +477,18 @@ body {
     visibility: visible;
 }
 
-.tarot-card-back .article-meta {
-    display: flex;
-}
-
+/* Preserve flex layouts in back */
+.tarot-card-back .article-meta,
 .tarot-card-back .tag-list {
     display: flex;
 }
 
-/* Flipped state - triggered by JavaScript */
-.tarot-card.flipped .tarot-card-front {
-    display: none;
-}
-
-.tarot-card.flipped .tarot-card-back {
-    display: block;
-}
-
-/* Animation class for width transition */
-.tarot-card.animating {
-    width: 2%;
-    min-width: 0;
-    padding: 0;
-    border-width: 0;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Style adjustments for front side */
+/* Front side typography */
 .tarot-card-front .article-header h3 {
     font-size: 1.8rem;
     margin-bottom: var(--spacing-md);
+    color: var(--color-accent);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .tarot-card-front .article-meta {
@@ -471,6 +590,26 @@ body {
     width: 100%;
 }
 
+/* Desktop - nav inline with title */
+@media (min-width: 768px) {
+    .primary-nav {
+        width: auto;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    /* Show nav list on desktop - override mobile hidden state */
+    .nav-list {
+        max-height: none;
+        opacity: 1;
+        overflow: visible;
+        padding: 0;
+        flex-direction: row;
+        gap: var(--spacing-md);
+        width: auto;
+    }
+}
+
 /* Descendant selector - targets all list items within nav */
 .nav-list {
     list-style: none;
@@ -511,6 +650,72 @@ body {
 }
 
 /* ============================================
+   5.1. HAMBURGER MENU
+   ============================================ */
+
+/* Hamburger button - visible on mobile/tablet */
+.hamburger-menu {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    position: relative;
+    align-self: flex-end;
+}
+
+.hamburger-menu:hover {
+    transform: scale(1.1);
+}
+
+.hamburger-menu:focus {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+/* Hamburger lines */
+.hamburger-line {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    margin: 6px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Animated hamburger when menu is open */
+.hamburger-menu[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(9px, 9px);
+}
+
+.hamburger-menu[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(9px, -9px);
+}
+
+/* Mobile menu hidden by default */
+.nav-list {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+/* Mobile menu visible when hamburger is clicked */
+.nav-list.active {
+    max-height: 500px;
+    opacity: 1;
+    padding: var(--spacing-md) 0;
+}
+
+/* ============================================
    6. TYPOGRAPHY STYLES
    ============================================ */
 
@@ -524,7 +729,7 @@ body {
                  -2px -2px 3px rgba(0, 0, 0, 0.6),
                  1px 1px 2px var(--color-accent),
                  2px 2px 3px rgba(251, 225, 52, 0.4);
-    animation: shimmer 3s ease-in-out infinite, breathe 8s ease-in-out infinite;
+    animation: shimmer 3s ease-in-out infinite, breathe 4s ease-in-out infinite;
     white-space: nowrap;
     position: relative;
     z-index: 1;
@@ -768,6 +973,55 @@ body {
 }
 
 /* ============================================
+   7.6. BACKDROP FILTER EFFECTS
+   ============================================
+   Frosted glass effect for cards and articles
+   Creates depth and visual hierarchy
+   ============================================ */
+
+.article,
+.tarot-card-front,
+.tarot-card-back,
+.portfolio-card {
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+}
+
+/* ============================================
+   7.7. ENHANCED ORNATE BORDERS
+   (Team design doc inspiration)
+   ============================================ */
+
+/* Glowing border effect on hover only */
+.article:hover,
+.tarot-card:hover {
+    box-shadow:
+        0 0 20px rgba(89, 229, 239, 0.3),
+        0 0 40px rgba(251, 225, 52, 0.2),
+        0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Featured articles get animated shimmer border */
+.featured-article {
+    position: relative;
+    border: var(--border-medium) solid transparent;
+    background:
+        linear-gradient(rgba(39, 60, 62, 0.8), rgba(39, 60, 62, 0.95)) padding-box,
+        var(--gradient-border-shimmer) border-box;
+    background-size: 200% 100%;
+    animation: borderShimmer 3s linear infinite;
+}
+
+@keyframes borderShimmer {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+/* ============================================
    8. ADVANCED SELECTORS & PSEUDO-SELECTORS
    ============================================ */
 
@@ -834,6 +1088,7 @@ img[alt=""] {
 /* ============================================
    9. ARTICLE STYLES
    ============================================ */
+
 
 .article {
     position: relative;

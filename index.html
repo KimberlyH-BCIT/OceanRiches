@@ -96,13 +96,24 @@
             
             <!-- Primary navigation with ARIA label for screen readers -->
             <nav class="primary-nav" aria-label="Primary navigation">
-                <ul class="nav-list" role="list">
+                <!-- Hamburger Menu Button (visible on mobile/tablet) -->
+                <button class="hamburger-menu"
+                        aria-label="Toggle navigation menu"
+                        aria-expanded="false"
+                        aria-controls="nav-menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
+                <!-- Navigation Menu -->
+                <ul class="nav-list" role="list" id="nav-menu">
                     <li class="nav-item"><a href="#">HOME</a></li>
                     <li class="nav-item"><a href="#">ABOUT</a></li>
                     <li class="nav-item"><a href="#">SERVICES</a></li>
                     <li class="nav-item"><a href="#">CONTACT</a></li>
                 </ul>
-            </nav>            
+            </nav>
         </header>
         
         <!-- Main content area: Scrollable content with multiple sections -->
@@ -345,7 +356,7 @@
         </footer>
     </div>
     
-    <!-- JavaScript module for ripple effects and tarot card flip functionality -->
-    <script src="scripts/script.js" type="module"></script>
+    <!-- JavaScript for ripple effects and tarot card flip functionality -->
+    <script src="scripts/script.js"></script>
 </body>
 </html>
