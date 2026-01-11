@@ -328,6 +328,86 @@
     // ============================================
     // 6. TAROT CARD 3D FLIP SYSTEM
     // ============================================
+    const modalState = {
+        isOpen: false,
+        lastFocusedElement: null
+    };
+
+    /**
+     * Open the featured story modal with card content
+     * @param {HTMLElement} card - The card element to read from
+     */
+    function openFeaturedModal(card) {
+        const modal = document.querySelector('#featured-modal');
+        const modalBody = document.querySelector('#featured-modal-body');
+        const closeButton = modal ? modal.querySelector('.modal-close') : null;
+
+        if (!modal || !modalBody || !closeButton) {
+            console.warn('Featured modal elements not found');
+            return;
+        }
+
+        const back = card.querySelector('.tarot-card-back');
+        if (!back) {
+            console.warn('Tarot card back not found');
+            return;
+        }
+
+        modalBody.innerHTML = back.innerHTML;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        modalState.isOpen = true;
+        modalState.lastFocusedElement = document.activeElement;
+        closeButton.focus();
+    }
+
+    /**
+     * Close the featured story modal
+     */
+    function closeFeaturedModal() {
+        const modal = document.querySelector('#featured-modal');
+        if (!modal) {
+            return;
+        }
+
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+
+        modalState.isOpen = false;
+        if (modalState.lastFocusedElement) {
+            modalState.lastFocusedElement.focus();
+        }
+    }
+
+    /**
+     * Initialize modal interactions
+     */
+    function initializeFeaturedModal() {
+        const modal = document.querySelector('#featured-modal');
+        const closeButton = modal ? modal.querySelector('.modal-close') : null;
+
+        if (!modal || !closeButton) {
+            console.warn('Featured modal elements not found');
+            return;
+        }
+
+        closeButton.addEventListener('click', closeFeaturedModal);
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeFeaturedModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modalState.isOpen) {
+                closeFeaturedModal();
+            }
+        });
+    }
 
     /**
      * Initialize tarot card 3D flip functionality for featured articles
@@ -357,6 +437,7 @@
                     }
 
                     flipCard(card, cardId);
+                    openFeaturedModal(card);
                 });
 
                 // Add keyboard support (Enter and Space keys)
@@ -408,6 +489,9 @@
     
     // Initialize tarot card functionality
     initializeTarotWhenReady();
+
+    // Initialize featured modal
+    initializeFeaturedModal();
 
     // ============================================
     // 7. HAMBURGER MENU TOGGLE

@@ -603,6 +603,54 @@ body {
     width: 100%;
 }
 
+/* ============================================
+   5.2. MODAL
+   ============================================ */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    background: rgba(11, 12, 12, 0.7);
+    z-index: 2000;
+}
+
+.modal.is-open {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: min(900px, 92vw);
+    max-height: 90vh;
+    overflow: auto;
+    background: rgba(39, 60, 62, 0.95);
+    border: var(--border-normal) solid var(--color-primary);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.45),
+        0 0 30px rgba(89, 229, 239, 0.25);
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background: transparent;
+    border: none;
+    color: var(--color-accent);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.modal-body .article-image {
+    max-width: 100%;
+}
+
 /* Desktop - nav inline with title */
 @media (min-width: 768px) {
     .primary-nav {
@@ -1040,7 +1088,7 @@ body {
 
 /* Descendant selector - already using: .site-header .primary-nav */
 /* Child selector - direct children only */
-.features > article {
+.featured-grid > article {
     animation: fadeIn 0.6s ease-out forwards;
 }
 
