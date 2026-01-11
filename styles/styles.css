@@ -72,26 +72,75 @@
    theme-able design system.
    */
 :root {
-    /* Color Palette */
-    --color-primary: rgba(89, 229, 239, 1);           /* Electric Aqua */
-    --color-secondary: rgba(228, 182, 26, 1);         /* Saffron */
-    --color-accent: rgba(251, 225, 52, 1);            /* Bright Gold */
-    --color-background: rgba(11, 12, 12, 1);          /* Onyx */
-    --color-dark-surface: rgba(39, 60, 62, 1);        /* Jet Black */
-    --color-light-surface: rgba(238, 238, 238, 1);    /* Platinum */
-    --color-text: rgba(238, 238, 238, 1);             /* Default text color */
+    /* ═══════════════════════════════════════
+       TEAM'S ORIGINAL COLOR NAMES
+       (From design doc - for A05 reference)
+       ═══════════════════════════════════════ */
+    --onyx: rgba(11, 12, 12, 1);                  /* #0b0c0c */
+    --jet-black: rgba(39, 60, 62, 1);             /* #273c3e */
+    --electric-aqua: rgba(89, 229, 239, 1);       /* #59e5ef */
+    --platinum: rgba(238, 238, 238, 1);           /* #eeeeee */
+    --bright-gold: rgba(251, 225, 52, 1);         /* #fbe134 */
+    --saffron: rgba(228, 182, 26, 1);             /* #e4b61a */
     
-    /* Spacing Scale - Using rem for accessibility */
-    --spacing-sm: 0.5rem;               /* 8px at default font size */
-    --spacing-md: 1rem;                 /* 16px at default font size */
-    --spacing-lg: 2rem;                 /* 32px at default font size */
-    --spacing-xl: 3rem;                 /* 48px at default font size */
+    /* ═══════════════════════════════════════
+       FUNCTIONAL ALIASES
+       (Keep existing usage working)
+       ═══════════════════════════════════════ */
+    --color-primary: var(--electric-aqua);
+    --color-secondary: var(--saffron);
+    --color-accent: var(--bright-gold);
+    --color-background: var(--onyx);
+    --color-dark-surface: var(--jet-black);
+    --color-light-surface: var(--platinum);
+    --color-text: var(--platinum);
     
-    /* Border Radius Scale */
+    /* ═══════════════════════════════════════
+       GRADIENT UTILITIES (NEW)
+       (From team design doc)
+       ═══════════════════════════════════════ */
+    --gradient-aqua-gold: linear-gradient(135deg, 
+        var(--electric-aqua) 0%, 
+        var(--bright-gold) 100%);
+    
+    --gradient-mystical: linear-gradient(135deg,
+        var(--jet-black) 0%,
+        var(--onyx) 50%,
+        var(--jet-black) 100%);
+    
+    --gradient-card-glow: linear-gradient(135deg,
+        rgba(89, 229, 239, 0.1) 0%,
+        rgba(251, 225, 52, 0.1) 100%);
+    
+    --gradient-border-shimmer: linear-gradient(90deg,
+        var(--electric-aqua),
+        var(--bright-gold),
+        var(--saffron),
+        var(--bright-gold),
+        var(--electric-aqua));
+    
+    --gradient-radial-glow: radial-gradient(circle at center,
+        rgba(251, 225, 52, 0.3) 0%,
+        rgba(89, 229, 239, 0.2) 40%,
+        transparent 70%);
+    
+    /* ═══════════════════════════════════════
+       SPACING SCALE
+       ═══════════════════════════════════════ */
+    --spacing-sm: 0.5rem;               /* 8px */
+    --spacing-md: 1rem;                 /* 16px */
+    --spacing-lg: 2rem;                 /* 32px */
+    --spacing-xl: 3rem;                 /* 48px */
+    
+    /* ═══════════════════════════════════════
+       BORDER RADIUS SCALE
+       ═══════════════════════════════════════ */
     --border-radius: 0.5rem;
     --border-radius-lg: 1rem;
     
-    /* Border Widths */
+    /* ═══════════════════════════════════════
+       BORDER WIDTHS
+       ═══════════════════════════════════════ */
     --border-thin: 0.0625rem;           /* 1px */
     --border-normal: 0.125rem;          /* 2px */
     --border-medium: 0.1875rem;         /* 3px */
@@ -180,7 +229,7 @@ body {
 }
 
 body {
-    font-family: "Macondo", "Georgia", serif;
+    font-family: "Macondo Swash Caps", "Georgia", serif;
     text-align: center;
     line-height: 1.6;
     font-size: 0.9rem;
