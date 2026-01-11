@@ -242,6 +242,10 @@ body {
     background-repeat: no-repeat;
 }
 
+p {
+    text-wrap: balance;
+}
+
    /* ============================================
    4. LAYOUT SYSTEM
    ============================================
