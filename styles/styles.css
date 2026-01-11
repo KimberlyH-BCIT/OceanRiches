@@ -285,7 +285,7 @@ body {
             drop-shadow(-2px -2px 3px rgba(0, 0, 0, 0.6))
             drop-shadow(1px 1px 2px var(--color-accent))
             drop-shadow(2px 2px 3px rgba(251, 225, 52, 0.4));
-    animation: shimmerLogo 3s ease-in-out 0.5s infinite, breatheLogo 8s ease-in-out infinite;
+    animation: shimmerLogo 3s ease-in-out 0.5s infinite, breatheLogo 4s ease-in-out infinite;
 }
 
 .site-header .primary-nav {
@@ -604,7 +604,7 @@ body {
                  -2px -2px 3px rgba(0, 0, 0, 0.6),
                  1px 1px 2px var(--color-accent),
                  2px 2px 3px rgba(251, 225, 52, 0.4);
-    animation: shimmer 3s ease-in-out infinite, breathe 8s ease-in-out infinite;
+    animation: shimmer 3s ease-in-out infinite, breathe 4s ease-in-out infinite;
     white-space: nowrap;
     position: relative;
     z-index: 1;
@@ -848,6 +848,55 @@ body {
 }
 
 /* ============================================
+   7.6. BACKDROP FILTER EFFECTS
+   ============================================
+   Frosted glass effect for cards and articles
+   Creates depth and visual hierarchy
+   ============================================ */
+
+.article,
+.tarot-card-front,
+.tarot-card-back,
+.portfolio-card {
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+}
+
+/* ============================================
+   7.7. ENHANCED ORNATE BORDERS
+   (Team design doc inspiration)
+   ============================================ */
+
+/* Glowing border effect on hover only */
+.article:hover,
+.tarot-card:hover {
+    box-shadow:
+        0 0 20px rgba(89, 229, 239, 0.3),
+        0 0 40px rgba(251, 225, 52, 0.2),
+        0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Featured articles get animated shimmer border */
+.featured-article {
+    position: relative;
+    border: var(--border-medium) solid transparent;
+    background:
+        linear-gradient(rgba(39, 60, 62, 0.8), rgba(39, 60, 62, 0.95)) padding-box,
+        var(--gradient-border-shimmer) border-box;
+    background-size: 200% 100%;
+    animation: borderShimmer 3s linear infinite;
+}
+
+@keyframes borderShimmer {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+/* ============================================
    8. ADVANCED SELECTORS & PSEUDO-SELECTORS
    ============================================ */
 
@@ -914,6 +963,7 @@ img[alt=""] {
 /* ============================================
    9. ARTICLE STYLES
    ============================================ */
+
 
 .article {
     position: relative;
