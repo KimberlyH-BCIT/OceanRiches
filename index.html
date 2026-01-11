@@ -1,33 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Character encoding for proper text rendering -->
     <meta charset="UTF-8">
+    
+    <!-- Viewport configuration for responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Document title -->
     <title>WebDevTNT - A04 - Advanced CSS</title>
+    
+    <!-- Stylesheets: Normalize-ssd resets browser defaults, styles.css contains base styles, responsive.css handles media queries -->
     <link rel="stylesheet" href="styles/normalize-ssd.css" />
     <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/responsive.css" /> 
 
-    <!-- Favicons -->
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Favicons for multiple platforms and devices -->
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
 
-    <!-- Fonts -->
+    <!-- Google Fonts with preconnect for performance optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <!-- Macondo Swash Caps --> 
+    
+    <!-- Macondo Swash Caps - Decorative serif font for body text -->
     <link href="https://fonts.googleapis.com/css2?family=Macondo+Swash+Caps&display=swap" rel="stylesheet">
-        <!-- Cinzel Decorative -->
+    
+    <!-- Cinzel Decorative - Elegant display font for headings and titles -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
-        <!-- New Rocker -->
+    
+    <!-- New Rocker - Bold display font for special emphasis -->
     <link href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Skip Link for Keyboard Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Main site container: Flexbox layout with header, main, and footer -->
     <div class="site-container">
+        
+        <!-- Header: Contains logo, site title, and primary navigation -->
         <header class="site-header">
+            <!-- Responsive header background image with multiple sources for different screen sizes -->
             <img class="site-header-bg-image"
                 srcset="
                     assets/images/header/header_background-400w.webp 400w,
@@ -51,9 +68,35 @@
                 alt=""
                 aria-hidden="true"
             />
-            <nav class="primary-nav">
-                <h1 class="site-title">WebDevTNT - A04 - Advanced CSS</h1>
-                <ul class="nav-list">
+            
+            <!-- Site logo with responsive srcset for optimal loading across devices -->
+            <img class="site-logo-image"
+                srcset="
+                    assets/images/header/logo-400w.webp 400w,
+                    assets/images/header/logo-600w.webp 600w,
+                    assets/images/header/logo-800w.webp 800w,
+                    assets/images/header/logo-1000w.webp 1000w,
+                    assets/images/header/logo-1200w.webp 1200w
+                "
+                sizes="
+                    (max-width: 400px) 400px,
+                    (max-width: 600px) 600px,
+                    (max-width: 800px) 800px,
+                    (max-width: 1000px) 1000px,
+                    (min-width: 1001px) 1200px
+                "
+                src="assets/images/header/logo-400w.webp"
+                alt="shimmeringLogo"
+                width="1536"
+                height="2304"                
+            />
+            
+            <!-- Main site title with decorative font and shimmer animation -->
+            <h1 class="site-title">Ocean Riches</h1>
+            
+            <!-- Primary navigation with ARIA label for screen readers -->
+            <nav class="primary-nav" aria-label="Primary navigation">
+                <ul class="nav-list" role="list">
                     <li class="nav-item"><a href="#">HOME</a></li>
                     <li class="nav-item"><a href="#">ABOUT</a></li>
                     <li class="nav-item"><a href="#">SERVICES</a></li>
@@ -61,19 +104,218 @@
                 </ul>
             </nav>            
         </header>
-        <main class="main-wrapper">
-            <section class="hero">
-                <h2>Welcome</h2>
-                <p></p>            
+        
+        <!-- Main content area: Scrollable content with multiple sections -->
+        <main class="main-wrapper" id="main-content" tabindex="-1">
+            
+            <!-- Featured Section: Displays featured articles with tarot card flip effect -->
+            <section class="featured-section" aria-labelledby="featured-heading">
+                <h2 class="section-title" id="featured-heading">Featured Stories</h2>
+                
+                <!-- Featured articles grid: 2-column layout on larger screens -->
+                <div class="featured-grid">
+                    
+                    <!-- Featured Article 1: Tarot card with flip animation on click -->
+                    <article class="article featured-article tarot-card" tabindex="0" role="article" aria-labelledby="article-1-title" data-card-id="1">
+                        <div class="tarot-card-inner">
+                            <!-- Front of card (minimal info) -->
+                            <div class="tarot-card-front">
+                                <header class="article-header">
+                                    <h3 id="article-1-title">Building Responsive Layouts with CSS Grid</h3>
+                                </header>
+                                <div class="article-meta">
+                                    <span class="article-author">By: Taylor Tsang</span>
+                                    <span class="article-date">January 8, 2026</span>
+                                </div>
+                            </div>
+                            <!-- Back of card (full content) -->
+                            <div class="tarot-card-back">
+                                <header class="article-header">
+                                    <h3>Building Responsive Layouts with CSS Grid</h3>
+                                </header>
+                                <div class="article-meta">
+                                    <span class="article-author">By: Taylor Tsang</span>
+                                    <span class="article-date">January 8, 2026</span>
+                                    <span class="article-category">Category: CSS Techniques</span>
+                                </div>
+                                <img class="article-image" src="assets/images/placeholder-article.jpg" alt="CSS Grid Layout Example" width="800" height="450" />
+                                <p class="article-excerpt">Discover how CSS Grid revolutionizes layout design with powerful two-dimensional control over rows and columns.</p>
+                                <div class="article-body">
+                                    <p>CSS Grid Layout is a powerful tool that allows developers to create complex, responsive designs with ease. Unlike Flexbox, which is one-dimensional, Grid works in two dimensions, giving you precise control over both rows and columns.</p>
+                                    <p>By using properties like grid-template-columns and grid-template-rows, you can define your layout structure explicitly, making your code more maintainable and predictable.</p>
+                                </div>
+                                <div class="tag-list">
+                                    <span class="tag">CSS</span>
+                                    <span class="tag">Grid</span>
+                                    <span class="tag">Responsive Design</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Featured Article 2 -->
+                    <article class="article featured-article tarot-card" tabindex="0" role="article" aria-labelledby="article-2-title" data-card-id="2">
+                        <div class="tarot-card-inner">
+                            <!-- Front of card (minimal info) -->
+                            <div class="tarot-card-front">
+                                <header class="article-header">
+                                    <h3 id="article-2-title">JavaScript ES6+ Features Every Developer Should Know</h3>
+                                </header>
+                                <div class="article-meta">
+                                    <span class="article-author">By: Jordan Smith</span>
+                                    <span class="article-date">January 7, 2026</span>
+                                </div>
+                            </div>
+                            <!-- Back of card (full content) -->
+                            <div class="tarot-card-back">
+                                <header class="article-header">
+                                    <h3>JavaScript ES6+ Features Every Developer Should Know</h3>
+                                </header>
+                                <div class="article-meta">
+                                    <span class="article-author">By: Jordan Smith</span>
+                                    <span class="article-date">January 7, 2026</span>
+                                    <span class="article-category">Category: JavaScript Tips</span>
+                                </div>
+                                <img class="article-image" src="assets/images/placeholder-article.jpg" alt="JavaScript Code Example" width="800" height="450" />
+                                <p class="article-excerpt">Modern JavaScript offers powerful features that make your code cleaner, more efficient, and easier to read.</p>
+                                <div class="article-body">
+                                    <p>ES6 and beyond have introduced game-changing features like arrow functions, destructuring, template literals, and async/await. These features dramatically improve code readability and reduce boilerplate.</p>
+                                    <p>Understanding these modern syntax patterns is essential for any JavaScript developer working in today's ecosystem, whether you're building frontend applications or Node.js backends.</p>
+                                </div>
+                                <div class="tag-list">
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">ES6</span>
+                                    <span class="tag">Best Practices</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </section>
-            <section class="features">  
-                <article class="feature-card">
-                    <h2></h2>
-                    <p></p>
-                </article>
+
+            <!-- Latest Articles Section: Grid of standard article cards -->
+            <section class="latest-section" aria-labelledby="latest-heading">
+                <h2 class="section-title" id="latest-heading">Latest Articles</h2>
+                
+                <!-- Articles grid: Responsive grid (1-4 columns depending on viewport) -->
+                <div class="articles-grid">
+                    
+                    <!-- Article 3: Mastering Flexbox -->
+                    <article class="article" tabindex="0" role="article" aria-labelledby="article-3-title">
+                        <header class="article-header">
+                            <h3 id="article-3-title">Mastering Flexbox for Modern Layouts</h3>
+                        </header>
+                        <div class="article-meta">
+                            <span class="article-author">By: Alex Rivera</span>
+                            <span class="article-date">January 6, 2026</span>
+                            <span class="article-category">Category: CSS Techniques</span>
+                        </div>
+                        <img class="article-image" src="assets/images/placeholder-article.jpg" alt="Flexbox Layout" width="800" height="450" />
+                        <p class="article-excerpt">Flexbox simplifies one-dimensional layouts and makes alignment a breeze with its powerful alignment properties.</p>
+                        <div class="article-body">
+                            <p>Flexbox is perfect for navigation bars, card layouts, and centering elements. With properties like justify-content and align-items, you can achieve complex alignments with minimal code.</p>
+                        </div>
+                        <div class="tag-list">
+                            <span class="tag">CSS</span>
+                            <span class="tag">Flexbox</span>
+                            <span class="tag">Layout</span>
+                        </div>
+                    </article>
+
+                    <!-- Article 4 -->
+                    <article class="article" tabindex="0" role="article" aria-labelledby="article-4-title">
+                        <header class="article-header">
+                            <h3 id="article-4-title">Creating Smooth Animations with CSS</h3>
+                        </header>
+                        <div class="article-meta">
+                            <span class="article-author">By: Taylor Tsang</span>
+                            <span class="article-date">January 5, 2026</span>
+                            <span class="article-category">Category: Animation</span>
+                        </div>
+                        <img class="article-image" src="assets/images/placeholder-article.jpg" alt="CSS Animations" width="800" height="450" />
+                        <p class="article-excerpt">Learn how to create engaging, performant animations using CSS transitions and keyframes.</p>
+                        <div class="article-body">
+                            <p>CSS animations can significantly enhance user experience when used thoughtfully. Transitions handle state changes smoothly, while @keyframes allow for complex, multi-step animations.</p>
+                        </div>
+                        <div class="tag-list">
+                            <span class="tag">CSS</span>
+                            <span class="tag">Animations</span>
+                            <span class="tag">UX</span>
+                        </div>
+                    </article>
+
+                    <!-- Article 5: Web Accessibility -->
+                    <article class="article" tabindex="0" role="article" aria-labelledby="article-5-title">
+                        <header class="article-header">
+                            <h3 id="article-5-title">Web Accessibility Best Practices</h3>
+                        </header>
+                        <div class="article-meta">
+                            <span class="article-author">By: Jordan Smith</span>
+                            <span class="article-date">January 4, 2026</span>
+                            <span class="article-category">Category: Accessibility</span>
+                        </div>
+                        <img class="article-image" src="assets/images/placeholder-article.jpg" alt="Accessibility Icons" width="800" height="450" />
+                        <p class="article-excerpt">Building inclusive websites starts with understanding WCAG guidelines and implementing semantic HTML.</p>
+                        <div class="article-body">
+                            <p>Accessibility isn't just about compliance—it's about creating better experiences for everyone. Use semantic HTML, proper ARIA labels, and ensure keyboard navigation works smoothly.</p>
+                        </div>
+                        <div class="tag-list">
+                            <span class="tag">Accessibility</span>
+                            <span class="tag">WCAG</span>
+                            <span class="tag">Best Practices</span>
+                        </div>
+                    </article>
+
+                    <!-- Article 6: Web Performance -->
+                    <article class="article" tabindex="0" role="article" aria-labelledby="article-6-title">
+                        <header class="article-header">
+                            <h3 id="article-6-title">Optimizing Web Performance</h3>
+                        </header>
+                        <div class="article-meta">
+                            <span class="article-author">By: Alex Rivera</span>
+                            <span class="article-date">January 3, 2026</span>
+                            <span class="article-category">Category: Performance</span>
+                        </div>
+                        <img class="article-image" src="assets/images/placeholder-article.jpg" alt="Performance Metrics" width="800" height="450" />
+                        <p class="article-excerpt">Fast websites provide better user experiences and rank higher in search results. Learn the key optimization strategies.</p>
+                        <div class="article-body">
+                            <p>Web performance impacts everything from user satisfaction to conversion rates. Focus on image optimization, lazy loading, code splitting, and minimizing render-blocking resources.</p>
+                        </div>
+                        <div class="tag-list">
+                            <span class="tag">Performance</span>
+                            <span class="tag">Optimization</span>
+                            <span class="tag">Core Web Vitals</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Portfolio Projects Section: Showcase of project cards -->
+            <section class="portfolio-section" aria-labelledby="portfolio-heading">
+                <h2 class="section-title" id="portfolio-heading">Portfolio Projects</h2>
+                
+                <!-- Portfolio grid: Interactive project cards with hover effects -->
+                <div class="portfolio-grid">
+                    <div class="portfolio-card" tabindex="0" role="button" aria-label="E-Commerce Platform project">
+                        <h3>E-Commerce Platform</h3>
+                        <p>Built with React and Node.js</p>
+                    </div>
+                    <div class="portfolio-card" tabindex="0" role="button" aria-label="Weather Dashboard project">
+                        <h3>Weather Dashboard</h3>
+                        <p>Real-time data visualization</p>
+                    </div>
+                    <div class="portfolio-card" tabindex="0" role="button" aria-label="Task Manager App project">
+                        <h3>Task Manager App</h3>
+                        <p>Full-stack CRUD application</p>
+                    </div>
+                </div>
             </section>
         </main>
-        <footer class="footer">
+        
+        <!-- Footer: Copyright information with background image -->
+        <footer class="footer" role="contentinfo">
+            
+            <!-- Responsive footer background image -->
             <img class="site-footer-bg-image"
                 srcset="
                     assets/images/footer/footer_background-400w.webp 400w,
@@ -97,9 +339,13 @@
                 alt=""
                 aria-hidden="true"
             />
-            <p>&copy; 2025 WebDevTNT. All rights reserved.</p>
+            
+            <!-- Copyright notice -->
+            <p>&copy; 2025 WebDevTNT. All rights reserved. WebDevTNT - A04 - Advanced CSS</p>
         </footer>
     </div>
+    
+    <!-- JavaScript module for ripple effects and tarot card flip functionality -->
     <script src="scripts/script.js" type="module"></script>
 </body>
 </html>

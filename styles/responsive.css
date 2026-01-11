@@ -1,1 +1,413 @@
-/* this file is for media queries, nothing global*/ 
+/* ============================================
+   TABLE OF CONTENTS
+   ============================================
+   
+   1. ACCESSIBILITY - REDUCED MOTION
+      - @media (prefers-reduced-motion: reduce)
+   
+   2. RESPONSIVE BREAKPOINTS (Mobile-First Approach)
+      2.1. Mobile Large (480px+)
+           - Typography adjustments
+           - Header & Navigation
+           - Article spacing
+           - Main wrapper padding
+      
+      2.2. Tablet (768px+)
+           - Horizontal header layout
+           - Horizontal navigation
+           - 2-column grids
+           - Enhanced typography
+      
+      2.3. Desktop (1024px+)
+           - 3-column grids
+           - Increased spacing
+           - Larger headers
+           - Footer adjustments
+      
+      2.4. Desktop Large (1440px+)
+           - 4-column article grid
+           - Max-width container
+           - Premium spacing
+           - Large typography
+      
+      2.5. Ultra Wide (1920px+)
+           - Constrained max-width
+   
+   3. ACCESSIBILITY - RESPONSIVE ENHANCEMENTS
+      - Mobile touch target sizing
+      - Enhanced focus indicators for mobile
+   
+   Note: Base styles for mobile (320px+) are in styles.css
+   All breakpoints use min-width for progressive enhancement
+   ============================================ */
+
+/* ============================================
+   1. ACCESSIBILITY - REDUCED MOTION
+   ============================================ */
+
+/* ============================================
+   ACCESSIBILITY - REDUCED MOTION
+   ============================================ */
+
+/* Reduced Motion Preference - WCAG 2.1 Level AA */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Instant flip for tarot cards without width animation */
+    .tarot-card-inner {
+        transition: none !important;
+    }
+
+    .tarot-card.animating .tarot-card-inner {
+        width: 100% !important;
+    }
+}
+
+/* ============================================
+   2. RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* 2.1. Mobile Large - 480px and up */
+@media (min-width: 480px) {
+    body {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .site-header {
+        padding: var(--spacing-md);
+    }
+
+    .site-logo-image {
+        height: 70px;
+        padding-left: var(--spacing-md);
+    }
+
+    .site-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .nav-item a {
+        font-size: 1.1rem;
+    }
+
+    .article-header h3 {
+        font-size: 1.6rem;
+    }
+
+    .article-meta {
+        font-size: 0.85rem;
+    }
+
+    .article {
+        padding: var(--spacing-lg);
+    }
+
+    .main-wrapper {
+        padding: var(--spacing-lg);
+    }
+
+    /* Tarot card adjustments */
+    .tarot-card-front {
+        min-height: 220px;
+        padding: var(--spacing-xl);
+    }
+
+    .tarot-card-front .article-header h3 {
+        font-size: 2rem;
+    }
+
+    .tarot-card-front .article-meta {
+        font-size: 0.95rem;
+    }
+}
+
+/* 2.2. Tablet - 768px and up */
+@media (min-width: 768px) {
+    .site-header {
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        gap: var(--spacing-md);
+    }
+    
+    .site-logo-image {
+        height: 80px;
+    }
+
+    .primary-nav {
+        margin-left: auto !important;
+        width: auto !important;
+        align-items: flex-end;
+        flex-direction: row !important;
+        justify-content: space-between;
+        padding: var(--spacing-sm) var(--spacing-md);
+        padding-right: 40px;
+    }
+
+    .nav-list {
+        flex-direction: row !important;
+        gap: var(--spacing-md);
+    }
+
+    .nav-item a {
+        font-size: 1.2rem;
+    }
+
+    .site-title {
+        font-size: 2.25rem;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+
+    .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .article-header h3 {
+        font-size: 1.8rem;
+    }
+
+    .article-meta {
+        font-size: 0.9rem;
+        gap: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .article-body {
+        font-size: 1rem;
+    }
+
+    /* Tarot card adjustments */
+    .tarot-card {
+        min-height: 250px;
+    }
+
+    .tarot-card-front {
+        min-height: 250px;
+    }
+
+    .tarot-card-front .article-header h3 {
+        font-size: 2.2rem;
+    }
+
+    .tarot-card-front .article-meta {
+        font-size: 1rem;
+        gap: var(--spacing-sm) var(--spacing-md);
+    }
+}
+
+/* 2.3. Desktop - 1024px and up */
+@media (min-width: 1024px) {
+    .site-header {
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        max-height: 100px;
+        padding: var(--spacing-sm) var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    .site-logo-image {
+        padding-left: 40px;
+    }
+    
+    .primary-nav {
+        margin-left: auto !important;
+        width: auto !important;
+        flex-direction: row !important;
+    }
+    
+    .nav-list {
+        flex-direction: row !important;
+    }
+
+    .site-title {
+        font-size: 2.5rem;
+    }
+
+    .main-wrapper {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .featured-section,
+    .latest-section,
+    .portfolio-section {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .footer {
+        max-height: 60px;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .footer p {
+        padding-left: 40px;
+        font-size: 1rem;
+    }
+
+    /* Tarot card adjustments */
+    .tarot-card {
+        min-height: 280px;
+    }
+
+    .tarot-card-front {
+        min-height: 280px;
+    }
+
+    .tarot-card-front .article-header h3 {
+        font-size: 2.4rem;
+    }
+}
+
+/* 2.4. Desktop Large - 1440px and up */
+@media (min-width: 1440px) {
+    .site-container {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
+    
+    .site-header {
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+    }
+    
+    .primary-nav {
+        margin-left: auto !important;
+        width: auto !important;
+        flex-direction: row !important;
+    }
+    
+    .nav-list {
+        flex-direction: row !important;
+    }
+
+    .main-wrapper {
+        padding: var(--spacing-md) var(--spacing-xl);
+    }
+
+    .featured-grid {
+        gap: var(--spacing-xl);
+    }
+
+    .articles-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-lg);
+    }
+
+    .site-title {
+        font-size: 3rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    /* Tarot card adjustments */
+    .tarot-card {
+        min-height: 300px;
+    }
+
+    .tarot-card-front {
+        min-height: 300px;
+    }
+
+    .tarot-card-front .article-header h3 {
+        font-size: 2.6rem;
+    }
+}
+
+/* 2.5. Ultra Wide - 1920px and up */
+@media (min-width: 1920px) {
+    .site-container {
+        max-width: 1920px;
+    }
+}
+
+/* ============================================
+   3. ACCESSIBILITY - RESPONSIVE ENHANCEMENTS
+   ============================================ */
+
+/* Ensure touch targets remain accessible on all screen sizes */
+@media (max-width: 768px) {
+    .nav-item a,
+    .tag,
+    .portfolio-card {
+        min-width: 44px;
+        min-height: 44px;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    /* Larger focus indicators on smaller screens for better visibility */
+    a:focus-visible,
+    button:focus-visible,
+    .nav-item a:focus-visible {
+        outline-width: 4px;
+        outline-offset: 4px;
+    }
+
+    /* Tarot card mobile adjustments */
+    .tarot-card {
+        min-height: 180px;
+    }
+
+    .tarot-card-front {
+        min-height: 180px;
+        padding: var(--spacing-md);
+    }
+
+    .tarot-card-front .article-header h3 {
+        font-size: 1.5rem;
+    }
+
+    .tarot-card-front .article-meta {
+        font-size: 0.85rem;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    /* Ensure tarot cards have adequate touch target */
+    .tarot-card {
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(89, 229, 239, 0.3);
+    }
+} 
