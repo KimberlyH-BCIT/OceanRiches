@@ -238,13 +238,15 @@ body {
     line-height: 1.6;
     font-size: 0.9rem;
     color: var(--color-text);
-    background-image: image-set(
+    /* Commented out for black background - uncomment to restore image */
+    /* background-image: image-set(
         url("../assets/images/header/header_background-1000w.webp") 1x,
         url("../assets/images/header/header_background-2000w.webp") 2x
     );
     background-size: cover;
     background-position: center top;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
+    background-color: black;
 }
 
 p {
