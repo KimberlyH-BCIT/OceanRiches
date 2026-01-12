@@ -17,7 +17,12 @@
       - Global Resets
       - Full-height Layout
       - Body Styles
-   
+
+   3.5. CUSTOM SCROLLBAR STYLES
+      - Firefox Scrollbar
+      - Chromium Scrollbar (Chrome, Edge, Safari)
+      - Hover Effects
+
    4. LAYOUT SYSTEM
       - Site Container
       - Header Styles
@@ -233,17 +238,55 @@ body {
     line-height: 1.6;
     font-size: 0.9rem;
     color: var(--color-text);
-    background-image: image-set(
+    /* Commented out for black background - uncomment to restore image */
+    /* background-image: image-set(
         url("../assets/images/header/header_background-1000w.webp") 1x,
         url("../assets/images/header/header_background-2000w.webp") 2x
     );
     background-size: cover;
     background-position: center top;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
+    background-color: black;
 }
 
 p {
     text-wrap: balance;
+}
+
+/* ============================================
+   3.5. CUSTOM SCROLLBAR STYLES
+   ============================================
+   Custom scrollbar styling for modern browsers.
+   Uses ocean theme colors for visual consistency.
+   */
+
+/* Firefox scrollbar styling */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--electric-aqua) var(--jet-black);
+}
+
+/* Chromium browsers (Chrome, Edge, Opera, Safari) */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--jet-black);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--electric-aqua), var(--bright-gold));
+    border-radius: 6px;
+    border: 2px solid var(--jet-black);
+    box-shadow: 0 0 15px rgba(89, 229, 239, 0.9);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--bright-gold), var(--saffron));
+    box-shadow: 0 0 20px rgba(251, 225, 52, 1);
 }
 
    /* ============================================
