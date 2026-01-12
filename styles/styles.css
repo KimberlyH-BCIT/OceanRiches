@@ -414,6 +414,15 @@ p {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    justify-items: center;
+}
+
+/* Featured articles should be wider */
+.featured-article {
+    width: 100%;
+    max-width: 50rem;
 }
 
 /* Override for non-tarot featured articles */
@@ -1220,6 +1229,8 @@ img[alt=""] {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     overflow: hidden;
     will-change: transform;
+    max-width: 30rem;
+    height: 40rem;
 }
 
 /* Enhanced focus state for articles */
