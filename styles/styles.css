@@ -630,10 +630,10 @@ p {
     background-color: var(--color-light-surface);
     padding: var(--spacing-md);
     color: black;
-    text-shadow: 2px 2px 6px var(--color-accent), 
+    text-shadow: 2px 2px 6px var(--color-accent),
                  0 0 8px var(--color-accent);
     text-align: left;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .site-footer-bg-image {
