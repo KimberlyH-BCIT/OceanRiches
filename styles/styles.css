@@ -457,6 +457,7 @@ p {
     height: auto;
     position: relative;
     transition: transform 0.3s ease;
+    width: 100%;
 }
 
 /* Subtle lift on hover */
@@ -999,6 +1000,7 @@ p {
 .ripple-container {
     position: relative;
     overflow: hidden;
+    width: max-content;
 }
 
 /* Ripple element - directional wave arc */
@@ -1229,7 +1231,7 @@ img[alt=""] {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     overflow: hidden;
     will-change: transform;
-    max-width: 30rem;
+    width: 30rem;
     height: 40rem;
 }
 
@@ -1249,7 +1251,7 @@ img[alt=""] {
 .article-header h3 {
     color: var(--color-secondary);
     font-family: 'Cinzel Decorative', 'Georgia', serif;
-    font-size: 1.4rem;
+    font-size: 1    .4rem;
     margin-bottom: var(--spacing-md);
 }
 

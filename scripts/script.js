@@ -419,7 +419,9 @@
                     }
 
                     flipCard(card);
-                    openFeaturedModal(card);
+                    setTimeout(() => {
+                          openFeaturedModal(card);
+                    }, 1500);
                 });
 
                 // Add keyboard support (Enter and Space keys)
