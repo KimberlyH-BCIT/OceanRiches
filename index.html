@@ -96,23 +96,46 @@
             
             <!-- Primary navigation with ARIA label for screen readers -->
             <nav class="primary-nav" aria-label="Primary navigation">
-                <!-- Hamburger Menu Button (visible on mobile/tablet) -->
-                <button class="hamburger-menu"
-                        aria-label="Toggle navigation menu"
-                        aria-expanded="false"
-                        aria-controls="nav-menu">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
+                <!-- Mobile Controls: Hamburger + Search -->
+                <div class="nav-mobile-controls">
+                    <!-- Hamburger Menu Button (visible on mobile/tablet) -->
+                    <button class="hamburger-menu"
+                            aria-label="Toggle navigation menu"
+                            aria-expanded="false"
+                            aria-controls="nav-menu">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+
+                    <!-- Search Button (mobile) -->
+                    <button class="nav-search-btn" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
 
                 <!-- Navigation Menu -->
                 <ul class="nav-list" role="list" id="nav-menu">
-                    <li class="nav-item"><a href="#featured-section">HOME</a></li>
-                    <li class="nav-item"><a href="#latest-section">LATEST</a></li>
-                    <li class="nav-item"><a href="#portfolio-section">PORTFOLIO</a></li>
-                    <li class="nav-item"><a href="#footer">CONTACT</a></li>
+                    <li class="nav-item"><a href="#realms">Realms</a></li>
+                    <li class="nav-item"><a href="#creatures">Creatures</a></li>
+                    <li class="nav-item"><a href="#spellbook">Spellbook</a></li>
+                    <li class="nav-item"><a href="#artifacts">Artifacts</a></li>
+                    <li class="nav-item"><a href="#drama">Drama</a></li>
+                    <li class="nav-item"><a href="#tavern">Tavern</a></li>
                 </ul>
+
+                <!-- Right side: Subscribe button and badges -->
+                <div class="nav-actions">
+                    <button class="subscribe-btn">Subscribe</button>
+                    <div class="nav-badges" aria-label="Trending topics">
+                        <span class="nav-badge nav-badge--hot">HOT</span>
+                        <span class="nav-badge nav-badge--lore">LORE</span>
+                        <span class="nav-badge nav-badge--chaos">CHAOS</span>
+                    </div>
+                </div>
             </nav>
         </header>
         
@@ -248,65 +271,81 @@
                                 <header class="article-header">
                                     <h3>Why Loops Exist (and How to Think in Patterns)</h3>
                                 </header>
+
                                 <div class="article-meta">
-                                    <span class="article-author">By: Thinh Doan</span>
-                                    <span class="article-date">January 11, 2026</span>
-                                    <span class="article-category">Category: Programming Fundamentals</span>
+                                  <span class="article-author">By: Thinh Doan</span>
+                                  <span class="article-date">January 11, 2026</span>
+                                  <span class="article-category">Category: Spellbook</span>
                                 </div>
-                                <img class="article-image" src="assets/images/td_article1.png" alt="Illustration of looping through data patterns" width="800" height="450" />
-                                <p class="article-excerpt">Loops aren't just syntax—they're a strategy for working with collections in a clear, repeatable way.</p>
+
+                                <img
+                                  class="article-image"
+                                  src="assets/images/td_article1.png"
+                                  alt="Illustration of looping through data patterns"
+                                  width="800"
+                                  height="450"
+                                />
+
+                                <p class="article-excerpt">
+                                  ARCANE EXPLAINER: A loop is a ritual for working through a collection—one item at a time—without summoning chaos.
+                                </p>
+
                                 <div class="article-body">
-                                    <p>
-                                        When I first started with Python, I struggled with the idea of loops.
-                                        They felt inefficient—I couldn’t understand why I couldn’t just “jump”
-                                        straight to the exact piece of data I needed.
-                                    </p>
+                                  <p>
+                                    I used to think loops were pointless. If I needed one value, why couldn't I just cast <em>Teleport()</em> and appear directly at the answer?
+                                    Why trudge through every item like a candle-bearing apprentice in a dusty archive?
+                                  </p>
 
-                                    <p>
-                                        Then I met real-world data: database rows, JSON responses, log files, lists of objects.
-                                        It rarely arrives as a single value. It almost always arrives as a <strong>collection</strong>.
-                                        And because programs process work step by step (reading values from memory and applying instructions),
-                                        the most reliable way to handle a collection is to process it <strong>one item at a time</strong>.
-                                    </p>
+                                  <p>
+                                    Then I encountered real-world data: database rows, JSON scrolls, log grimoires, lists of mysterious objects.
+                                    It rarely arrives as a single prophecy. It almost always arrives as a <strong>collection</strong>—a whole shelf of tomes.
+                                    And computers (like strict wizards) follow the rules: they process instructions step by step, in order, every time.
+                                  </p>
 
-                                    <p>
-                                        Once that clicked, I stopped seeing loops as “syntax I have to use” and started treating them as a
-                                        <strong>problem-solving strategy</strong>. Now when I see a dataset, I ask myself what I’m really trying to do:
-                                    </p>
+                                  <p>
+                                    That's when it clicked: loops aren't "syntax you have to memorize."
+                                    They're a <strong>ritual pattern</strong>—a reliable spellform for handling collections without losing your mind (or your eyebrows).
+                                  </p>
 
-                                    <ul class="framework">
-                                        <li><strong>Find</strong> — Am I searching for one specific match?</li>
-                                        <li><strong>Filter</strong> — Am I keeping only items that meet a condition?</li>
-                                        <li><strong>Transform</strong> — Am I converting each item into a new shape or value?</li>
-                                        <li><strong>Aggregate</strong> — Am I summarizing the set (counting, totaling, finding a max/min)?</li>
-                                    </ul>
+                                  <p><strong>The Four Core Loop Spellforms</strong> (a.k.a. why you're looping in the first place):</p>
+                                  <ul class="framework">
+                                    <li><strong>Find</strong> — Locate the one enchanted item you're looking for, then end the ritual immediately.</li>
+                                    <li><strong>Filter</strong> — Ward away the unworthy and keep only what meets the condition.</li>
+                                    <li><strong>Transform</strong> — Transmute each item into a new shape or value (alchemy, but for data).</li>
+                                    <li><strong>Aggregate</strong> — Summon a single result from many: count, total, max/min, the "final verdict."</li>
+                                  </ul>
 
-                                    <h3>Why this mindset matters</h3>
+                                  <h4>Why this spellbook matters</h4>
 
-                                    <p>
-                                        This way of thinking makes your code <strong>language-agnostic</strong>. Whether you use a basic
-                                        <code>for</code> loop for clarity or reach for more expressive tools like list comprehensions,
-                                        <code>sum()</code>, or <code>next()</code>, the underlying logic stays the same:
-                                        you’re iterating over data and applying a rule.
-                                    </p>
+                                  <p>
+                                    This mindset makes you <strong>language-agnostic</strong>. Whether you chant a plain <code>for</code> loop for clarity, or use fancier
+                                    incantations like list comprehensions, <code>sum()</code>, <code>map()</code>, <code>filter()</code>, or <code>next()</code>,
+                                    the arcane logic stays the same:
+                                    <strong>iterate through the runes and apply a rule.</strong>
+                                  </p>
 
-                                    <p>
-                                        It also makes debugging simpler. If something goes wrong, you’re not lost in syntax—you can trace
-                                        the iteration and ask: <em>Which item am I on?</em> <em>What condition am I checking?</em>
-                                        <em>What value am I producing or accumulating?</em>
-                                    </p>
+                                  <p>
+                                    It also makes debugging feel less like an exorcism. If something goes wrong, you don't stare at the spellbook in fear—
+                                    you trace the ritual:
+                                    <em>Which item am I on?</em> <em>What condition am I checking?</em> <em>What value am I producing or summoning?</em>
+                                  </p>
 
-                                    <blockquote class="takeaway">
-                                        Iterate → apply logic → produce results.
-                                    </blockquote>
+                                  <blockquote class="takeaway">
+                                    Circle the collection → apply the rune → conjure the result.
+                                  </blockquote>
 
+                                  <p>
+                                    Once you can name the spellform (Find, Filter, Transform, Aggregate), loops stop being "something you type"
+                                    and become "something you cast on purpose."
+                                  </p>
                                 </div>
+
                                 <div class="tag-list">
-                                    <span class="tag">Programming Fundamentals</span>
-                                    <span class="tag">Iteration</span>
-                                    <span class="tag">Algorithms</span>
-                                    <span class="tag">Mental Models</span>
-                                    <span class="tag">Software Design</span>
+                                  <span class="tag">Spellbook</span>
+                                  <span class="tag">Iteration</span>
+                                  <span class="tag">Patterns</span>
+                                  <span class="tag">Mental Models</span>
+                                  <span class="tag">Problem Solving</span>
                                 </div>
                             </div>
                         </div>
@@ -336,155 +375,151 @@
                             </div>
                             <!-- Back of card (full content) -->
                             <div class="tarot-card-back">
-                                <header class="article-header">
-                                    <h3>The Architecture of Code: Why Mental Models Beat Memorization</h3>
-                                </header>
+                              <header class="article-header">
+                                <h3>The Architecture of Code: Why Mental Models Beat Memorization</h3>
+                              </header>
 
-                                <div class="article-meta">
-                                    <span class="article-author">By: Thinh Doan</span>
-                                    <span class="article-date">January 11, 2026</span>
-                                    <span class="article-category">Category: Programming Fundamentals</span>
-                                </div>
+                              <div class="article-meta">
+                                <span class="article-author">By: Thinh Doan</span>
+                                <span class="article-date">January 11, 2026</span>
+                                <span class="article-category">Category: Spellbook</span>
+                              </div>
 
-                                <img
-                                    class="article-image"
-                                    src="assets/images/td_article2.png"
-                                    alt="Conceptual flexbox mental model illustration showing parent-child relationship and main vs cross axis"
-                                    width="800"
-                                    height="450"
-                                    loading="lazy"
-                                />
+                              <img
+                                class="article-image"
+                                src="assets/images/td_article2.png"
+                                alt="Conceptual flexbox mental model illustration showing parent-child relationship and main vs cross axis"
+                                width="800"
+                                height="450"
+                                loading="lazy"
+                              />
 
-                                <p class="article-excerpt">
-                                    Syntax breaks easily. Mental models scale. A Flexbox case study on learning tech faster.
+                              <p class="article-excerpt">
+                                ALERT: Memorizing syntax is a trap. Mental models are the cheat code. Here's the Flexbox method that makes new tech feel predictable.
+                              </p>
+
+                              <div class="article-body">
+                                <p>
+                                  Somewhere, right now, a developer is whispering <code>justify-content: center</code> like it's a spell that will fix everything.
+                                  And sometimes it works—until it doesn't. Syntax is brittle. One wrong word and the magic fizzles.
                                 </p>
 
-                                <div class="article-body">
-                        <p>
-                        When we first learn to code, we treat syntax like magic spells. We memorize that
-                        <code>justify-content: center</code> moves things to the middle, or that a <code>for</code> loop repeats an action.
-                        But magic is brittle. If one word is wrong, the whole spell breaks.
-                        </p>
+                                <p>
+                                  The upgrade is learning to think like an architect. Code is a human-designed system with rules, patterns, and a few "master levers"
+                                  that control most outcomes. Once you can spot those levers, you stop guessing—and start predicting.
+                                </p>
 
-                        <p>
-                        To move from a coder to an architect, you have to realize that code is a human-designed system. Every language or
-                        framework has a core logic, a set of patterns, and master variables that influence the outcome. If you understand
-                        the strategy behind the syntax, you can predict how code will behave before you even hit save.
-                        </p>
+                                <p>
+                                  Consider this your <strong>Spellbook Column</strong>: a repeatable method for mastering any tool faster, using CSS Flexbox as the case study.
+                                </p>
 
-                        <p>
-                        Using CSS Flexbox as a case study, here is how you can deconstruct any technology to master it faster.
-                        </p>
+                                <h4>1) Identify the Relationship Architecture</h4>
+                                <p>
+                                  Most bugs are just relationship problems. Code almost always defines a <strong>Parent ↔ Child</strong> contract, and we break things when
+                                  we give orders to the wrong side of the family.
+                                </p>
 
-                        <h4>1. Identify the Relationship Architecture</h4>
-                        <p>
-                        Code almost always defines a relationship between a Parent and a Child. Most bugs happen when a developer tries to
-                        give a child instruction to a parent, or vice versa.
-                        </p>
+                                <p>
+                                  In Flexbox, <code>display: flex</code> is a command to the <strong>Container (Parent)</strong>. It's the parent saying:
+                                  "I'm taking control of layout now."
+                                </p>
 
-                        <p>
-                        In Flexbox, the <code>display: flex</code> property is an instruction to the Container (Parent). It tells the parent
-                        to take control of the space.
-                        </p>
+                                <p><strong>The Strategy:</strong> Ask one question before touching CSS: <em>Who owns this behavior?</em></p>
 
-                        <p><strong>The Strategy:</strong> Always ask, “Who owns this behavior?”</p>
-                        <p><strong>The Lesson:</strong></p>
-                        <ul>
-                        <li>If you want to align a group of buttons, you talk to the <code>div</code> holding them.</li>
-                        <li>If you want one specific button to grow larger than the rest, you talk to that individual button.</li>
-                        </ul>
+                                <ul>
+                                  <li>If you want to align a group of buttons, talk to the <code>div</code> holding them.</li>
+                                  <li>If you want one specific button to grow, talk to that button.</li>
+                                </ul>
 
-                        <h4>2. Locate the Master Levers</h4>
-                        <p>
-                        Most systems are governed by one or two master levers. If you find them, you control the system. In Flexbox, that
-                        lever is the Axis.
-                        </p>
+                                <h4>2) Locate the Master Levers</h4>
+                                <p>
+                                  Most systems are governed by one or two master levers. Find them, and you control the whole machine.
+                                  In Flexbox, the lever is the <strong>Axis</strong>.
+                                </p>
 
-                        <p>
-                        Flexbox does not think in up, down, left, or right. It thinks in Main Axis (the direction of the flow) and Cross Axis
-                        (the perpendicular side).
-                        </p>
+                                <p>
+                                  Flexbox doesn't think "left/right/up/down." It thinks:
+                                  <strong>Main Axis</strong> (direction of flow) and <strong>Cross Axis</strong> (perpendicular direction).
+                                </p>
 
-                        <ul class="key-points">
-                        <li><code>justify-content</code> controls the Main Axis.</li>
-                        <li><code>align-items</code> controls the Cross Axis.</li>
-                        </ul>
+                                <ul class="key-points">
+                                  <li><code>justify-content</code> controls the <strong>Main Axis</strong>.</li>
+                                  <li><code>align-items</code> controls the <strong>Cross Axis</strong>.</li>
+                                </ul>
 
-                        <p>
-                        <strong>The Strategy:</strong> When your layout looks wrong, do not guess at properties. Ask, “Which axis am I trying
-                        to adjust?” If you flip the <code>flex-direction</code> from <code>row</code> to <code>column</code>, the axes swap,
-                        but the logic of the properties stays the same.
-                        </p>
+                                <p>
+                                  <strong>The Strategy:</strong> When layout looks wrong, don't property-hop. Ask:
+                                  <em>Which axis am I trying to adjust?</em>
+                                  If you switch <code>flex-direction</code> from <code>row</code> to <code>column</code>, the axes swap—but the logic stays the same.
+                                </p>
 
-                        <h4>3. Translate Syntax to Human Intent</h4>
-                        <p>
-                        Syntax names are often shorthand for a human goal. To understand code at its benefit, translate the property into a
-                        Human Intent Sentence.
-                        </p>
+                                <h4>3) Translate Syntax Into Human Intent</h4>
+                                <p>
+                                  Syntax names are shorthand for real human goals. If you can translate the code into plain language,
+                                  you understand it well enough to use it under pressure.
+                                </p>
 
-                        <div class="intent-table" role="region" aria-label="Flexbox properties translated into human intent">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th scope="col">Technical Syntax</th>
-                                <th scope="col">The Human Intent</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><code>justify-content: space-between</code></td>
-                                <td>Push the items to the edges and distribute the remaining space evenly.</td>
-                            </tr>
-                            <tr>
-                                <td><code>flex-grow: 1</code></td>
-                                <td>If there is extra room in the container, I want this item to claim it.</td>
-                            </tr>
-                            <tr>
-                                <td><code>flex-wrap: wrap</code></td>
-                                <td>Do not let the items shrink into oblivion. If you run out of room, start a new line.</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        </div>
-
-                                    <h4>4. Reverse-Engineer the Default State</h4>
-                                    <p>
-                                        Every system has a natural state, the behavior it chooses when you write zero code. Understanding the default tells
-                                        you what the creator of the language thought was the most likely scenario.
-                                    </p>
-
-                                    <p><strong>Flexbox Defaults:</strong> It wants to be a horizontal row, starting from the left, with no wrapping.</p>
-
-                                    <p>
-                                        <strong>The Strategy:</strong> When you are stuck, strip to the defaults. Delete your custom CSS until the layout
-                                        returns to its natural state. This reveals exactly which variable you added is fighting against the system.
-                                    </p>
-
-                                    <h4>The Takeaway: Syntax is Temporary, Strategy is Permanent</h4>
-                                    <p>
-                                        Whether you are learning Flexbox, Python, or a new AI framework, the approach remains the same. Stop memorizing,
-                                        start mapping.
-                                    </p>
-
-                                    <ul class="takeaway-list">
-                                        <li>Map the hierarchy (Who is the parent?)</li>
-                                        <li>Identify the levers (What controls the direction?)</li>
-                                        <li>Translate the intent (What is the human goal?)</li>
-                                        <li>Check the defaults (What happens if I do nothing?)</li>
-                                    </ul>
-
-                                    <p>
-                                        Once you understand the key variables of the syntax, the code stops being something you follow and starts being a
-                                        tool you control.
-                                    </p>
+                                <div class="intent-table" role="region" aria-label="Flexbox properties translated into human intent">
+                                  <table>
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Technical Syntax</th>
+                                        <th scope="col">The Human Intent</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td><code>justify-content: space-between</code></td>
+                                        <td>Push the items to the edges and distribute the leftover space evenly.</td>
+                                      </tr>
+                                      <tr>
+                                        <td><code>flex-grow: 1</code></td>
+                                        <td>If there's extra room, I want this item to claim it.</td>
+                                      </tr>
+                                      <tr>
+                                        <td><code>flex-wrap: wrap</code></td>
+                                        <td>Don't shrink items into oblivion. If space runs out, start a new line.</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
                                 </div>
 
-                                <div class="tag-list" aria-label="Tags">
-                                    <span class="tag">Mental Models</span>
-                                    <span class="tag">Programming Fundamentals</span>
-                                    <span class="tag">CSS Flexbox</span>
-                                    <span class="tag">Problem Solving</span>
-                                </div>
+                                <h4>4) Reverse-Engineer the Default State</h4>
+                                <p>
+                                  Every system has a "natural" behavior when you write zero code. Understanding the default tells you what the creators assumed
+                                  was the most common scenario.
+                                </p>
+
+                                <p><strong>Flexbox Defaults:</strong> A horizontal row, starting from the left, with no wrapping.</p>
+
+                                <p>
+                                  <strong>The Strategy:</strong> When you're stuck, strip back to defaults. Remove custom CSS until the layout returns to its natural state.
+                                  The last change you reintroduce is usually the variable fighting the system.
+                                </p>
+
+                                <h4>The Takeaway: Syntax Is Temporary, Strategy Is Permanent</h4>
+                                <p>
+                                  Flexbox today. Another framework tomorrow. The approach doesn't change. Stop memorizing outcomes—start mapping systems.
+                                </p>
+
+                                <ul class="takeaway-list">
+                                  <li>Map the hierarchy (who is the parent?)</li>
+                                  <li>Identify the levers (what controls direction?)</li>
+                                  <li>Translate the intent (what is the human goal?)</li>
+                                  <li>Check the defaults (what happens if I do nothing?)</li>
+                                </ul>
+
+                                <p>
+                                  Once you understand the key variables, code stops being something you follow—and becomes something you control.
+                                </p>
+                              </div>
+
+                              <div class="tag-list" aria-label="Tags">
+                                <span class="tag">Mental Models</span>
+                                <span class="tag">Programming Fundamentals</span>
+                                <span class="tag">CSS Flexbox</span>
+                                <span class="tag">Problem Solving</span>
+                              </div>
                             </div>
                         </div>
                     </article>
