@@ -143,44 +143,80 @@
 /* 2.2. Tablet - 768px and up */
 @media (min-width: 768px) {
     .site-header {
+        display: flex !important;
         flex-direction: row !important;
         justify-content: flex-start !important;
         align-items: center !important;
         gap: var(--spacing-md);
-    }
-    
-    .site-logo-image {
-        height: 80px;
+        overflow: visible;
     }
 
-    /* Hide hamburger menu on tablet and larger */
+    .site-logo-image {
+        height: 80px;
+        align-self: center;
+    }
+
+    /* Hide hamburger menu and mobile controls on tablet and larger */
     .hamburger-menu {
+        display: none;
+    }
+
+    .nav-mobile-controls {
+        display: none;
+    }
+
+    /* Hide mobile search button on desktop */
+    .nav-search-btn {
         display: none;
     }
 
     .primary-nav {
         width: auto !important;
-        align-items: center;
+        align-items: center !important;
         flex-direction: row !important;
         padding: 0;
+        flex: 1;
+        justify-content: space-between;
     }
 
     .nav-list {
         flex-direction: row !important;
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
         max-height: none !important;
         opacity: 1 !important;
         overflow: visible !important;
         padding: 0 !important;
+        align-items: center !important;
     }
 
     .nav-item a {
-        font-size: 1.2rem;
+        font-size: 0.95rem;
+        padding: var(--spacing-sm);
+    }
+
+    /* Show nav actions on tablet+ */
+    .nav-actions {
+        display: flex !important;
+        flex-shrink: 0;
+        margin-left: auto;
+        align-items: center !important;
+    }
+
+    .nav-badges {
+        display: flex !important;
+        gap: var(--spacing-sm);
+    }
+
+    .nav-badge {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     .site-title {
         font-size: 2.25rem;
-        margin-bottom: var(--spacing-md);
+        margin: 0;
+        align-self: center;
     }
 
     .section-title {
@@ -221,7 +257,7 @@
     .tarot-card-front,
     .tarot-card-back {
         min-height: 250px;
-    }   
+    }
 
     .tarot-card-front .article-header h3 {
         font-size: 2.2rem;
@@ -247,15 +283,22 @@
     .site-logo-image {
         padding-left: 40px;
     }
-    
+
     .primary-nav {
         margin-left: auto !important;
         width: auto !important;
         flex-direction: row !important;
+        gap: var(--spacing-md);
     }
-    
+
     .nav-list {
         flex-direction: row !important;
+        gap: var(--spacing-md);
+        justify-content: flex-start;
+    }
+
+    .nav-item a {
+        font-size: 1rem;
     }
 
     .site-title {
@@ -378,7 +421,7 @@
    ============================================ */
 
 /* Ensure touch targets remain accessible on all screen sizes */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .nav-item a,
     .tag,
     .portfolio-card {
@@ -395,8 +438,22 @@
         outline-offset: 4px;
     }
 
-    /* Tarot card mobile adjustments */
+    /* Mobile nav layout: hamburger + logo + search visible, category row hidden */
+    .nav-mobile-controls {
+        display: flex;
+        order: 1;
+    }
 
+    .nav-list {
+        order: 2;
+    }
+
+    /* Hide nav actions (subscribe + badges) on mobile */
+    .nav-actions {
+        display: none;
+    }
+
+    /* Tarot card mobile adjustments */
     .tarot-card,
     .tarot-card-inner,
     .tarot-card-front,
@@ -411,6 +468,7 @@
     .tarot-card-back {
         max-height: 400px; /* Prevent overly tall cards on mobile */
     }
+
     .tarot-card-front .article-header h3 {
         font-size: 1.5rem;
     }
