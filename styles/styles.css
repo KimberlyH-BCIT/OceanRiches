@@ -1,544 +1,557 @@
 /* ============================================
-   TABLE OF CONTENTS
+   styles.css
+   Base styles only (no media queries).
+   All responsive overrides in responsive.css.
    ============================================
+
+   TABLE OF CONTENTS:
    
    1. CSS CUSTOM PROPERTIES (VARIABLES)
-      - Color Palette
-      - Spacing Scale
-      - Border Radius Scale
-      - Border Widths
-   
+      - Color palette (team colors + functional aliases)
+      - Gradients (backgrounds, borders, effects)
+      - Spacing scale (xs to xl)
+      - Border radius & widths
+      
    2. ACCESSIBILITY STYLES
-      - Skip Link
-      - Enhanced Focus Indicators
-      - Minimum Touch Target Size
-   
+      - Skip links for keyboard navigation
+      - Focus indicators (keyboard users)
+      - Minimum touch target sizes (44×44px)
+      
    3. BASE & RESET STYLES
-      - Global Resets
-      - Full-height Layout
-      - Body Styles
-
-   3.5. CUSTOM SCROLLBAR STYLES
-      - Firefox Scrollbar
-      - Chromium Scrollbar (Chrome, Edge, Safari)
-      - Hover Effects
-
-   4. LAYOUT SYSTEM
-      - Site Container
-      - Header Styles
-      - Main Wrapper
-      - Section Styles
-      - Featured Section
-      - Latest Articles Grid
-      - Portfolio Section
-      - Footer Styles
-   
-   5. COMPONENT STYLES
-      - Navigation
-      - Nav Links
-   
-   6. TYPOGRAPHY STYLES
-      - Site Title
-   
-   7. ANIMATIONS & KEYFRAMES
-      - Shimmer Animation
-      - Breathe Animation
-      - Pulse Animation
-      - Fade-in Animation
-      - Ripple Animation
-   
-   7.5. RIPPLE EFFECT STYLES
-      - Ripple Container
-      - Ripple Element
-      - Enhanced Ripple Variants
-   
-   8. ADVANCED SELECTORS & PSEUDO-SELECTORS
-      - Descendant Selectors
-      - Child Selectors
-      - Sibling Selectors
-      - Attribute Selectors
-      - Pseudo-selectors
-   
-   9. ARTICLE STYLES
-      - Article Container
-      - Article Header
-      - Article Meta
-      - Article Image
-      - Article Content
-      - Tag List
-   
-   Note: All responsive media queries are in responsive.css
+      - Universal box-sizing
+      - Body & typography defaults
+      - Modal-open state
+      
+   4. CUSTOM SCROLLBAR STYLES
+      - Webkit & Firefox custom scrollbars
+      - Theme-matching colors & effects
+      
+   5. TYPOGRAPHY STYLES
+      - Site title with shimmer animations
+      - Section headings
+      
+   6. LAYOUT SYSTEM
+      - Site container (flex column, sticky footer)
+      - Header layout (grid→flex responsive)
+      - Logo with animations
+      - Main wrapper & section grids
+      - Footer with glass overlay
+      
+   7. NAVIGATION COMPONENTS
+      - Primary nav (mobile→horizontal responsive)
+      - Mobile hamburger menu
+      - Nav links with ripple effects
+      - Badges & subscribe button
+      
+   8. MODAL COMPONENT
+      - Overlay & backdrop
+      - Card-to-modal zoom animation
+      - Themed close button
+      - Performance optimizations
+      
+   9. TAROT CARD 3D FLIP EFFECT
+      - Perspective & 3D transform
+      - Front/back card sides
+      - Backface visibility
+      - Card state transitions
+      
+   10. ARTICLE STYLES
+       - Card layout & interactions
+       - Article header, meta, images
+       - Body content (headings, lists, tables)
+       - Tags & inline elements
+       - Special content blocks (key-points, takeaways)
+       
+   11. ANIMATIONS & KEYFRAMES
+       - Shimmer effects (logo & title)
+       - Breathe/pulse animations
+       - Fade-in effects
+       - Ripple wave animation
+       - Border shimmer
+       - Modal zoom keyframes
+       
+   12. VISUAL EFFECTS
+       12.1 Ripple Effect System
+            - Base ripple styles
+            - Variant ripples (nav, article, tag)
+            - Directional wave mechanics
+       12.2 Backdrop Filter Effects
+            - Frosted glass on cards
+       12.3 Enhanced Ornate Borders
+            - Hover glow effects
+            - Animated shimmer borders
+       
+   13. ADVANCED SELECTORS & PSEUDO-SELECTORS
+       - Descendant & sibling selectors
+       - Attribute selectors
+       - Nth-child patterns
+       
    ============================================ */
 
+
 /* ============================================
    1. CSS CUSTOM PROPERTIES (VARIABLES)
-   ============================================
-   Using CSS custom properties for maintainable,
-   theme-able design system.
-   */
+   ============================================ */
 :root {
-    /* ═══════════════════════════════════════
-       TEAM'S ORIGINAL COLOR NAMES
-       (From design doc - for A05 reference)
-       ═══════════════════════════════════════ */
-    --onyx: rgba(11, 12, 12, 1);                  /* #0b0c0c */
-    --jet-black: rgba(39, 60, 62, 1);             /* #273c3e */
-    --electric-aqua: rgba(89, 229, 239, 1);       /* #59e5ef */
-    --platinum: rgba(238, 238, 238, 1);           /* #eeeeee */
-    --bright-gold: rgba(251, 225, 52, 1);         /* #fbe134 */
-    --saffron: rgba(228, 182, 26, 1);             /* #e4b61a */
-    
-    /* ═══════════════════════════════════════
-       FUNCTIONAL ALIASES
-       (Keep existing usage working)
-       ═══════════════════════════════════════ */
-    --color-primary: var(--electric-aqua);
-    --color-secondary: var(--saffron);
-    --color-accent: var(--bright-gold);
-    --color-background: var(--onyx);
-    --color-dark-surface: var(--jet-black);
-    --color-light-surface: var(--platinum);
-    --color-text: var(--platinum);
-    
-    /* ═══════════════════════════════════════
-       GRADIENT UTILITIES (NEW)
-       (From team design doc)
-       ═══════════════════════════════════════ */
-    --gradient-aqua-gold: linear-gradient(135deg, 
-        var(--electric-aqua) 0%, 
-        var(--bright-gold) 100%);
-    
-    --gradient-mystical: linear-gradient(135deg,
-        var(--jet-black) 0%,
-        var(--onyx) 50%,
-        var(--jet-black) 100%);
-    
-    --gradient-card-glow: linear-gradient(135deg,
-        rgba(89, 229, 239, 0.1) 0%,
-        rgba(251, 225, 52, 0.1) 100%);
-    
-    --gradient-border-shimmer: linear-gradient(90deg,
-        var(--electric-aqua),
-        var(--bright-gold),
-        var(--saffron),
-        var(--bright-gold),
-        var(--electric-aqua));
-    
-    --gradient-radial-glow: radial-gradient(circle at center,
-        rgba(251, 225, 52, 0.3) 0%,
-        rgba(89, 229, 239, 0.2) 40%,
-        transparent 70%);
-    
-    /* ═══════════════════════════════════════
-       SPACING SCALE
-       ═══════════════════════════════════════ */
-    --spacing-sm: 0.5rem;               /* 8px */
-    --spacing-md: 1rem;                 /* 16px */
-    --spacing-lg: 2rem;                 /* 32px */
-    --spacing-xl: 3rem;                 /* 48px */
-    
-    /* ═══════════════════════════════════════
-       BORDER RADIUS SCALE
-       ═══════════════════════════════════════ */
-    --border-radius: 0.5rem;
-    --border-radius-lg: 1rem;
-    
-    /* ═══════════════════════════════════════
-       BORDER WIDTHS
-       ═══════════════════════════════════════ */
-    --border-thin: 0.0625rem;           /* 1px */
-    --border-normal: 0.125rem;          /* 2px */
-    --border-medium: 0.1875rem;         /* 3px */
-    --border-thick: 0.2rem;             /* 3.2px */
-    --border-heavy: 0.25rem;            /* 4px */
+  /* Team color names */
+  --onyx: rgba(11, 12, 12, 1);             /* #0b0c0c */
+  --jet-black: rgba(39, 60, 62, 1);        /* #273c3e */
+  --electric-aqua: rgba(89, 229, 239, 1);  /* #59e5ef */
+  --platinum: rgba(238, 238, 238, 1);      /* #eeeeee */
+  --bright-gold: rgba(251, 225, 52, 1);    /* #fbe134 */
+  --saffron: rgba(228, 182, 26, 1);        /* #e4b61a */
+
+  /* Functional aliases */
+  --color-primary: var(--electric-aqua);
+  --color-secondary: var(--saffron);
+  --color-accent: var(--bright-gold);
+  --color-background: var(--onyx);
+  --color-dark-surface: var(--jet-black);
+  --color-light-surface: var(--platinum);
+  --color-text: var(--platinum);
+
+  /* ===== GRADIENTS =====
+     Pre-defined gradients for consistent visual effects.
+     Used for backgrounds, borders, and lighting effects. */
+  --gradient-aqua-gold: linear-gradient(135deg, var(--electric-aqua) 0%, var(--bright-gold) 100%);
+  --gradient-mystical: linear-gradient(135deg, var(--jet-black) 0%, var(--onyx) 50%, var(--jet-black) 100%);
+  --gradient-card-glow: linear-gradient(135deg, rgba(89, 229, 239, 0.1) 0%, rgba(251, 225, 52, 0.1) 100%);
+  /* Animated border shimmer - cycles through accent colors.
+     Used with background-size and animation for moving effect. */
+  --gradient-border-shimmer: linear-gradient(
+    90deg,
+    var(--electric-aqua),
+    var(--bright-gold),
+    var(--saffron),
+    var(--bright-gold),
+    var(--electric-aqua)
+  );
+  /* Radial glow for atmospheric lighting effects.
+     Creates soft, centered glow that fades to transparent. */
+  --gradient-radial-glow: radial-gradient(
+    circle at center,
+    rgba(251, 225, 52, 0.3) 0%,
+    rgba(89, 229, 239, 0.2) 40%,
+    transparent 70%
+  );
+
+  /* ===== SPACING SCALE =====
+     Consistent spacing based on 8px grid system.
+     Use these instead of arbitrary pixel values. */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem;  /* 8px */
+  --spacing-md: 1rem;    /* 16px */
+  --spacing-lg: 2rem;    /* 32px */
+  --spacing-xl: 3rem;    /* 48px */
+
+  /* ===== BORDER RADIUS =====
+     Rounded corners for cards, buttons, and containers. */
+  --border-radius: 0.5rem;      /* Standard radius for most elements */
+  --border-radius-lg: 1rem;     /* Larger radius for modals and major containers */
+
+  /* ===== BORDER WIDTHS =====
+     Semantic border thickness for consistency.
+     Thin for subtle dividers, heavy for emphasis. */
+  --border-thin: 0.0625rem;   /* 1px */
+  --border-normal: 0.125rem;  /* 2px */
+  --border-medium: 0.1875rem; /* 3px */
+  --border-thick: 0.2rem;     /* 3.2px */
+  --border-heavy: 0.25rem;    /* 4px */
 }
+
+
 /* ============================================
    2. ACCESSIBILITY STYLES
    ============================================
-   
-   WCAG 2.1 Level AA compliance features:
-   - Keyboard focus indicators (visible outlines)
-   - High contrast focus states
-   - Skip link for keyboard users
-   - Minimum touch target sizes (44x44px)
-   - Respects prefers-reduced-motion
-   - Proper ARIA labels and semantic HTML
-*/
+   WCAG 2.1 AA compliant accessibility features.
+   Keyboard navigation, focus indicators, touch targets.
+   ============================================ */
 
-/* Skip Link - Visible only on keyboard focus */
+/* Skip to main content link for keyboard users.
+   Hidden off-screen until focused via Tab key.
+   Allows keyboard users to bypass navigation. */
 .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--color-accent);
-    color: var(--color-background);
-    padding: var(--spacing-sm) var(--spacing-md);
-    text-decoration: none;
-    font-weight: bold;
-    z-index: 10000;
-    border-radius: 0 0 var(--border-radius) 0;
+  position: absolute;
+  top: -40px;              /* Hidden above viewport */
+  left: 0;
+  background: var(--color-accent);
+  color: var(--color-background);
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-decoration: none;
+  font-weight: bold;
+  z-index: 10000;
+  border-radius: 0 0 var(--border-radius) 0;
 }
 
 .skip-link:focus {
-    top: 0;
-    outline: 3px solid var(--color-primary);
-    outline-offset: 2px;
+  top: 0;
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
-/* Enhanced Focus Indicators - WCAG 2.1 Level AA requirement */
-:is(a, button, .nav-item a, .article, .tag, .portfolio-card):focus {
-    outline: 3px solid var(--color-accent);
-    outline-offset: 3px;
-    box-shadow: 0 0 0 5px rgba(251, 225, 52, 0.3);
+/* ===== KEYBOARD FOCUS INDICATORS =====
+   High-contrast focus rings for keyboard navigation.
+   Using :focus-visible to avoid showing on mouse clicks.
+   3px outline + glow ensures visibility on all backgrounds. */
+:is(a, button, .nav-item a, .article, .tag):focus {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(251, 225, 52, 0.3);
 }
 
-/* Remove default outline only when mouse is used (not keyboard) */
-:is(a, button, .nav-item a, .article, .tag, .portfolio-card):focus:not(:focus-visible) {
-    outline: none;
-    box-shadow: none;
+:is(a, button, .nav-item a, .article, .tag):focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
 }
 
-/* Ensure focus-visible has strong indicators for keyboard users */
-:is(a, button, .nav-item a, .article, .tag, .portfolio-card):focus-visible {
-    outline: 3px solid var(--color-accent);
-    outline-offset: 3px;
-    box-shadow: 0 0 0 5px rgba(251, 225, 52, 0.3);
+:is(a, button, .nav-item a, .article, .tag):focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(251, 225, 52, 0.3);
 }
 
-/* Minimum touch target size - WCAG 2.1 Level AA */
+/* ===== MINIMUM TOUCH TARGET SIZE =====
+   WCAG 2.5.5: Touch targets must be at least 44×44px.
+   Ensures usability on touch devices and for motor impairments. */
 .nav-item a,
-.portfolio-card {
-    min-width: 44px;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+.nav-search-btn,
+.subscribe-btn,
+.nav-badge,
+.hamburger-menu {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 /* ============================================
    3. BASE & RESET STYLES
+   ============================================
+   Modern CSS reset with border-box model.
+   Prevents common browser inconsistencies.
    ============================================ */
+
+/* Universal box-sizing: border-box.
+   Makes width/height include padding and border.
+   Simplifies layout calculations. */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Full-height layout */
+/* Ensure full-height layout without horizontal overflow. */
 html,
 body {
-    width: 100%;
-    min-height: 100%;
-    overflow-x: hidden;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;    /* Prevent horizontal scrollbar */
 }
 
+/* Base typography and color settings. */
 body {
-    font-family: "Macondo Swash Caps", "Georgia", serif;
-    text-align: center;
-    line-height: 1.6;
-    font-size: 0.9rem;
-    color: var(--color-text);
-    /* Commented out for black background - uncomment to restore image */
-    /* background-image: image-set(
-        url("../assets/images/header/header_background-1000w.webp") 1x,
-        url("../assets/images/header/header_background-2000w.webp") 2x
-    );
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat; */
-    background-color: var(--color-dark-surface);
+  font-family: "Macondo Swash Caps", "Georgia", serif;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background-color: var(--color-dark-surface);
+}
+
+/* Pause expensive shimmer animation when modal is open (requires JS to toggle) */
+body.modal-open .featured-article {
+  animation-play-state: paused;
 }
 
 p {
-    text-wrap: balance;
+  text-wrap: balance;
 }
+
 
 /* ============================================
-   3.5. CUSTOM SCROLLBAR STYLES
+   4. CUSTOM SCROLLBAR STYLES
    ============================================
-   Custom scrollbar styling for modern browsers.
-   Uses ocean theme colors for visual consistency.
-   */
+   Themed scrollbars matching site color scheme.
+   Firefox (scrollbar-color) and Webkit (pseudo-elements).
+   ============================================ */
 
-/* Firefox scrollbar styling */
+/* Firefox scrollbar styling using scrollbar-color property. */
 * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--electric-aqua) var(--jet-black);
+  scrollbar-width: thin;                              /* Thin scrollbar width */
+  scrollbar-color: var(--electric-aqua) var(--jet-black);  /* Thumb Track */
 }
 
-/* Chromium browsers (Chrome, Edge, Opera, Safari) */
+/* ===== WEBKIT SCROLLBAR (Chrome, Safari, Edge) ===== */
+
+/* Scrollbar track (background groove). */
 *::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  width: 8px;     /* Vertical scrollbar width */
+  height: 8px;    /* Horizontal scrollbar height */
 }
 
+/* Track background with inset shadow for depth. */
 *::-webkit-scrollbar-track {
-    background: var(--jet-black);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+  background: var(--jet-black);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
 *::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--electric-aqua), var(--bright-gold));
-    border-radius: 6px;
-    border: 2px solid var(--jet-black);
-    box-shadow: 0 0 15px rgba(89, 229, 239, 0.9);
+  background: linear-gradient(180deg, var(--electric-aqua), var(--bright-gold));
+  border-radius: 6px;
+  border: 2px solid var(--jet-black);
+  box-shadow: 0 0 15px rgba(89, 229, 239, 0.9);
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, var(--bright-gold), var(--saffron));
-    box-shadow: 0 0 20px rgba(251, 225, 52, 1);
+  background: linear-gradient(180deg, var(--bright-gold), var(--saffron));
+  box-shadow: 0 0 20px rgba(251, 225, 52, 1);
 }
 
-   /* ============================================
-   4. LAYOUT SYSTEM
+
+/* ============================================
+   5. LAYOUT SYSTEM
    ============================================
-   Flexbox-based layout with full viewport height.
-   Header and footer fixed, main content scrollable.
-   */
+   Flexbox-based site structure with mobile-first grid.
+   Responsive header transforms from grid to flex (see responsive.css).
+   ============================================ */
 
+/* Main site container using flexbox.
+   Ensures footer stays at bottom (sticky footer pattern). */
 .site-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: transparent;
-    color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: transparent;
+  color: var(--color-text);
 }
 
-/* Header Styles - Uses absolute positioning for background image */
+/* ===== HEADER LAYOUT =====
+   Mobile: CSS Grid for flexible placement.
+   Tablet+: Switched to Flexbox (see responsive.css).
+   
+   Mobile grid structure:
+   Row 1: Logo (spans both columns, centered)
+   Row 2: Title (left) | Nav (right) */
 .site-header {
-    position: relative;
-    background-color: var(--color-background);
-    padding: var(--spacing-sm);
-    color: var(--color-primary);
-    z-index: 1000;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    align-items: center;
-    gap: var(--spacing-sm);
+  position: relative;
+  background-color: var(--color-background);
+  padding: var(--spacing-sm);
+  color: var(--color-primary);
+  z-index: 1000;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
-/* Grid layout for mobile */
+/* Mobile grid placements */
 .site-logo-image {
-    grid-column: 1 / 3; /* Span both columns */
-    grid-row: 1 / 2;
-    justify-self: center;
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  justify-self: center;
 }
 
 .site-title {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    justify-self: center;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  justify-self: center;
 }
 
 .primary-nav {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3; /* Same row as title */
-    justify-self: end;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  justify-self: end;
 }
 
-/* Desktop layout - title and nav on same line */
-@media (min-width: 768px) {
-    .site-header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: var(--spacing-sm) var(--spacing-md);
-    }
-
-    /* Reset grid properties for desktop */
-    .site-logo-image,
-    .site-title,
-    .primary-nav {
-        grid-column: auto;
-        grid-row: auto;
-        justify-self: auto;
-    }
-}
-
+/* Decorative background image behind header content.
+   Positioned absolutely behind all header elements (z-index: 0). */
 .site-header-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
+/* ===== LOGO =====
+   Animated logo with drop-shadow effects.
+   Shimmer and breathe animations for mystical feel. */
 .site-logo-image {
-    position: relative;
-    z-index: 1;
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.8))
-            drop-shadow(-2px -2px 3px rgba(0, 0, 0, 0.6))
-            drop-shadow(1px 1px 2px var(--color-accent))
-            drop-shadow(2px 2px 3px rgba(251, 225, 52, 0.4));
-    animation: shimmerLogo 3s ease-in-out 0.5s infinite, breatheLogo 4s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  filter:
+    drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.8))
+    drop-shadow(-2px -2px 3px rgba(0, 0, 0, 0.6))
+    drop-shadow(1px 1px 2px var(--color-accent))
+    drop-shadow(2px 2px 3px rgba(251, 225, 52, 0.4));
+  animation: shimmerLogo 3s ease-in-out 0.5s infinite, breatheLogo 4s ease-in-out infinite;
 }
 
 .site-header .primary-nav {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
+/* ===== MAIN CONTENT WRAPPER =====
+   Flex: 1 makes it grow to fill available space.
+   Creates sticky footer effect with site-container flex. */
 .main-wrapper {
-    flex: 1;
-    padding: var(--spacing-md);
-    min-height: 0;
+  flex: 1;
+  padding: var(--spacing-md);
+  min-height: 0;
 }
 
-/* Section Styles */
+/* ===== SECTION TITLES =====
+   Decorative headers for major content sections.
+   Uses Cinzel Decorative font for ornate appearance. */
 .section-title {
-    font-family: 'Cinzel Decorative', 'Georgia', cursive;
-    font-size: 1.5rem;
-    color: var(--color-secondary);
-    text-shadow: 1px 1px 2px var(--color-accent);
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-md);
-    padding-bottom: var(--spacing-sm);
-    border-bottom: var(--border-medium) solid var(--color-primary);
+  font-family: "Cinzel Decorative", "Georgia", cursive;
+  font-size: 1.5rem;
+  color: var(--color-secondary);
+  text-shadow: 1px 1px 2px var(--color-accent);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: var(--border-medium) solid var(--color-primary);
 }
 
-/* Featured Section - News-style Grid */
+/* ===== FEATURED ARTICLES SECTION =====
+   Highlighted articles at top of page.
+   Grid expands to 2 columns on tablet+ (see responsive.css). */
 .featured-section {
-    margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
 }
 
 .featured-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
-    padding-left: 2rem;
-    padding-right: 2rem;
-    justify-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding-left: 2rem;
+  padding-right: 2rem;
+  justify-items: center;
 }
 
-/* Featured articles should be wider */
 .featured-article {
-    width: 100%;
-    max-width: 50rem;
+  width: 100%;
 }
 
-/* Override for non-tarot featured articles */
-.featured-article:not(.tarot-card) {
-    background: linear-gradient(135deg, rgba(39, 60, 62, 0.6), rgba(39, 60, 62, 0.8));
-    border: var(--border-normal) solid var(--color-primary);
+/* Latest section */
+.latest-section {
+  margin-bottom: var(--spacing-lg);
 }
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
 
 /* ============================================
-   TAROT CARD 3D FLIP EFFECT
+   6. TAROT CARD 3D FLIP EFFECT
    ============================================
-
-   TECHNIQUE: True 3D CSS transform with backface-visibility
-
-   HTML STRUCTURE (already correct):
-   <article class="tarot-card">
-     <div class="tarot-card-inner">
-       <div class="tarot-card-front">...</div>
-       <div class="tarot-card-back">...</div>
-     </div>
-   </article>
-
-   TRIGGER: JavaScript toggles .flipped class on .tarot-card
-   RESULT: .tarot-card-inner rotates 180deg, revealing back
+   3D CSS flip animation using transform-style: preserve-3d.
+   Front shows preview, back shows full content.
+   JavaScript toggles .flipped class to trigger rotation.
    ============================================ */
 
-/* Container - provides 3D perspective depth */
+/* Outer card container with perspective for 3D effect.
+   Perspective value controls depth of 3D space. */
 .tarot-card {
-    cursor: pointer;
-    perspective: 1000px;
-    min-height: 300px;
-    height: auto;
-    position: relative;
-    transition: transform 0.3s ease;
+  cursor: pointer;
+  perspective: 1000px;
+  min-height: 300px;
+  height: auto;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
-/* Subtle lift on hover */
 .tarot-card:hover {
-    transform: translateY(-3px);
+  transform: translateY(-3px);
 }
 
-/* Inner wrapper - performs the actual rotation */
+/* Inner container that actually rotates in 3D space.
+   preserve-3d allows child elements (front/back) to exist in 3D.
+   Transition provides smooth 0.8s rotation animation. */
 .tarot-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 200px;
-    text-align: center;
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
-    transform-style: preserve-3d;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform-style: preserve-3d;
 }
 
-/* Flipped state - triggered by JavaScript */
 .tarot-card.flipped .tarot-card-inner {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 /* Both sides - positioned absolutely in 3D space */
 .tarot-card-front,
 .tarot-card-back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 300px;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border-radius: var(--border-radius);
-    overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: var(--border-radius);
+  overflow: hidden;
 }
 
 /* Front side - default visible */
 .tarot-card-front {
-    background: linear-gradient(135deg,
-        rgba(39, 60, 62, 0.6),
-        rgba(39, 60, 62, 0.9));
-    border: var(--border-normal) solid var(--color-primary);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: var(--spacing-lg);
-    padding-top: var(--spacing-xl);
-    box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(89, 229, 239, 0.2);
+  background: linear-gradient(135deg, rgba(39, 60, 62, 0.6), rgba(39, 60, 62, 0.9));
+  border: var(--border-normal) solid var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-lg);
+  padding-top: var(--spacing-xl);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(89, 229, 239, 0.2);
 }
 
 /* Extra padding for latest article tarot fronts */
 .latest-section .tarot-card-front {
-    padding-top: calc(var(--spacing-xl) + var(--spacing-md));
-    padding-bottom: var(--spacing-xl);
+  padding-top: calc(var(--spacing-xl) + var(--spacing-md));
+  padding-bottom: var(--spacing-xl);
 }
 
-/* Tighter title sizing for latest article tarot cards */
 .latest-section .tarot-card-front .article-header h3 {
-    font-size: 1.5rem;
-    line-height: 1.3;
+  font-size: 1.5rem;
+  line-height: 1.3;
 }
 
 /* Back side - pre-rotated 180deg (hidden initially) */
 .tarot-card-back {
-    transform: rotateY(180deg);
-    background: linear-gradient(135deg,
-        rgba(39, 60, 62, 0.8),
-        rgba(39, 60, 62, 0.95));
-    border: var(--border-normal) solid var(--color-primary);
-    padding: var(--spacing-md);
-    overflow-y: auto;
-    max-height: 600px;
-    box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(89, 229, 239, 0.3);
-    text-align: left;
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, rgba(39, 60, 62, 0.8), rgba(39, 60, 62, 0.95));
+  border: var(--border-normal) solid var(--color-primary);
+  padding: var(--spacing-md);
+  overflow-y: auto;
+  height: 100%;
+  max-height: 100%;
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(89, 229, 239, 0.3);
+  text-align: left;
 }
 
 /* Ensure back content is visible */
@@ -548,1029 +561,1082 @@ p {
 .tarot-card-back .article-excerpt,
 .tarot-card-back .article-body,
 .tarot-card-back .tag-list {
-    display: block;
-    opacity: 1;
-    visibility: visible;
+  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Preserve flex layouts in back */
 .tarot-card-back .article-meta,
 .tarot-card-back .tag-list {
-    display: flex;
+  display: flex;
 }
 
 .tarot-card-back .article-header {
-    text-align: center;
-    margin-bottom: var(--spacing-md);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
 }
 
 .tarot-card-back .article-header h3 {
-    color: var(--color-accent);
-    margin-bottom: var(--spacing-sm);
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-sm);
 }
 
 .tarot-card-back .article-meta {
-    justify-content: center;
-    gap: var(--spacing-sm) var(--spacing-md);
+  justify-content: center;
+  gap: var(--spacing-sm) var(--spacing-md);
 }
 
-/* Front side typography */
+/* Front typography */
 .tarot-card-front .article-header h3 {
-    font-size: 1.8rem;
-    margin-bottom: var(--spacing-md);
-    color: var(--color-accent);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-accent);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .tarot-card-front .article-meta {
-    justify-content: center;
-    font-size: 0.9rem;
+  justify-content: center;
+  font-size: 0.9rem;
 }
 
-/* Extra spacing between title and meta border on tarot front */
 .tarot-card-front .article-header + .article-meta {
-    margin-top: var(--spacing-sm);
-    padding-top: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
 }
 
-/* Latest Articles Grid */
-.latest-section {
-    margin-bottom: var(--spacing-lg);
-}
 
-.articles-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-}
-
-/* Portfolio Section */
-.portfolio-section {
-    margin-bottom: var(--spacing-lg);
-}
-
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-}
-
-.portfolio-card {
-    position: relative;
-    background-color: rgba(39, 60, 62, 0.5);
-    border: var(--border-thin) solid transparent;
-    border-radius: var(--border-radius);
-    padding: var(--spacing-lg);
-    text-align: center;
-    color: var(--color-light-surface);
-    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-    overflow: hidden;
-    cursor: pointer;
-    will-change: transform;
-}
-
-.portfolio-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    background-color: rgba(39, 60, 62, 0.8);
-    border-color: var(--color-primary);
-}
-
-.portfolio-card h3 {
-    color: var(--color-accent);
-    margin-bottom: var(--spacing-sm);
-}
-
-/* Footer Styles */
+/* ============================================
+   7. FOOTER
+   ============================================
+   Footer with background image and glass overlay.
+   Frosted glass effect for text readability.
+   ============================================ */
 .footer {
-    position: relative;
-    background-color: var(--color-light-surface);
-    padding: var(--spacing-md);
-    color: black;
-    text-shadow: 2px 2px 6px var(--color-accent),
-                 0 0 8px var(--color-accent);
-    text-align: left;
-    overflow: visible;
+  position: relative;
+  padding: var(--spacing-md);
+  color: #000;
+  text-align: left;
+  overflow: hidden; /* keeps overlay tidy over bg image */
 }
 
 .site-footer-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
-.footer p {
-    position: relative;
-    padding-left: var(--spacing-md);
-    z-index: 1;
-    font-size: 0.85rem;
+/* Glass overlay wrapper for footer text */
+.footer-overlay {
+  position: relative;
+  z-index: 1;
+  margin: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+
+  background: rgba(238, 238, 238, 0.55);
+  border: var(--border-thin) solid rgba(89, 229, 239, 0.25);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.18),
+    0 0 16px rgba(89, 229, 239, 0.12);
+
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
 }
+
+/* Footer text inside overlay */
+.footer-overlay p {
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.88);
+  text-shadow: none;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Small separation between the two lines/blocks */
+.footer-overlay .disclaimer {
+  margin-top: var(--spacing-sm);
+  opacity: 0.9;
+  font-size: 0.85rem;
+}
+
 
 /* ============================================
-   5. COMPONENT STYLES
+   8. NAVIGATION COMPONENTS
    ============================================
-   Navigation and reusable components.
-   */
+   Responsive navigation with hamburger menu.
+   Mobile: collapsed vertical menu with toggle.
+   Tablet+: horizontal menu (see responsive.css).
+   ============================================ */
 
+/* Primary navigation container.
+   Mobile-first: vertical layout, hidden by default.
+   Transformed to horizontal on tablet+ via responsive.css. */
 .primary-nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    padding: var(--spacing-sm);
-    border-radius: var(--border-radius);
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius);
+  width: 100%;
 }
 
-/* ============================================
-   5.2. MODAL
-   ============================================ */
-
-.modal {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-lg);
-    background: rgba(11, 12, 12, 0.7);
-    z-index: 2000;
-}
-
-.modal.is-open {
-    display: flex;
-}
-
-.modal-content {
-    position: relative;
-    width: min(900px, 92vw);
-    max-height: 90vh;
-    overflow: auto;
-    background: rgba(39, 60, 62, 0.95);
-    border: var(--border-normal) solid var(--color-primary);
-    border-radius: var(--border-radius-lg);
-    padding: var(--spacing-lg);
-    box-shadow:
-        0 12px 24px rgba(0, 0, 0, 0.45),
-        0 0 30px rgba(89, 229, 239, 0.25);
-}
-
-.modal-close {
-    position: absolute;
-    top: var(--spacing-sm);
-    right: var(--spacing-sm);
-    background: transparent;
-    border: none;
-    color: var(--color-accent);
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-.modal-body .article-image {
-    max-width: 100%;
-}
-
-/* Desktop - nav inline with title */
-@media (min-width: 768px) {
-    .primary-nav {
-        width: auto;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    /* Show nav list on desktop - override mobile hidden state */
-    .nav-list {
-        max-height: none;
-        opacity: 1;
-        overflow: visible;
-        padding: 0;
-        flex-direction: row;
-        gap: var(--spacing-md);
-        width: auto;
-    }
-}
-
-/* Descendant selector - targets all list items within nav */
-.nav-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    text-align: center;
-    width: 100%;
-}
-
-/* Navigation Link Styles */
-.nav-item a {
-    position: relative;
-    display: inline-block;
-    color: var(--color-secondary);
-    text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.8),
-                 -2px -2px 3px rgba(0, 0, 0, 0.6),
-                 1px 1px 2px var(--color-accent),
-                 2px 2px 3px rgba(251, 225, 52, 0.4);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    padding: var(--spacing-sm);
-    border-radius: var(--border-radius);
-    transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
-    overflow: hidden;
-    will-change: transform;
-}
-
-/* Hover state with transform and enhanced shadow */
-.nav-item a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    transform: translateY(-2px) scale(1.05);
-    text-shadow: -1px -1px 3px rgba(0, 0, 0, 0.9),
-                 -2px -2px 4px rgba(0, 0, 0, 0.7),
-                 2px 2px 4px var(--color-accent),
-                 3px 3px 5px rgba(251, 225, 52, 0.6);
-}
-
-/* ============================================
-   5.3. NAV MOBILE CONTROLS
-   ============================================ */
-
+/* Mobile controls row */
 .nav-mobile-controls {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
-/* Search Button */
+/* Nav list base */
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  text-align: center;
+  width: 100%;
+}
+
+/* Mobile collapsed state (JS toggles .active) */
+.nav-list {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+.nav-list.active {
+  max-height: 500px;
+  opacity: 1;
+  padding: var(--spacing-md) 0;
+}
+
+/* Nav links */
+.nav-item a {
+  position: relative;
+  display: inline-block;
+  color: var(--color-secondary);
+  text-shadow:
+    -1px -1px 2px rgba(0, 0, 0, 0.8),
+    -2px -2px 3px rgba(0, 0, 0, 0.6),
+    1px 1px 2px var(--color-accent),
+    2px 2px 3px rgba(251, 225, 52, 0.4);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius);
+  transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.nav-item a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transform: translateY(-2px) scale(1.05);
+  text-shadow:
+    -1px -1px 3px rgba(0, 0, 0, 0.9),
+    -2px -2px 4px rgba(0, 0, 0, 0.7),
+    2px 2px 4px var(--color-accent),
+    3px 3px 5px rgba(251, 225, 52, 0.6);
+}
+
+/* Search button */
 .nav-search-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: var(--spacing-sm);
-    color: var(--color-secondary);
-    transition: color 0.3s ease, transform 0.3s ease;
-    min-width: 44px;
-    min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  color: var(--color-secondary);
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .nav-search-btn:hover {
-    color: var(--color-accent);
-    transform: scale(1.1);
+  color: var(--color-accent);
+  transform: scale(1.1);
 }
 
 .nav-search-btn:focus {
-    outline: 3px solid var(--color-accent);
-    outline-offset: 3px;
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
-/* ============================================
-   5.4. NAV ACTIONS (Subscribe + Badges)
-   ============================================ */
-
+/* Right-side actions (shown on tablet+ in responsive.css) */
 .nav-actions {
-    display: none; /* Hidden on mobile by default */
-    align-items: center;
-    gap: var(--spacing-md);
+  display: none;
+  align-items: center;
+  gap: var(--spacing-md);
 }
 
-/* Subscribe Pill Button */
+/* Subscribe pill */
 .subscribe-btn {
-    background: linear-gradient(135deg, var(--color-accent), var(--saffron));
-    color: var(--color-background);
-    border: none;
-    border-radius: 50px;
-    padding: var(--spacing-sm) var(--spacing-lg);
-    font-family: 'Cinzel Decorative', 'Georgia', serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    white-space: nowrap;
+  background: linear-gradient(135deg, var(--color-accent), var(--saffron));
+  color: var(--color-background);
+  border: none;
+  border-radius: 50px;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-family: "Cinzel Decorative", "Georgia", serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
 }
 
 .subscribe-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(251, 225, 52, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(251, 225, 52, 0.4);
 }
 
 .subscribe-btn:focus {
-    outline: 3px solid var(--color-primary);
-    outline-offset: 3px;
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
 }
 
-/* Nav Badges Container */
+/* Badges */
 .nav-badges {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
 }
 
-/* Circular Badge Buttons */
 .nav-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    min-height: 42px;
-    padding: var(--spacing-xs);
-    border-radius: 50%;
-    font-family: 'Cinzel Decorative', 'Georgia', serif;
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: #ff4757; /* Fallback background */
-    color: white;
-    flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  padding: var(--spacing-xs);
+  border-radius: 50%;
+  font-family: "Cinzel Decorative", "Georgia", serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #ff4757;
+  color: #fff;
+  flex-shrink: 0;
 }
 
 .nav-badge:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .nav-badge:focus {
-    outline: 3px solid var(--color-light-surface);
-    outline-offset: 2px;
+  outline: 3px solid var(--color-light-surface);
+  outline-offset: 2px;
 }
 
-/* Badge color variants */
 .nav-badge--hot {
-    background: linear-gradient(135deg, #ff4757, #ff6b81);
-    color: white;
-    box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
+  background: linear-gradient(135deg, #ff4757, #ff6b81);
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
 }
 
 .nav-badge--hot:hover {
-    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.6);
+  box-shadow: 0 4px 15px rgba(255, 71, 87, 0.6);
 }
 
 .nav-badge--lore {
-    background: linear-gradient(135deg, #a55eea, #8854d0);
-    color: white;
-    box-shadow: 0 2px 8px rgba(165, 94, 234, 0.4);
+  background: linear-gradient(135deg, #a55eea, #8854d0);
+  box-shadow: 0 2px 8px rgba(165, 94, 234, 0.4);
 }
 
 .nav-badge--lore:hover {
-    box-shadow: 0 4px 15px rgba(165, 94, 234, 0.6);
+  box-shadow: 0 4px 15px rgba(165, 94, 234, 0.6);
 }
 
 .nav-badge--chaos {
-    background: linear-gradient(135deg, #00d2d3, #54a0ff);
-    color: white;
-    box-shadow: 0 2px 8px rgba(0, 210, 211, 0.4);
+  background: linear-gradient(135deg, #00d2d3, #54a0ff);
+  box-shadow: 0 2px 8px rgba(0, 210, 211, 0.4);
 }
 
 .nav-badge--chaos:hover {
-    box-shadow: 0 4px 15px rgba(0, 210, 211, 0.6);
+  box-shadow: 0 4px 15px rgba(0, 210, 211, 0.6);
 }
 
-/* ============================================
-   5.1. HAMBURGER MENU
-   ============================================ */
-
-/* Hamburger button - visible on mobile/tablet */
+/* Hamburger */
 .hamburger-menu {
-    display: block;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: var(--spacing-sm);
-    z-index: 1000;
-    transition: transform 0.3s ease;
-    position: relative;
-    align-self: flex-end;
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  position: relative;
+  align-self: flex-end;
 }
 
 .hamburger-menu:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .hamburger-menu:focus {
-    outline: 3px solid var(--color-accent);
-    outline-offset: 3px;
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
-/* Hamburger lines */
 .hamburger-line {
-    display: block;
-    width: 30px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-    margin: 6px 0;
-    transition: all 0.3s ease;
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  margin: 6px 0;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Animated hamburger when menu is open */
 .hamburger-menu[aria-expanded="true"] .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(9px, 9px);
+  transform: rotate(45deg) translate(9px, 9px);
 }
 
 .hamburger-menu[aria-expanded="true"] .hamburger-line:nth-child(2) {
-    opacity: 0;
+  opacity: 0;
 }
 
 .hamburger-menu[aria-expanded="true"] .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(9px, -9px);
+  transform: rotate(-45deg) translate(9px, -9px);
 }
 
-/* Mobile menu hidden by default */
-.nav-list {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+
+/* ============================================
+   5.2. MODAL (card-to-modal zoom + themed close)
+   ============================================ */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--spacing-lg);
+  background: rgba(11, 12, 12, 0.72);
+
+  /* hidden by default (animatable) */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity 220ms ease, visibility 0ms linear 220ms;
 }
 
-/* Mobile menu visible when hamburger is clicked */
-.nav-list.active {
-    max-height: 500px;
+.modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transition: opacity 220ms ease;
+}
+
+/* Dialog panel */
+.modal-content {
+  position: relative;
+  width: min(900px, 92vw);
+  max-height: 90vh;
+  overflow: auto;
+
+  background: rgba(39, 60, 62, 0.95);
+  border: var(--border-normal) solid rgba(89, 229, 239, 0.55);
+  border-radius: var(--border-radius-lg);
+
+  /* Reserve space so close button never overlaps content */
+  padding: calc(var(--spacing-lg) + 0.25rem);
+  padding-top: calc(var(--spacing-xl) + 0.25rem);
+
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(89, 229, 239, 0.25);
+
+  transform-origin: center;
+  will-change: transform, opacity, filter;
+}
+
+.modal-body {
+  text-align: left;
+}
+
+/* Open + close animations (driven by JS adding is-opening/is-closing) */
+.modal.is-opening .modal-content {
+  animation: modalFromCard 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.modal.is-closing .modal-content {
+  animation: modalToCard 380ms cubic-bezier(0.4, 0, 1, 1) forwards;
+  pointer-events: none;
+}
+
+.modal.is-closing {
+  transition: opacity 380ms ease, visibility 0ms linear 380ms;
+}
+
+/* PERFORMANCE FIXES FOR MODAL (smooth open/close) */
+
+/* 1) Kill expensive filters during the modal travel animation */
+#featured-modal.is-opening .modal-content,
+#featured-modal.is-closing .modal-content {
+  filter: none;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 2) In the modal, tarot faces must behave like normal flow content */
+#featured-modal .tarot-card-front,
+#featured-modal .tarot-card-back {
+  position: static;
+  height: auto;
+  min-height: 0;
+
+  /* Force off blur effects inside modal content to avoid GPU jank */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 3) Prevent nested scrolling (modal scroll only) */
+#featured-modal .tarot-card-back {
+  max-height: none;
+  overflow: visible;
+  transform: none; /* remove rotateY in modal context */
+}
+
+/* If your JS injects ONLY the .tarot-card-back, this keeps it upright */
+#featured-modal .tarot-card-back {
+  transform: none;
+}
+
+/* Keep typography readable */
+#featured-modal .tarot-card-back {
+  text-align: left;
+}
+
+@keyframes modalFromCard {
+  from {
+    transform: translate3d(var(--from-x, 0px), var(--from-y, 0px), 0)
+      scale3d(var(--from-scale, 1), var(--from-scale, 1), 1);
+    opacity: 0.65;
+    filter: blur(2px);
+  }
+  to {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
     opacity: 1;
-    padding: var(--spacing-md) 0;
+    filter: blur(0);
+  }
 }
+
+@keyframes modalToCard {
+  from {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(var(--from-x, 0px), var(--from-y, 0px), 0)
+      scale3d(var(--from-scale, 1), var(--from-scale, 1), 1);
+    opacity: 0;
+  }
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  z-index: 5;
+
+  width: 48px;
+  height: 48px;
+  min-width: 44px;
+  min-height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(39, 60, 62, 0.88);
+  border: var(--border-normal) solid rgba(89, 229, 239, 0.65);
+  border-radius: 999px;
+
+  color: var(--color-accent);
+  font-size: 1.75rem;
+  line-height: 1;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(89, 229, 239, 0.18);
+
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.modal-close:hover {
+  transform: translateY(-1px) scale(1.06);
+  border-color: rgba(251, 225, 52, 0.7);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.4),
+    0 0 22px rgba(251, 225, 52, 0.22);
+}
+
+.modal-close:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 
 /* ============================================
-   6. TYPOGRAPHY STYLES
-   ============================================ */
-
-.site-title {
-    font-family: 'Cinzel Decorative', 'Georgia', serif;
-    margin-bottom: var(--spacing-sm);
-    font-weight: 900;
-    color: var(--color-secondary);
-    text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.8),
-                 -2px -2px 3px rgba(0, 0, 0, 0.6),
-                 1px 1px 2px var(--color-accent),
-                 2px 2px 3px rgba(251, 225, 52, 0.4);
-    animation: shimmer 3s ease-in-out infinite, breathe 4s ease-in-out infinite;
-    white-space: nowrap;
-    position: relative;
-    z-index: 1;
-}
-
-@media (min-width: 768px) {
-    .site-title {
-        margin-bottom: 0;
-    }
-}
-
-/* ============================================
-   7. ANIMATIONS & KEYFRAMES
-   ============================================ */
-
-/* Shimmer animation for the site title */
-@keyframes shimmer {
-    0%, 100% {
-        text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.8),
-                     -2px -2px 3px rgba(0, 0, 0, 0.6),
-                     1px 1px 2px var(--color-accent),
-                     2px 2px 3px rgba(251, 225, 52, 0.4);
-    }
-    50% {
-        text-shadow: -1px -1px 3px rgba(0, 0, 0, 0.9),
-                     -2px -2px 4px rgba(0, 0, 0, 0.7),
-                     2px 2px 6px var(--color-accent),
-                     3px 3px 8px rgba(251, 225, 52, 0.8);
-    }
-}
-
-/* Breathing/heartbeat animation for the site title */
-@keyframes breathe {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-/* Logo shimmer animation - same as title with offset timing */
-@keyframes shimmerLogo {
-    0%, 100% {
-        filter: drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.8))
-                drop-shadow(-2px -2px 3px rgba(0, 0, 0, 0.6))
-                drop-shadow(1px 1px 2px var(--color-accent))
-                drop-shadow(2px 2px 3px rgba(251, 225, 52, 0.4));
-    }
-    50% {
-        filter: drop-shadow(-1px -1px 3px rgba(0, 0, 0, 0.9))
-                drop-shadow(-2px -2px 4px rgba(0, 0, 0, 0.7))
-                drop-shadow(2px 2px 6px var(--color-accent))
-                drop-shadow(3px 3px 8px rgba(251, 225, 52, 0.8));
-    }
-}
-
-/* Logo breathe animation - same as title */
-@keyframes breatheLogo {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-/* Pulse animation for featured articles */
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.02);
-    }
-}
-
-/* Fade-in animation for articles */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Ripple animation - gentle wave arc rolling from entry point */
-@keyframes ripple {
-    0% {
-        transform: scale(0.3) translate(0, 0);
-        opacity: 0;
-    }
-    10% {
-        /* Wave enters and begins */
-        transform: scale(0.45) translate(calc(var(--push-x) * 0.1), calc(var(--push-y) * 0.1));
-        opacity: 0.65;
-    }
-    25% {
-        /* Building wave arc */
-        transform: scale(0.65) translate(calc(var(--push-x) * 0.25), calc(var(--push-y) * 0.25));
-        opacity: 0.6;
-    }
-    40% {
-        /* Crest forming */
-        transform: scale(0.85) translate(calc(var(--push-x) * 0.45), calc(var(--push-y) * 0.45));
-        opacity: 0.52;
-    }
-    55% {
-        /* Breaking wave */
-        transform: scale(1.05) translate(calc(var(--push-x) * 0.65), calc(var(--push-y) * 0.65));
-        opacity: 0.42;
-    }
-    70% {
-        /* Pushing to edge */
-        transform: scale(1.25) translate(calc(var(--push-x) * 0.85), calc(var(--push-y) * 0.85));
-        opacity: 0.28;
-    }
-    85% {
-        /* Reaching boundary */
-        transform: scale(1.45) translate(calc(var(--push-x) * 1.05), calc(var(--push-y) * 1.05));
-        opacity: 0.14;
-    }
-    100% {
-        /* Complete */
-        transform: scale(1.6) translate(calc(var(--push-x) * 1.2), calc(var(--push-y) * 1.2));
-        opacity: 0;
-    }
-}
-
-/* ============================================
-   7.5 RIPPLE EFFECT STYLES
-   ============================================ */
-
-/* Container for ripple effect - must have relative positioning */
-.ripple-container {
-    position: relative;
-    overflow: hidden;
-}
-
-/* Ripple element - directional wave arc */
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(
-        ellipse 140% 90% at 35% 40%,
-        /* Solid wave starting point */
-        rgba(11, 82, 91, 0.45) 0%,
-        rgba(25, 70, 78, 0.48) 8%,
-        rgba(56, 120, 135, 0.52) 16%,
-        rgba(89, 229, 239, 0.48) 24%,
-        /* Wave crest */
-        rgba(139, 239, 247, 0.42) 32%,
-        rgba(228, 182, 26, 0.38) 40%,
-        rgba(251, 225, 52, 0.35) 48%,
-        /* Breaking and rolling */
-        rgba(255, 240, 120, 0.28) 56%,
-        rgba(89, 229, 239, 0.22) 64%,
-        rgba(238, 238, 238, 0.16) 72%,
-        /* Fading edge */
-        rgba(89, 229, 239, 0.1) 80%,
-        rgba(238, 238, 238, 0.04) 88%,
-        rgba(89, 229, 239, 0.015) 95%,
-        transparent 100%
-    );
-    pointer-events: none;
-    animation: ripple 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
-    z-index: 10;
-    box-shadow: 
-        0 0 20px rgba(89, 229, 239, 0.25),
-        0 0 40px rgba(89, 229, 239, 0.12),
-        inset 0 0 30px rgba(11, 82, 91, 0.1);
-    filter: blur(2.5px);
-    mix-blend-mode: screen;
-}
-
-/* Enhanced ripple for nav items - Golden wave arc */
-.nav-item a .ripple {
-    background: radial-gradient(
-        ellipse 140% 90% at 35% 40%,
-        rgba(139, 91, 13, 0.42) 0%,
-        rgba(180, 130, 20, 0.45) 12%,
-        rgba(228, 182, 26, 0.46) 24%,
-        rgba(251, 225, 52, 0.42) 36%,
-        rgba(255, 235, 102, 0.38) 48%,
-        rgba(255, 245, 157, 0.32) 60%,
-        rgba(251, 225, 52, 0.24) 72%,
-        rgba(228, 182, 26, 0.15) 82%,
-        rgba(251, 225, 52, 0.07) 90%,
-        rgba(255, 235, 102, 0.025) 96%,
-        transparent 100%
-    );
-    box-shadow: 
-        0 0 15px rgba(251, 225, 52, 0.3),
-        0 0 30px rgba(251, 225, 52, 0.18);
-    animation: ripple 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-/* Enhanced ripple for articles - Aqua wave arc */
-.article .ripple {
-    background: radial-gradient(
-        ellipse 140% 90% at 35% 40%,
-        rgba(8, 60, 68, 0.42) 0%,
-        rgba(30, 95, 105, 0.45) 10%,
-        rgba(56, 150, 165, 0.46) 20%,
-        rgba(89, 229, 239, 0.44) 30%,
-        rgba(139, 239, 247, 0.38) 40%,
-        rgba(189, 247, 252, 0.32) 50%,
-        rgba(89, 229, 239, 0.26) 60%,
-        rgba(238, 238, 238, 0.18) 70%,
-        rgba(200, 240, 245, 0.11) 80%,
-        rgba(89, 229, 239, 0.05) 88%,
-        rgba(238, 238, 238, 0.02) 95%,
-        transparent 100%
-    );
-    box-shadow: 
-        0 0 25px rgba(89, 229, 239, 0.3),
-        0 0 50px rgba(89, 229, 239, 0.15);
-    animation: ripple 0.95s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-/* Enhanced ripple for tags - Quick bright arc */
-.tag .ripple {
-    background: radial-gradient(
-        ellipse 140% 90% at 35% 40%,
-        rgba(228, 182, 26, 0.42) 0%,
-        rgba(251, 225, 52, 0.40) 18%,
-        rgba(255, 240, 120, 0.38) 36%,
-        rgba(255, 245, 157, 0.32) 54%,
-        rgba(251, 225, 52, 0.24) 70%,
-        rgba(228, 182, 26, 0.14) 82%,
-        rgba(251, 225, 52, 0.06) 92%,
-        transparent 100%
-    );
-    box-shadow: 
-        0 0 12px rgba(251, 225, 52, 0.35),
-        0 0 25px rgba(251, 225, 52, 0.22);
-    animation: ripple 0.75s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-/* ============================================
-   7.6. BACKDROP FILTER EFFECTS
+   10. TYPOGRAPHY STYLES
    ============================================
-   Frosted glass effect for cards and articles
-   Creates depth and visual hierarchy
+   Custom typography with decorative fonts.
+   Animated site title with shimmer and breathe effects.
    ============================================ */
 
-.article,
-.tarot-card-front,
-.tarot-card-back,
-.portfolio-card {
-    backdrop-filter: blur(8px) saturate(120%);
-    -webkit-backdrop-filter: blur(8px) saturate(120%);
+/* Main site title with mystical animations.
+   Combines shimmer (glow pulsing) and breathe (scale pulsing). */
+.site-title {
+  font-family: "Cinzel Decorative", "Georgia", serif;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 900;
+  color: var(--color-secondary);
+  text-shadow:
+    -1px -1px 2px rgba(0, 0, 0, 0.8),
+    -2px -2px 3px rgba(0, 0, 0, 0.6),
+    1px 1px 2px var(--color-accent),
+    2px 2px 3px rgba(251, 225, 52, 0.4);
+  animation: shimmer 3s ease-in-out infinite, breathe 4s ease-in-out infinite;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
 }
+
 
 /* ============================================
-   7.7. ENHANCED ORNATE BORDERS
-   (Team design doc inspiration)
+   11. ANIMATIONS & KEYFRAMES
+   ============================================
+   CSS animations for visual effects throughout site.
+   Shimmer, breathe, ripple, and border effects.
    ============================================ */
 
-/* Glowing border effect on hover only */
-.article:hover,
-.tarot-card:hover {
-    box-shadow:
-        0 0 20px rgba(89, 229, 239, 0.3),
-        0 0 40px rgba(251, 225, 52, 0.2),
-        0 8px 16px rgba(0, 0, 0, 0.4);
+/* Shimmer: Pulsing text-shadow glow effect.
+   Creates mystical glowing animation on text. */
+@keyframes shimmer {
+  0%, 100% {
+    text-shadow:
+      -1px -1px 2px rgba(0, 0, 0, 0.8),
+      -2px -2px 3px rgba(0, 0, 0, 0.6),
+      1px 1px 2px var(--color-accent),
+      2px 2px 3px rgba(251, 225, 52, 0.4);
+  }
+  50% {
+    text-shadow:
+      -1px -1px 3px rgba(0, 0, 0, 0.9),
+      -2px -2px 4px rgba(0, 0, 0, 0.7),
+      2px 2px 6px var(--color-accent),
+      3px 3px 8px rgba(251, 225, 52, 0.8);
+  }
 }
 
-/* Featured articles get animated shimmer border */
-.featured-article {
-    position: relative;
-    border: var(--border-medium) solid transparent;
-    background:
-        linear-gradient(rgba(39, 60, 62, 0.8), rgba(39, 60, 62, 0.95)) padding-box,
-        var(--gradient-border-shimmer) border-box;
-    background-size: 200% 100%;
-    animation: borderShimmer 3s linear infinite;
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shimmerLogo {
+  0%, 100% {
+    filter:
+      drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.8))
+      drop-shadow(-2px -2px 3px rgba(0, 0, 0, 0.6))
+      drop-shadow(1px 1px 2px var(--color-accent))
+      drop-shadow(2px 2px 3px rgba(251, 225, 52, 0.4));
+  }
+  50% {
+    filter:
+      drop-shadow(-1px -1px 3px rgba(0, 0, 0, 0.9))
+      drop-shadow(-2px -2px 4px rgba(0, 0, 0, 0.7))
+      drop-shadow(2px 2px 6px var(--color-accent))
+      drop-shadow(3px 3px 8px rgba(251, 225, 52, 0.8));
+  }
+}
+
+@keyframes breatheLogo {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.3) translate(0, 0); opacity: 0; }
+  10% { transform: scale(0.45) translate(calc(var(--push-x) * 0.1), calc(var(--push-y) * 0.1)); opacity: 0.65; }
+  25% { transform: scale(0.65) translate(calc(var(--push-x) * 0.25), calc(var(--push-y) * 0.25)); opacity: 0.6; }
+  40% { transform: scale(0.85) translate(calc(var(--push-x) * 0.45), calc(var(--push-y) * 0.45)); opacity: 0.52; }
+  55% { transform: scale(1.05) translate(calc(var(--push-x) * 0.65), calc(var(--push-y) * 0.65)); opacity: 0.42; }
+  70% { transform: scale(1.25) translate(calc(var(--push-x) * 0.85), calc(var(--push-y) * 0.85)); opacity: 0.28; }
+  85% { transform: scale(1.45) translate(calc(var(--push-x) * 1.05), calc(var(--push-y) * 1.05)); opacity: 0.14; }
+  100% { transform: scale(1.6) translate(calc(var(--push-x) * 1.2), calc(var(--push-y) * 1.2)); opacity: 0; }
 }
 
 @keyframes borderShimmer {
-    0% {
-        background-position: 0% 0%;
-    }
-    100% {
-        background-position: 200% 0%;
-    }
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
 }
+
 
 /* ============================================
-   8. ADVANCED SELECTORS & PSEUDO-SELECTORS
+   12. RIPPLE EFFECT SYSTEM
+   ============================================
+   Interactive ripple effect on hover.
+   JavaScript (script.js) creates ripple element at entry point.
+   CSS handles appearance and animation.
+   Different variants for nav, articles, and tags.
    ============================================ */
 
-/* Descendant selector - already using: .site-header .primary-nav */
-/* Child selector - direct children only */
+/* Container must have relative positioning and overflow hidden.
+   Applied automatically by JavaScript to elements needing ripples. */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ripple element - circular gradient that animates outward.
+   Created dynamically by JavaScript on hover entry.
+   Position and size calculated based on entry point and element dimensions.
+   CSS custom properties --push-x and --push-y control direction. */
+.ripple {
+  position: absolute;
+  border-radius: 50%;             /* Circular shape */
+  pointer-events: none;           /* Don't interfere with clicks */
+  z-index: 10;                    /* Above background, below content */
+  animation: ripple 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+  filter: blur(2.5px);            /* Soft edges for organic feel */
+  mix-blend-mode: screen;         /* Blend mode for glowing effect */
+}
+
+/* ===== DEFAULT RIPPLE (AQUA) =====
+   Multi-stop radial gradient simulating water ripple.
+   Aqua core transitioning through gold to transparent edge. */
+.ripple {
+  background: radial-gradient(
+    ellipse 140% 90% at 35% 40%,
+    rgba(11, 82, 91, 0.45) 0%,
+    rgba(25, 70, 78, 0.48) 8%,
+    rgba(56, 120, 135, 0.52) 16%,
+    rgba(89, 229, 239, 0.48) 24%,
+    rgba(139, 239, 247, 0.42) 32%,
+    rgba(228, 182, 26, 0.38) 40%,
+    rgba(251, 225, 52, 0.35) 48%,
+    rgba(255, 240, 120, 0.28) 56%,
+    rgba(89, 229, 239, 0.22) 64%,
+    rgba(238, 238, 238, 0.16) 72%,
+    rgba(89, 229, 239, 0.1) 80%,
+    rgba(238, 238, 238, 0.04) 88%,
+    rgba(89, 229, 239, 0.015) 95%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 20px rgba(89, 229, 239, 0.25),
+    0 0 40px rgba(89, 229, 239, 0.12),
+    inset 0 0 30px rgba(11, 82, 91, 0.1);
+}
+
+/* Nav ripple variant (gold) */
+.nav-item a .ripple {
+  background: radial-gradient(
+    ellipse 140% 90% at 35% 40%,
+    rgba(139, 91, 13, 0.42) 0%,
+    rgba(180, 130, 20, 0.45) 12%,
+    rgba(228, 182, 26, 0.46) 24%,
+    rgba(251, 225, 52, 0.42) 36%,
+    rgba(255, 235, 102, 0.38) 48%,
+    rgba(255, 245, 157, 0.32) 60%,
+    rgba(251, 225, 52, 0.24) 72%,
+    rgba(228, 182, 26, 0.15) 82%,
+    rgba(251, 225, 52, 0.07) 90%,
+    rgba(255, 235, 102, 0.025) 96%,
+    transparent 100%
+  );
+  box-shadow: 0 0 15px rgba(251, 225, 52, 0.3), 0 0 30px rgba(251, 225, 52, 0.18);
+  animation-duration: 0.8s;
+}
+
+/* Article ripple variant (strong aqua) */
+.article .ripple {
+  background: radial-gradient(
+    ellipse 140% 90% at 35% 40%,
+    rgba(8, 60, 68, 0.42) 0%,
+    rgba(30, 95, 105, 0.45) 10%,
+    rgba(56, 150, 165, 0.46) 20%,
+    rgba(89, 229, 239, 0.44) 30%,
+    rgba(139, 239, 247, 0.38) 40%,
+    rgba(189, 247, 252, 0.32) 50%,
+    rgba(89, 229, 239, 0.26) 60%,
+    rgba(238, 238, 238, 0.18) 70%,
+    rgba(200, 240, 245, 0.11) 80%,
+    rgba(89, 229, 239, 0.05) 88%,
+    rgba(238, 238, 238, 0.02) 95%,
+    transparent 100%
+  );
+  box-shadow: 0 0 25px rgba(89, 229, 239, 0.3), 0 0 50px rgba(89, 229, 239, 0.15);
+  animation-duration: 0.95s;
+}
+
+/* Tag ripple variant (quick bright arc) */
+.tag .ripple {
+  background: radial-gradient(
+    ellipse 140% 90% at 35% 40%,
+    rgba(228, 182, 26, 0.42) 0%,
+    rgba(251, 225, 52, 0.40) 18%,
+    rgba(255, 240, 120, 0.38) 36%,
+    rgba(255, 245, 157, 0.32) 54%,
+    rgba(251, 225, 52, 0.24) 70%,
+    rgba(228, 182, 26, 0.14) 82%,
+    rgba(251, 225, 52, 0.06) 92%,
+    transparent 100%
+  );
+  box-shadow: 0 0 12px rgba(251, 225, 52, 0.35), 0 0 25px rgba(251, 225, 52, 0.22);
+  animation-duration: 0.75s;
+}
+
+
+/* ============================================
+   7.6 BACKDROP FILTER EFFECTS
+   ============================================ */
+/* Keep your glass effect on-page */
+.article,
+.tarot-card-front,
+.tarot-card-back {
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+}
+
+
+/* ============================================
+   14. ENHANCED ORNATE BORDERS
+   ============================================
+   Glowing borders and animated shimmer effects.
+   Adds visual polish and mystical atmosphere.
+   ============================================ */
+
+/* Glowing border effect on hover.
+   Multi-layer box-shadow creates depth and glow. */
+.article:hover,
+.tarot-card:hover {
+  box-shadow:
+    0 0 20px rgba(89, 229, 239, 0.3),
+    0 0 40px rgba(251, 225, 52, 0.2),
+    0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.featured-article {
+  position: relative;
+  border: var(--border-medium) solid transparent;
+  background:
+    linear-gradient(rgba(39, 60, 62, 0.8), rgba(39, 60, 62, 0.95)) padding-box,
+    var(--gradient-border-shimmer) border-box;
+  background-size: 200% 100%;
+  animation: borderShimmer 3s linear infinite;
+}
+
+
+/* ============================================
+   15. ADVANCED SELECTORS & PSEUDO-SELECTORS
+   ============================================
+   Demonstrating CSS selector specificity and patterns.
+   Child, adjacent sibling, attribute, and nth-child selectors.
+   ============================================ */
+
+/* Direct child selector (>): Only articles directly inside featured-grid.
+   Applies fade-in animation to featured articles. */
 .featured-grid > article {
-    animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
-/* Adjacent sibling selector (+) - element immediately after */
 .article-header + .article-meta {
-    margin-top: var(--spacing-sm);
-    padding-top: var(--spacing-sm);
-    border-top: var(--border-thin) solid var(--color-primary);
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+  border-top: var(--border-thin) solid var(--color-primary);
 }
 
-/* General sibling selector (~) - all siblings after */
-.article-header ~ p {
-    color: var(--color-light-surface);
-    line-height: 1.8;
-}
-
-/* Attribute selector - elements with specific attributes */
 a[href="#"] {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 a[target="_blank"]::after {
-    content: " ↗";
-    font-size: 0.8em;
+  content: " ↗";
+  font-size: 0.8em;
 }
 
 img[alt=""] {
-    border: var(--border-thin) solid transparent;
+  border: var(--border-thin) solid transparent;
 }
 
-/* Pseudo-selectors - :first-child, :last-child, :nth-child() */
 .nav-list li:first-child a {
-    font-weight: 800;
-    color: var(--color-accent);
+  font-weight: 800;
+  color: var(--color-accent);
 }
 
 .nav-list li:last-child a {
-    padding-right: 0;
+  padding-right: 0;
 }
 
 .article:nth-child(odd) {
-    background-color: rgba(39, 60, 62, 0.3);
+  background-color: rgba(39, 60, 62, 0.3);
 }
 
 .article:nth-child(even) {
-    background-color: rgba(39, 60, 62, 0.15);
+  background-color: rgba(39, 60, 62, 0.15);
 }
 
-/* Tag pseudo-selectors */
 .tag-list .tag:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .tag-list .tag:last-child {
-    margin-right: 0;
+  margin-right: 0;
 }
+
 
 /* ============================================
-   9. ARTICLE STYLES
+   16. ARTICLE STYLES
+   ============================================
+   Card-based article layout with hover effects.
+   Includes header, meta, images, body content, and tags.
+   Supports both preview and full-content display modes.
    ============================================ */
 
-
+/* Article card container.
+   Semi-transparent background with backdrop filter for depth.
+   Hover triggers lift animation and glow effect. */
 .article {
-    position: relative;
-    background-color: rgba(39, 60, 62, 0.5);
-    border: var(--border-thin) solid transparent;
-    border-radius: var(--border-radius);
-    padding: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    overflow: hidden;
-    will-change: transform;
-    max-width: 30rem;
-    height: 40rem;
+  position: relative;
+  background-color: rgba(39, 60, 62, 0.5);
+  border: var(--border-thin) solid transparent;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+  will-change: transform;
+  max-width: 30rem;
+  height: 40rem;
 }
 
-/* Enhanced focus state for articles */
 .article:focus {
-    outline: 3px solid var(--color-accent);
-    outline-offset: 3px;
-    box-shadow: 0 0 0 5px rgba(251, 225, 52, 0.3), 0 8px 16px rgba(89, 229, 239, 0.3);
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  box-shadow:
+    0 0 0 5px rgba(251, 225, 52, 0.3),
+    0 8px 16px rgba(89, 229, 239, 0.3);
 }
 
 .article:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-primary);
-    box-shadow: 0 8px 16px rgba(89, 229, 239, 0.3);
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 16px rgba(89, 229, 239, 0.3);
 }
 
 .article-header h3 {
-    color: var(--color-secondary);
-    font-family: 'Cinzel Decorative', 'Georgia', serif;
-    font-size: 1.4rem;
-    margin-bottom: var(--spacing-md);
+  color: var(--color-secondary);
+  font-family: "Cinzel Decorative", "Georgia", serif;
+  font-size: 1.4rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .article-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    font-size: 0.8rem;
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-md);
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+  align-items: center;
 }
 
 .article-author,
 .article-date,
 .article-category {
-    display: inline-block;
+  display: inline-block;
 }
 
 .article-image {
-    position: relative;
-    width: 100%;
-    height: auto;
-    border-radius: var(--border-radius);
-    margin-bottom: var(--spacing-md);
-    transition: transform 0.3s ease;
-    overflow: hidden;
-    display: block;
-    will-change: transform;
+  position: relative;
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-md);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  display: block;
+  will-change: transform;
 }
 
 .article-image:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .article-excerpt {
-    font-style: italic;
-    color: var(--color-light-surface);
-    margin-bottom: var(--spacing-md);
+  font-style: italic;
+  color: var(--color-light-surface);
+  margin-bottom: var(--spacing-md);
 }
 
 .article-body {
-    color: var(--color-light-surface);
-    line-height: 1.8;
+  color: var(--color-light-surface);
+  line-height: 1.8;
 }
 
 .article-body h4 {
-    color: var(--color-accent);
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-md);
-    font-size: 1.3rem;
-    text-align: left;
+  color: var(--color-accent);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  font-size: 1.3rem;
+  text-align: left;
 }
 
 .article-body p {
-    margin-bottom: var(--spacing-md);
-    text-align: left;
+  margin-bottom: var(--spacing-md);
+  text-align: left;
 }
 
 .article-body strong {
-    color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .article-body ul {
-    margin: var(--spacing-md) 0;
-    padding-left: var(--spacing-lg);
+  margin: var(--spacing-md) 0;
+  padding-left: var(--spacing-lg);
+  text-align: left;
 }
 
 .article-body ul li {
-    margin-bottom: var(--spacing-sm);
-    color: var(--color-light-surface);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-light-surface);
 }
 
 .article-body code {
-    background-color: rgba(89, 229, 239, 0.15);
-    color: var(--color-primary);
-    padding: 0.125rem 0.375rem;
-    border-radius: calc(var(--border-radius) / 2);
-    font-family: 'Courier New', monospace;
-    font-size: 0.9em;
+  background-color: rgba(89, 229, 239, 0.15);
+  color: var(--color-primary);
+  padding: 0.125rem 0.375rem;
+  border-radius: calc(var(--border-radius) / 2);
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
 }
 
-/* Table styling for intent-table and other tables in article body */
 .intent-table {
-    margin: var(--spacing-lg) 0;
-    overflow-x: auto;
+  margin: var(--spacing-lg) 0;
+  overflow-x: auto;
 }
 
 .article-body table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: var(--spacing-md) 0;
-    background-color: rgba(39, 60, 62, 0.5);
-    border-radius: var(--border-radius);
-    overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--spacing-md) 0;
+  background-color: rgba(39, 60, 62, 0.5);
+  border-radius: var(--border-radius);
+  overflow: hidden;
 }
 
 .article-body thead {
-    background-color: rgba(89, 229, 239, 0.2);
+  background-color: rgba(89, 229, 239, 0.2);
 }
 
 .article-body th {
-    padding: var(--spacing-md);
-    text-align: left;
-    color: var(--color-accent);
-    font-weight: 700;
-    border-bottom: var(--border-medium) solid var(--color-primary);
+  padding: var(--spacing-md);
+  text-align: left;
+  color: var(--color-accent);
+  font-weight: 700;
+  border-bottom: var(--border-medium) solid var(--color-primary);
 }
 
 .article-body td {
-    padding: var(--spacing-md);
-    border-bottom: var(--border-thin) solid rgba(89, 229, 239, 0.1);
-    vertical-align: top;
+  padding: var(--spacing-md);
+  border-bottom: var(--border-thin) solid rgba(89, 229, 239, 0.1);
+  vertical-align: top;
 }
 
 .article-body tbody tr:last-child td {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .article-body tbody tr:hover {
-    background-color: rgba(89, 229, 239, 0.08);
+  background-color: rgba(89, 229, 239, 0.08);
 }
 
-/* List styling variations */
 .key-points {
-    background-color: rgba(89, 229, 239, 0.1);
-    padding: var(--spacing-md);
-    border-left: var(--border-thick) solid var(--color-primary);
-    border-radius: var(--border-radius);
-    margin: var(--spacing-md) 0;
+  background-color: rgba(89, 229, 239, 0.1);
+  padding: var(--spacing-md);
+  border-left: var(--border-thick) solid var(--color-primary);
+  border-radius: var(--border-radius);
+  margin: var(--spacing-md) 0;
 }
 
 .takeaway-list {
-    background-color: rgba(251, 225, 52, 0.1);
-    padding: var(--spacing-md);
-    border-left: var(--border-thick) solid var(--color-accent);
-    border-radius: var(--border-radius);
-    margin: var(--spacing-md) 0;
+  background-color: rgba(251, 225, 52, 0.1);
+  padding: var(--spacing-md);
+  border-left: var(--border-thick) solid var(--color-accent);
+  border-radius: var(--border-radius);
+  margin: var(--spacing-md) 0;
+}
+
+.framework {
+  margin: var(--spacing-md) 0;
+  padding-left: var(--spacing-lg);
+  text-align: left;
+}
+
+.takeaway {
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-md);
+  border-left: var(--border-thick) solid var(--color-accent);
+  background-color: rgba(251, 225, 52, 0.08);
+  border-radius: var(--border-radius);
+  color: var(--color-light-surface);
+  text-align: left;
 }
 
 .tag-list {
-    display: flex;
-    gap: var(--spacing-sm);
-    flex-wrap: wrap;
-    margin-top: var(--spacing-md);
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-md);
 }
 
 .tag {
-    position: relative;
-    display: inline-block;
-    background-color: var(--color-primary);
-    color: var(--color-background);
-    padding: calc(var(--spacing-sm) / 2) var(--spacing-sm);
-    border-radius: calc(var(--border-radius) / 2);
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    overflow: hidden;
-    cursor: pointer;
-    will-change: transform;
+  position: relative;
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  padding: calc(var(--spacing-sm) / 2) var(--spacing-sm);
+  border-radius: calc(var(--border-radius) / 2);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform;
 }
 
 .tag:hover {
-    background-color: var(--color-accent);
-    transform: scale(1.1);
+  background-color: var(--color-accent);
+  transform: scale(1.1);
 }
-
