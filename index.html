@@ -1,19 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <!-- Character encoding for proper text rendering -->
-    <meta charset="UTF-8">
-    
+    <meta charset="UTF-8" />
+
     <!-- Viewport configuration for responsive design -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- Document title -->
     <title>WebDevTNT - A04 - Advanced CSS</title>
-    
+
     <!-- Stylesheets: Normalize-ssd resets browser defaults, styles.css contains base styles, responsive.css handles media queries -->
     <link rel="stylesheet" href="styles/normalize-ssd.css" />
     <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="styles/responsive.css" /> 
+    <link rel="stylesheet" href="styles/responsive.css" />
 
     <!-- Favicons for multiple platforms and devices -->
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
@@ -23,39 +23,48 @@
     <link rel="manifest" href="site.webmanifest" />
 
     <!-- Google Fonts with preconnect for performance optimization -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Macondo Swash Caps - Decorative serif font for body text -->
-    <link href="https://fonts.googleapis.com/css2?family=Macondo+Swash+Caps&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Macondo+Swash+Caps&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Cinzel Decorative - Elegant display font for headings and titles -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- New Rocker - Bold display font for special emphasis -->
-    <link href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <!-- Skip Link for Keyboard Accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    
+
     <!-- Main site container: Flexbox layout with header, main, and footer -->
     <div class="site-container">
-        
-        <!-- Header: Contains logo, site title, and primary navigation -->
-        <header class="site-header">
-            <!-- Responsive header background image with multiple sources for different screen sizes -->
-            <img class="site-header-bg-image"
-                srcset="
-                    assets/images/header/header_background-400w.webp 400w,
-                    assets/images/header/header_background-600w.webp 600w,
-                    assets/images/header/header_background-800w.webp 800w,
-                    assets/images/header/header_background-1000w.webp 1000w,
-                    assets/images/header/header_background-1200w.webp 1200w,
-                    assets/images/header/header_background-1600w.webp 1600w,
-                    assets/images/header/header_background-2000w.webp 2000w
-                "
-                sizes="
+      <!-- Header: Contains logo, site title, and primary navigation -->
+      <header class="site-header">
+        <!-- Responsive header background image with multiple sources for different screen sizes -->
+        <img
+          class="site-header-bg-image"
+          srcset="
+            assets/images/header/header_background-400w.webp   400w,
+            assets/images/header/header_background-600w.webp   600w,
+            assets/images/header/header_background-800w.webp   800w,
+            assets/images/header/header_background-1000w.webp 1000w,
+            assets/images/header/header_background-1200w.webp 1200w,
+            assets/images/header/header_background-1600w.webp 1600w,
+            assets/images/header/header_background-2000w.webp 2000w
+          "
+          sizes="
                     (max-width: 400px) 400px,
                     (max-width: 600px) 600px,
                     (max-width: 800px) 800px,
@@ -64,817 +73,1287 @@
                     (max-width: 1600px) 1600px,
                     (min-width: 1601px) 2000px
                 "
-                src="assets/images/header/header_background-400w.webp"
-                alt=""
-                aria-hidden="true"
-            />
-            
-            <!-- Site logo with responsive srcset for optimal loading across devices -->
-            <img class="site-logo-image"
-                srcset="
-                    assets/images/header/logo-400w.webp 400w,
-                    assets/images/header/logo-600w.webp 600w,
-                    assets/images/header/logo-800w.webp 800w,
-                    assets/images/header/logo-1000w.webp 1000w,
-                    assets/images/header/logo-1200w.webp 1200w
-                "
-                sizes="
+          src="assets/images/header/header_background-400w.webp"
+          alt=""
+          aria-hidden="true"
+        />
+
+        <!-- Site logo with responsive srcset for optimal loading across devices -->
+        <img
+          class="site-logo-image"
+          srcset="
+            assets/images/header/logo-400w.webp   400w,
+            assets/images/header/logo-600w.webp   600w,
+            assets/images/header/logo-800w.webp   800w,
+            assets/images/header/logo-1000w.webp 1000w,
+            assets/images/header/logo-1200w.webp 1200w
+          "
+          sizes="
                     (max-width: 400px) 400px,
                     (max-width: 600px) 600px,
                     (max-width: 800px) 800px,
                     (max-width: 1000px) 1000px,
                     (min-width: 1001px) 1200px
                 "
-                src="assets/images/header/logo-400w.webp"
-                alt="Ocean Riches Logo"
-                width="1536"
-                height="2304"                
-            />
-            
-            <!-- Main site title with decorative font and shimmer animation -->
-            <h1 class="site-title">Ocean Riches</h1>
-            
-            <!-- Primary navigation with ARIA label for screen readers -->
-            <nav class="primary-nav" aria-label="Primary navigation">
-                <!-- Mobile Controls: Hamburger + Search -->
-                <div class="nav-mobile-controls">
-                    <!-- Hamburger Menu Button (visible on mobile/tablet) -->
-                    <button class="hamburger-menu"
-                            aria-label="Toggle navigation menu"
-                            aria-expanded="false"
-                            aria-controls="nav-menu">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
+          src="assets/images/header/logo-400w.webp"
+          alt="Ocean Riches Logo"
+          width="1536"
+          height="2304"
+        />
 
-                    <!-- Search Button (mobile) -->
-                    <button class="nav-search-btn" aria-label="Search">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.35-4.35"></path>
-                        </svg>
-                    </button>
+        <!-- Main site title with decorative font and shimmer animation -->
+        <h1 class="site-title">Ocean Riches</h1>
+
+        <!-- Primary navigation with ARIA label for screen readers -->
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <!-- Mobile Controls: Hamburger + Search -->
+          <div class="nav-mobile-controls">
+            <!-- Hamburger Menu Button (visible on mobile/tablet) -->
+            <button
+              class="hamburger-menu"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false"
+              aria-controls="nav-menu"
+            >
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Search Button (mobile) -->
+            <button class="nav-search-btn" aria-label="Search">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Navigation Menu -->
+          <ul class="nav-list" id="nav-menu">
+            <li class="nav-item"><a href="#realms">Realms</a></li>
+            <li class="nav-item"><a href="#creatures">Creatures</a></li>
+            <li class="nav-item"><a href="#spellbook">Spellbook</a></li>
+            <li class="nav-item"><a href="#artifacts">Artifacts</a></li>
+            <li class="nav-item"><a href="#drama">Drama</a></li>
+            <li class="nav-item"><a href="#tavern">Tavern</a></li>
+          </ul>
+
+          <!-- Right side: Subscribe button and badges -->
+          <div class="nav-actions">
+            <button class="subscribe-btn">Subscribe</button>
+            <div class="nav-badges" role="group" aria-label="Trending topics">
+              <span class="nav-badge nav-badge--hot">HOT</span>
+              <span class="nav-badge nav-badge--lore">LORE</span>
+              <span class="nav-badge nav-badge--chaos">CHAOS</span>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Main content area: Scrollable content with multiple sections -->
+      <main class="main-wrapper" id="main-content" tabindex="-1">
+        <!-- Featured Section: Displays featured articles with tarot card flip effect -->
+        <section
+          class="featured-section"
+          id="featured-section"
+          aria-labelledby="featured-heading"
+        >
+          <h2 class="section-title" id="featured-heading">Featured Stories</h2>
+
+          <!-- Featured articles grid: 2-column layout on larger screens -->
+          <div class="featured-grid">
+            <!-- Featured Article 1: Tarot card with flip animation on click -->
+            <article
+              class="article featured-article tarot-card"
+              tabindex="0"
+              aria-labelledby="article-1-title"
+              data-card-id="1"
+            >
+              <div class="tarot-card-inner">
+                <!-- Front of card (minimal info) -->
+                <div class="tarot-card-front">
+                  <header class="article-header">
+                    <h3 id="article-1-title">
+                      BREAKING: Government Admits Magic Is Real, Immediately
+                      Asks Everyone To Be Normal About It
+                    </h3>
+                  </header>
+                  <div class="article-meta">
+                    <span class="article-author">By: Kimberly Hilliker</span>
+                    <span class="article-date">January 8, 2026</span>
+                  </div>
                 </div>
 
-                <!-- Navigation Menu -->
-                <ul class="nav-list" role="list" id="nav-menu">
-                    <li class="nav-item"><a href="#realms">Realms</a></li>
-                    <li class="nav-item"><a href="#creatures">Creatures</a></li>
-                    <li class="nav-item"><a href="#spellbook">Spellbook</a></li>
-                    <li class="nav-item"><a href="#artifacts">Artifacts</a></li>
-                    <li class="nav-item"><a href="#drama">Drama</a></li>
-                    <li class="nav-item"><a href="#tavern">Tavern</a></li>
-                </ul>
+                <!-- Back of card (full content) -->
+                <div class="tarot-card-back">
+                  <header class="article-header">
+                    <h3>
+                      BREAKING: Government Admits Magic Is Real, Immediately
+                      Asks Everyone To Be Normal About It
+                    </h3>
+                  </header>
 
-                <!-- Right side: Subscribe button and badges -->
-                <div class="nav-actions">
-                    <button class="subscribe-btn">Subscribe</button>
-                    <div class="nav-badges" aria-label="Trending topics">
-                        <span class="nav-badge nav-badge--hot">HOT</span>
-                        <span class="nav-badge nav-badge--lore">LORE</span>
-                        <span class="nav-badge nav-badge--chaos">CHAOS</span>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        
-        <!-- Main content area: Scrollable content with multiple sections -->
-        <main class="main-wrapper" id="main-content" tabindex="-1">
-            <!-- Featured Section: Displays featured articles with tarot card flip effect -->
-            <section class="featured-section" id="featured-section" aria-labelledby="featured-heading">
-                <h2 class="section-title" id="featured-heading">Featured Stories</h2>
-
-                <!-- Featured articles grid: 2-column layout on larger screens -->
-                <div class="featured-grid">
-                    <!-- Featured Article 1: Tarot card with flip animation on click -->
-                    <article
-                        class="article featured-article tarot-card"
-                        tabindex="0"
-                        role="article"
-                        aria-labelledby="article-1-title"
-                        data-card-id="1"
+                  <div class="article-meta">
+                    <span class="article-author">By: Kimberly</span>
+                    <span class="article-date">January 8, 2026</span>
+                    <span class="article-category"
+                      >Category: Breaking-News</span
                     >
-                        <div class="tarot-card-inner">
-                            <!-- Front of card (minimal info) -->
-                            <div class="tarot-card-front">
-                                <header class="article-header">
-                                    <h3 id="article-1-title">
-                                        BREAKING: Government Admits Magic Is Real, Immediately Asks Everyone To Be Normal About It
-                                    </h3>
-                                </header>
-                                <div class="article-meta">
-                                    <span class="article-author">By: Kimberly Hilliker</span>
-                                    <span class="article-date">January 8, 2026</span>
-                                </div>
-                            </div>
+                  </div>
 
-                            <!-- Back of card (full content) -->
-                            <div class="tarot-card-back">
-                        <header class="article-header">
-                        <h3>BREAKING: Government Admits Magic Is Real, Immediately Asks Everyone To Be Normal About It</h3>
-                        </header>
+                  <!-- Unique article image -->
+                  <img
+                    class="article-image"
+                    src="assets/images/Article-1-conferencecarshrub.png"
+                    alt="A press conference podium surrounded by floating papers, glowing runes, and a suspiciously smug shrub-shaped car"
+                    width="800"
+                    height="450"
+                  />
 
-                        <div class="article-meta">
-                        <span class="article-author">By: Kimberly</span>
-                        <span class="article-date">January 8, 2026</span>
-                        <span class="article-category">Category: Breaking-News</span>
-                        </div>
+                  <p class="article-excerpt">
+                    Officials confirmed magic is real after “minor glitter
+                    disturbances” escalated into fountains singing sea shanties
+                    and emails gaining sentience.
+                  </p>
 
-                        <!-- Unique article image -->
-                        <img
-                        class="article-image"
-                        src="assets/images/Article-1-conferencecarshrub.png"
-                        alt="A press conference podium surrounded by floating papers, glowing runes, and a suspiciously smug shrub-shaped car"
-                        width="800"
-                        height="450"
-                        />
+                  <div class="article-body">
+                    <p>
+                      In a press conference that began with “unexplained glitter
+                      incidents” and ended with “fine, yes, magic,” the Ministry
+                      of Mundane Affairs confirmed:
+                      <strong>magic is real, wizards are real</strong>, and
+                      yes—someone did turn the mayor’s car into a shrub.
+                    </p>
 
-                        <p class="article-excerpt">
-                        Officials confirmed magic is real after “minor glitter disturbances” escalated into fountains singing sea shanties and emails gaining sentience.
-                        </p>
+                    <p>
+                      “We didn’t want to go public,” said spokesperson Eloise
+                      Brackenridge, who arrived through a door that did not
+                      exist moments earlier. “But accidental enchantments have
+                      reached ‘we can’t keep pretending’ levels.”
+                    </p>
 
-                        <div class="article-body">
-                        <p>
-                            In a press conference that began with “unexplained glitter incidents” and ended with “fine, yes, magic,” the Ministry of Mundane Affairs
-                            confirmed: <strong>magic is real, wizards are real</strong>, and yes—someone did turn the mayor’s car into a shrub.
-                        </p>
+                    <p><strong>Recent spillover includes:</strong></p>
+                    <ul>
+                      <li>
+                        A downtown fountain that sings sea shanties after
+                        midnight
+                      </li>
+                      <li>Widespread pastry levitation (tragically brief)</li>
+                      <li>Polite ghosts forming a tenant association</li>
+                      <li>
+                        One corporate email chain becoming sentient and
+                        scheduling meetings
+                      </li>
+                    </ul>
 
-                        <p>
-                            “We didn’t want to go public,” said spokesperson Eloise Brackenridge, who arrived through a door that did not exist moments earlier.
-                            “But accidental enchantments have reached ‘we can’t keep pretending’ levels.”
-                        </p>
+                    <p><strong>How to spot a wizard (allegedly):</strong></p>
+                    <ul>
+                      <li>
+                        They say “Ah, yes” before explaining something obvious
+                      </li>
+                      <li>Their tote bag hums faintly</li>
+                      <li>They own three identical cloaks “for layering”</li>
+                      <li>
+                        They “can’t do math” but can recite your emotional
+                        damage in Latin
+                      </li>
+                    </ul>
 
-                        <p><strong>Recent spillover includes:</strong></p>
-                        <ul>
-                            <li>A downtown fountain that sings sea shanties after midnight</li>
-                            <li>Widespread pastry levitation (tragically brief)</li>
-                            <li>Polite ghosts forming a tenant association</li>
-                            <li>One corporate email chain becoming sentient and scheduling meetings</li>
-                        </ul>
+                    <p>
+                      The Ministry also issued guidance that feels unnecessary
+                      to say out loud, yet here we are: if you find a wand, do
+                      not wave it “just to see.” That’s how we got the
+                      <em>Squirrels of 2019</em>. If your reflection winks at
+                      you, stop encouraging it and report the incident to
+                      someone with a clipboard.
+                    </p>
 
-                        <p><strong>How to spot a wizard (allegedly):</strong></p>
-                        <ul>
-                            <li>They say “Ah, yes” before explaining something obvious</li>
-                            <li>Their tote bag hums faintly</li>
-                            <li>They own three identical cloaks “for layering”</li>
-                            <li>They “can’t do math” but can recite your emotional damage in Latin</li>
-                        </ul>
+                    <p>
+                      Officials made one heartfelt plea: please stop feeding
+                      random objects into shimmering doorways. “Those are not
+                      wishing wells,” Brackenridge warned. “That is
+                      <strong>someone’s interdimensional laundry chute</strong
+                      >.”
+                    </p>
 
-                        <p>
-                            The Ministry also issued guidance that feels unnecessary to say out loud, yet here we are:
-                            if you find a wand, do not wave it “just to see.” That’s how we got the <em>Squirrels of 2019</em>.
-                            If your reflection winks at you, stop encouraging it and report the incident to someone with a clipboard.
-                        </p>
+                    <p>
+                      Next steps include wand registration (pack snacks),
+                      anti-hex zoning (“no curses within 30 meters of a
+                      daycare”), and a hotline for “Is this a demon or just my
+                      landlord?” inquiries.
+                    </p>
 
-                        <p>
-                            Officials made one heartfelt plea: please stop feeding random objects into shimmering doorways.
-                            “Those are not wishing wells,” Brackenridge warned. “That is <strong>someone’s interdimensional laundry chute</strong>.”
-                        </p>
+                    <p>
+                      As this article went to press, a fog rolled through the
+                      financial district whispering everyone’s passwords aloud.
+                      The Ministry has not commented, but a junior clerk was
+                      overheard saying, “Honestly? Respect.”
+                    </p>
+                  </div>
 
-                        <p>
-                            Next steps include wand registration (pack snacks), anti-hex zoning (“no curses within 30 meters of a daycare”),
-                            and a hotline for “Is this a demon or just my landlord?” inquiries.
-                        </p>
-
-                        <p>
-                            As this article went to press, a fog rolled through the financial district whispering everyone’s passwords aloud.
-                            The Ministry has not commented, but a junior clerk was overheard saying, “Honestly? Respect.”
-                        </p>
-                        </div>
-
-                        <div class="tag-list">
-                        <span class="tag">Magic</span>
-                        <span class="tag">Wizarding</span>
-                        <span class="tag">Satire</span>
-                        <span class="tag">Breaking News</span>
-                        </div>
-                    </div>
+                  <div class="tag-list">
+                    <span class="tag">Magic</span>
+                    <span class="tag">Wizarding</span>
+                    <span class="tag">Satire</span>
+                    <span class="tag">Breaking News</span>
+                  </div>
                 </div>
+              </div>
             </article>
 
-                    <!-- Featured Article 2 -->
-                    <article class="article featured-article tarot-card" tabindex="0" role="article" aria-labelledby="article-2-title" data-card-id="2">
-                        <div class="tarot-card-inner">
-                            <!-- Front of card (minimal info) -->
-                            <div class="tarot-card-front">
-                                <header class="article-header">
-                                    <h3 id="article-2-title">Why Loops Exist (and How to Think in Patterns)</h3>
-                                </header>
-                                <div class="article-meta">
-                                    <span class="article-author">By: Thinh Doan</span>
-                                    <span class="article-date">January 11, 2026</span>
-                                </div>
-                            </div>
-                            <!-- Back of card (full content) -->
-                            <div class="tarot-card-back">
-                                <header class="article-header">
-                                    <h3>Why Loops Exist (and How to Think in Patterns)</h3>
-                                </header>
-
-                                <div class="article-meta">
-                                  <span class="article-author">By: Thinh Doan</span>
-                                  <span class="article-date">January 11, 2026</span>
-                                  <span class="article-category">Category: Spellbook</span>
-                                </div>
-
-                                <img
-                                  class="article-image"
-                                  src="assets/images/td_article1.png"
-                                  alt="Illustration of looping through data patterns"
-                                  width="800"
-                                  height="450"
-                                />
-
-                                <p class="article-excerpt">
-                                  ARCANE EXPLAINER: A loop is a ritual for working through a collection—one item at a time—without summoning chaos.
-                                </p>
-
-                                <div class="article-body">
-                                  <p>
-                                    I used to think loops were pointless. If I needed one value, why couldn't I just cast <em>Teleport()</em> and appear directly at the answer?
-                                    Why trudge through every item like a candle-bearing apprentice in a dusty archive?
-                                  </p>
-
-                                  <p>
-                                    Then I encountered real-world data: database rows, JSON scrolls, log grimoires, lists of mysterious objects.
-                                    It rarely arrives as a single prophecy. It almost always arrives as a <strong>collection</strong>—a whole shelf of tomes.
-                                    And computers (like strict wizards) follow the rules: they process instructions step by step, in order, every time.
-                                  </p>
-
-                                  <p>
-                                    That's when it clicked: loops aren't "syntax you have to memorize."
-                                    They're a <strong>ritual pattern</strong>—a reliable spellform for handling collections without losing your mind (or your eyebrows).
-                                  </p>
-
-                                  <p><strong>The Four Core Loop Spellforms</strong> (a.k.a. why you're looping in the first place):</p>
-                                  <ul class="framework">
-                                    <li><strong>Find</strong> — Locate the one enchanted item you're looking for, then end the ritual immediately.</li>
-                                    <li><strong>Filter</strong> — Ward away the unworthy and keep only what meets the condition.</li>
-                                    <li><strong>Transform</strong> — Transmute each item into a new shape or value (alchemy, but for data).</li>
-                                    <li><strong>Aggregate</strong> — Summon a single result from many: count, total, max/min, the "final verdict."</li>
-                                  </ul>
-
-                                  <h4>Why this spellbook matters</h4>
-
-                                  <p>
-                                    This mindset makes you <strong>language-agnostic</strong>. Whether you chant a plain <code>for</code> loop for clarity, or use fancier
-                                    incantations like list comprehensions, <code>sum()</code>, <code>map()</code>, <code>filter()</code>, or <code>next()</code>,
-                                    the arcane logic stays the same:
-                                    <strong>iterate through the runes and apply a rule.</strong>
-                                  </p>
-
-                                  <p>
-                                    It also makes debugging feel less like an exorcism. If something goes wrong, you don't stare at the spellbook in fear—
-                                    you trace the ritual:
-                                    <em>Which item am I on?</em> <em>What condition am I checking?</em> <em>What value am I producing or summoning?</em>
-                                  </p>
-
-                                  <blockquote class="takeaway">
-                                    Circle the collection → apply the rune → conjure the result.
-                                  </blockquote>
-
-                                  <p>
-                                    Once you can name the spellform (Find, Filter, Transform, Aggregate), loops stop being "something you type"
-                                    and become "something you cast on purpose."
-                                  </p>
-                                </div>
-
-                                <div class="tag-list">
-                                  <span class="tag">Spellbook</span>
-                                  <span class="tag">Iteration</span>
-                                  <span class="tag">Patterns</span>
-                                  <span class="tag">Mental Models</span>
-                                  <span class="tag">Problem Solving</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+            <!-- Featured Article 2 -->
+            <article
+              class="article featured-article tarot-card"
+              tabindex="0"
+              aria-labelledby="article-2-title"
+              data-card-id="2"
+            >
+              <div class="tarot-card-inner">
+                <!-- Front of card (minimal info) -->
+                <div class="tarot-card-front">
+                  <header class="article-header">
+                    <h3 id="article-2-title">
+                      Why Loops Exist (and How to Think in Patterns)
+                    </h3>
+                  </header>
+                  <div class="article-meta">
+                    <span class="article-author">By: Thinh Doan</span>
+                    <span class="article-date">January 11, 2026</span>
+                  </div>
                 </div>
-            </section>
+                <!-- Back of card (full content) -->
+                <div class="tarot-card-back">
+                  <header class="article-header">
+                    <h3>Why Loops Exist (and How to Think in Patterns)</h3>
+                  </header>
 
-            <!-- Latest Articles Section: Grid of standard article cards -->
-            <section class="latest-section" id="latest-section" aria-labelledby="latest-heading">
-                <h2 class="section-title" id="latest-heading">Latest Articles</h2>
-                
-                <!-- Articles grid: Responsive grid (1-4 columns depending on viewport) -->
-                <div class="articles-grid">
-                    
-                    <!-- Article 3: Mental Model Method -->
-                    <article class="article featured-article tarot-card" tabindex="0" role="article" aria-labelledby="article-3-title" data-card-id="3">
-                        <div class="tarot-card-inner">
-                            <!-- Front of card (minimal info) -->
-                            <div class="tarot-card-front">
-                                <header class="article-header">
-                                    <h3 id="article-3-title">The Architecture of Code: Why Mental Models Beat Memorization</h3>
-                                </header>
-                                <div class="article-meta">
-                                    <span class="article-author">By: Thinh Doan</span>
-                                    <span class="article-date">January 11, 2026</span>
-                                </div>
-                            </div>
-                            <!-- Back of card (full content) -->
-                            <div class="tarot-card-back">
-                              <header class="article-header">
-                                <h3>The Architecture of Code: Why Mental Models Beat Memorization</h3>
-                              </header>
+                  <div class="article-meta">
+                    <span class="article-author">By: Thinh Doan</span>
+                    <span class="article-date">January 11, 2026</span>
+                    <span class="article-category">Category: Spellbook</span>
+                  </div>
 
-                              <div class="article-meta">
-                                <span class="article-author">By: Thinh Doan</span>
-                                <span class="article-date">January 11, 2026</span>
-                                <span class="article-category">Category: Spellbook</span>
-                              </div>
+                  <img
+                    class="article-image"
+                    src="assets/images/article-2-data-loop.png"
+                    alt="Illustration of looping through data patterns"
+                    width="800"
+                    height="450"
+                  />
 
-                              <img
-                                class="article-image"
-                                src="assets/images/td_article2.png"
-                                alt="Conceptual flexbox mental model illustration showing parent-child relationship and main vs cross axis"
-                                width="800"
-                                height="450"
-                                loading="lazy"
-                              />
+                  <p class="article-excerpt">
+                    ARCANE EXPLAINER: A loop is a ritual for working through a
+                    collection—one item at a time—without summoning chaos.
+                  </p>
 
-                              <p class="article-excerpt">
-                                ALERT: Memorizing syntax is a trap. Mental models are the cheat code. Here's the Flexbox method that makes new tech feel predictable.
-                              </p>
+                  <div class="article-body">
+                    <p>
+                      I used to think loops were pointless. If I needed one
+                      value, why couldn't I just cast <em>Teleport()</em> and
+                      appear directly at the answer? Why trudge through every
+                      item like a candle-bearing apprentice in a dusty archive?
+                    </p>
 
-                              <div class="article-body">
-                                <p>
-                                  Somewhere, right now, a developer is whispering <code>justify-content: center</code> like it's a spell that will fix everything.
-                                  And sometimes it works—until it doesn't. Syntax is brittle. One wrong word and the magic fizzles.
-                                </p>
+                    <p>
+                      Then I encountered real-world data: database rows, JSON
+                      scrolls, log grimoires, lists of mysterious objects. It
+                      rarely arrives as a single prophecy. It almost always
+                      arrives as a <strong>collection</strong>—a whole shelf of
+                      tomes. And computers (like strict wizards) follow the
+                      rules: they process instructions step by step, in order,
+                      every time.
+                    </p>
 
-                                <p>
-                                  The upgrade is learning to think like an architect. Code is a human-designed system with rules, patterns, and a few "master levers"
-                                  that control most outcomes. Once you can spot those levers, you stop guessing—and start predicting.
-                                </p>
+                    <p>
+                      That's when it clicked: loops aren't "syntax you have to
+                      memorize." They're a <strong>ritual pattern</strong>—a
+                      reliable spellform for handling collections without losing
+                      your mind (or your eyebrows).
+                    </p>
 
-                                <p>
-                                  Consider this your <strong>Spellbook Column</strong>: a repeatable method for mastering any tool faster, using CSS Flexbox as the case study.
-                                </p>
+                    <p>
+                      <strong>The Four Core Loop Spellforms</strong> (a.k.a. why
+                      you're looping in the first place):
+                    </p>
+                    <ul class="framework">
+                      <li>
+                        <strong>Find</strong> — Locate the one enchanted item
+                        you're looking for, then end the ritual immediately.
+                      </li>
+                      <li>
+                        <strong>Filter</strong> — Ward away the unworthy and
+                        keep only what meets the condition.
+                      </li>
+                      <li>
+                        <strong>Transform</strong> — Transmute each item into a
+                        new shape or value (alchemy, but for data).
+                      </li>
+                      <li>
+                        <strong>Aggregate</strong> — Summon a single result from
+                        many: count, total, max/min, the "final verdict."
+                      </li>
+                    </ul>
 
-                                <h4>1) Identify the Relationship Architecture</h4>
-                                <p>
-                                  Most bugs are just relationship problems. Code almost always defines a <strong>Parent ↔ Child</strong> contract, and we break things when
-                                  we give orders to the wrong side of the family.
-                                </p>
+                    <h4>Why this spellbook matters</h4>
 
-                                <p>
-                                  In Flexbox, <code>display: flex</code> is a command to the <strong>Container (Parent)</strong>. It's the parent saying:
-                                  "I'm taking control of layout now."
-                                </p>
+                    <p>
+                      This mindset makes you <strong>language-agnostic</strong>.
+                      Whether you chant a plain <code>for</code> loop for
+                      clarity, or use fancier incantations like list
+                      comprehensions, <code>sum()</code>, <code>map()</code>,
+                      <code>filter()</code>, or <code>next()</code>, the arcane
+                      logic stays the same:
+                      <strong
+                        >iterate through the runes and apply a rule.</strong
+                      >
+                    </p>
 
-                                <p><strong>The Strategy:</strong> Ask one question before touching CSS: <em>Who owns this behavior?</em></p>
+                    <p>
+                      It also makes debugging feel less like an exorcism. If
+                      something goes wrong, you don't stare at the spellbook in
+                      fear— you trace the ritual:
+                      <em>Which item am I on?</em>
+                      <em>What condition am I checking?</em>
+                      <em>What value am I producing or summoning?</em>
+                    </p>
 
-                                <ul>
-                                  <li>If you want to align a group of buttons, talk to the <code>div</code> holding them.</li>
-                                  <li>If you want one specific button to grow, talk to that button.</li>
-                                </ul>
+                    <blockquote class="takeaway">
+                      Circle the collection → apply the rune → conjure the
+                      result.
+                    </blockquote>
 
-                                <h4>2) Locate the Master Levers</h4>
-                                <p>
-                                  Most systems are governed by one or two master levers. Find them, and you control the whole machine.
-                                  In Flexbox, the lever is the <strong>Axis</strong>.
-                                </p>
+                    <p>
+                      Once you can name the spellform (Find, Filter, Transform,
+                      Aggregate), loops stop being "something you type" and
+                      become "something you cast on purpose."
+                    </p>
+                  </div>
 
-                                <p>
-                                  Flexbox doesn't think "left/right/up/down." It thinks:
-                                  <strong>Main Axis</strong> (direction of flow) and <strong>Cross Axis</strong> (perpendicular direction).
-                                </p>
+                  <div class="tag-list">
+                    <span class="tag">Spellbook</span>
+                    <span class="tag">Iteration</span>
+                    <span class="tag">Patterns</span>
+                    <span class="tag">Mental Models</span>
+                    <span class="tag">Problem Solving</span>
+                  </div>
+                </div>
+              </div>
+            </article>
 
-                                <ul class="key-points">
-                                  <li><code>justify-content</code> controls the <strong>Main Axis</strong>.</li>
-                                  <li><code>align-items</code> controls the <strong>Cross Axis</strong>.</li>
-                                </ul>
+            <!-- Featured Article 3: Tarot card with flip animation on click -->
+            <article
+              class="article featured-article tarot-card"
+              tabindex="0"
+              aria-labelledby="article-3-title"
+              data-card-id="3"
+            >
+              <div class="tarot-card-inner">
+                <!-- Front of card (minimal info) -->
+                <div class="tarot-card-front">
+                  <header class="article-header">
+                    <h3 id="article-3-title">
+                      URGENT: The Moon Has Been Moved “Slightly Left” For
+                      Aesthetics, Tide Union Files Formal Complaint
+                    </h3>
+                  </header>
+                  <div class="article-meta">
+                    <span class="article-author">By: Kimberly Hilliker</span>
+                    <span class="article-date">January 18, 2026</span>
+                  </div>
+                </div>
 
-                                <p>
-                                  <strong>The Strategy:</strong> When layout looks wrong, don't property-hop. Ask:
-                                  <em>Which axis am I trying to adjust?</em>
-                                  If you switch <code>flex-direction</code> from <code>row</code> to <code>column</code>, the axes swap—but the logic stays the same.
-                                </p>
+                <!-- Back of card (full content) -->
+                <div class="tarot-card-back">
+                  <header class="article-header">
+                    <h3>
+                      URGENT: The Moon Has Been Moved “Slightly Left” For
+                      Aesthetics, Tide Union Files Formal Complaint
+                    </h3>
+                  </header>
 
-                                <h4>3) Translate Syntax Into Human Intent</h4>
-                                <p>
-                                  Syntax names are shorthand for real human goals. If you can translate the code into plain language,
-                                  you understand it well enough to use it under pressure.
-                                </p>
+                  <div class="article-meta">
+                    <span class="article-author">By: Kimberly Hilliker</span>
+                    <span class="article-date">January 18, 2026</span>
+                    <span class="article-category"
+                      >Category: Cosmic-Emergency</span
+                    >
+                  </div>
 
-                                <div class="intent-table" role="region" aria-label="Flexbox properties translated into human intent">
-                                  <table>
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">Technical Syntax</th>
-                                        <th scope="col">The Human Intent</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <td><code>justify-content: space-between</code></td>
-                                        <td>Push the items to the edges and distribute the leftover space evenly.</td>
-                                      </tr>
-                                      <tr>
-                                        <td><code>flex-grow: 1</code></td>
-                                        <td>If there's extra room, I want this item to claim it.</td>
-                                      </tr>
-                                      <tr>
-                                        <td><code>flex-wrap: wrap</code></td>
-                                        <td>Don't shrink items into oblivion. If space runs out, start a new line.</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
+                  <!-- Unique article image -->
+                  <img
+                    class="article-image"
+                    src="assets/images/article-3-moon-measure.png"
+                    alt="A smug-looking wizard with a measuring tape gestures at the night sky as the moon 
+                        sits slightly off-center, while angry waves hold picket signs and seagulls circle suspiciously"
+                    width="800"
+                    height="450"
+                  />
 
-                                <h4>4) Reverse-Engineer the Default State</h4>
-                                <p>
-                                  Every system has a "natural" behavior when you write zero code. Understanding the default tells you what the creators assumed
-                                  was the most common scenario.
-                                </p>
+                  <p class="article-excerpt">
+                    The Council of Aesthetic Sorcery insists the lunar
+                    adjustment was “barely noticeable,” while coastal cities
+                    report aggressive puddles and waves demanding hazard pay.
+                  </p>
 
-                                <p><strong>Flexbox Defaults:</strong> A horizontal row, starting from the left, with no wrapping.</p>
+                  <div class="article-body">
+                    <p>
+                      In what experts are calling
+                      <strong>“a breathtakingly avoidable decision”</strong>,
+                      the High Council of Aesthetic Sorcery confirmed that the
+                      moon has been repositioned approximately
+                      <em>two degrees to the left</em> to “improve the vibe” of
+                      evening skies and “fix the symmetry problem.”
+                    </p>
 
-                                <p>
-                                  <strong>The Strategy:</strong> When you're stuck, strip back to defaults. Remove custom CSS until the layout returns to its natural state.
-                                  The last change you reintroduce is usually the variable fighting the system.
-                                </p>
+                    <p>
+                      “Look, it was bugging us,” said Archmage Caldrin
+                      Softlight, speaking from behind a velvet curtain that
+                      definitely did not exist five minutes ago. “The moon was
+                      <em>too centered</em>. It lacked narrative tension. We
+                      nudged it. Art happened.”
+                    </p>
 
-                                <h4>The Takeaway: Syntax Is Temporary, Strategy Is Permanent</h4>
-                                <p>
-                                  Flexbox today. Another framework tomorrow. The approach doesn't change. Stop memorizing outcomes—start mapping systems.
-                                </p>
+                    <p>
+                      Within minutes, oceanographers noticed the tides behaving
+                      like they’d just read a bad horoscope. Coastal residents
+                      reported: whirlpools forming in decorative birdbaths,
+                      minor flooding in places that have never seen water, and
+                      one deeply offended lake that “refused to reflect anything
+                      but shame.”
+                    </p>
 
-                                <ul class="takeaway-list">
-                                  <li>Map the hierarchy (who is the parent?)</li>
-                                  <li>Identify the levers (what controls direction?)</li>
-                                  <li>Translate the intent (what is the human goal?)</li>
-                                  <li>Check the defaults (what happens if I do nothing?)</li>
-                                </ul>
+                    <p>
+                      <strong
+                        >Immediate side effects observed across the realm
+                        include:</strong
+                      >
+                    </p>
+                    <ul>
+                      <li>
+                        Waves arriving <em>thirty minutes early</em> and
+                        announcing themselves like it’s a party
+                      </li>
+                      <li>
+                        Seagulls flying in perfect circles, chanting “UNIONIZE”
+                        (unclear if related, but intimidating)
+                      </li>
+                      <li>
+                        Romantic werewolves experiencing “emotional buffering”
+                        during transformations
+                      </li>
+                      <li>
+                        One lighthouse filing a restraining order against the
+                        horizon
+                      </li>
+                    </ul>
 
-                                <p>
-                                  Once you understand the key variables, code stops being something you follow—and becomes something you control.
-                                </p>
-                              </div>
+                    <p>
+                      The <strong>Tide Union</strong> (Local 7: “We Rise, We
+                      Fall, We Have Boundaries”) issued an official statement
+                      demanding: a return to the original lunar placement, back
+                      pay for “unauthorized overtime,” and a written apology to
+                      all puddles who “did not consent to becoming slightly more
+                      ambitious.”
+                    </p>
 
-                              <div class="tag-list" aria-label="Tags">
-                                <span class="tag">Mental Models</span>
-                                <span class="tag">Programming Fundamentals</span>
-                                <span class="tag">CSS Flexbox</span>
-                                <span class="tag">Problem Solving</span>
-                              </div>
-                            </div>
-                        </div>
-                    </article>
+                    <p>
+                      <strong
+                        >How to tell if your area is affected by the Moon
+                        Shift:</strong
+                      >
+                    </p>
+                    <ul>
+                      <li>
+                        Your bathtub water stares back at you like it knows your
+                        secrets
+                      </li>
+                      <li>
+                        Your plants lean toward the window with unsettling
+                        confidence
+                      </li>
+                      <li>
+                        Your porch puddle has begun recruiting other puddles
+                      </li>
+                      <li>You suddenly understand poetry and hate it</li>
+                    </ul>
 
+                    <p>
+                      Government agencies attempted to calm the public with an
+                      advisory titled
+                      <em>“Please Do Not Panic About The Moon”</em>, which,
+                      predictably, caused immediate panic about the moon.
+                      Officials then updated the advisory to:
+                      <strong>“Stop Looking At It Like That.”</strong>
+                    </p>
 
+                    <p>
+                      Meanwhile, astrologers are thriving. “This explains
+                      everything,” said one star-reader, who was later seen
+                      selling “Moon Moved, Life Improved” candles for twelve
+                      gold each. When asked if the moon shift would be reversed,
+                      they replied, “Not until Mercury stops freelancing.”
+                    </p>
 
-                    <!-- Article 4: Tabloid-Magic -->
-                    <article class="article featured-article tarot-card" tabindex="0" role="article" aria-labelledby="article-4-title" data-card-id="4">
-                        <div class="tarot-card-inner">
-                            <!-- Front of card (minimal info) -->
-                            <div class="tarot-card-front">
-                            <header class="article-header">
-                                <h3 id="article-4-title">SHOCKING: 9 Totally Unhinged Uses for Unicorn Horns (That Wizards Don’t Want You to Know)</h3>
-                            </header>
-                            <div class="article-meta">
-                                <span class="article-author">By: Kimberly Hilliker</span>
-                                <span class="article-date">January 12, 2026</span>
-                            </div>
-                            </div>
+                    <p>
+                      The Council promises the moon will be restored “once the
+                      new alignment photo set drops,” and insists the tides are
+                      “being dramatic.” The tides, for their part, have
+                      scheduled a strike for midnight and are reportedly
+                      bringing snacks.
+                    </p>
 
-                            <!-- Back of card (full content) -->
-                            <div class="tarot-card-back">
-                            <header class="article-header">
-                                <h3>SHOCKING: 9 Totally Unhinged Uses for Unicorn Horns (That Wizards Don’t Want You to Know)</h3>
-                            </header>
-                            <div class="article-meta">
-                                <span class="article-author">By: Kimberly Hilliker</span>
-                                <span class="article-date">January 12, 2026</span>
-                                <span class="article-category">Category: Tabloid-Magic</span>
-                            </div>
+                    <p>
+                      As this article went to press, the moon briefly winked,
+                      then rotated just enough to resemble a disappointed
+                      parent. The Council declined to comment, but a junior
+                      wizard whispered, “We might have… overcorrected.”
+                    </p>
+                  </div>
 
-                            <!-- Unique article image -->
-                            <img
-                                class="article-image"
-                                src="assets/images/article-4-unicornhorn.png"
-                                alt="A glittering unicorn horn on a velvet pillow surrounded by suspiciously labeled potion bottles"
-                                width="800"
-                                height="450"
-                            />
+                  <div class="tag-list">
+                    <span class="tag">Moon</span>
+                    <span class="tag">Cosmic Chaos</span>
+                    <span class="tag">Wizard Council</span>
+                    <span class="tag">Breaking News</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
 
-                            <p class="article-excerpt">
-                                From skincare to security systems, unicorn horns are being used for everything except what you’d expect—plus one use we legally can’t describe.
-                            </p>
+        <!-- Latest Articles Section: Grid of standard article cards -->
+        <section
+          class="latest-section"
+          id="latest-section"
+          aria-labelledby="latest-heading"
+        >
+          <h2 class="section-title" id="latest-heading">Latest Articles</h2>
 
-                            <div class="article-body">
-                                <p>
-                                You know unicorn horns: majestic, magical, and historically used for “purity,” “healing,” and “making kings feel important.”
-                                But according to leaked receipts from the Wizarding Supply Chain (and one exhausted stablehand who begged us to stop calling),
-                                the horn economy has gone <em>fully modern</em>.
-                                </p>
+          <!-- Articles grid: Responsive grid (1-4 columns depending on viewport) -->
+          <div class="articles-grid">
+            <!-- Article 4: Mental Model Method -->
+            <article
+              class="article featured-article tarot-card"
+              tabindex="0"
+              aria-labelledby="article-4-title"
+              data-card-id="4"
+            >
+              <div class="tarot-card-inner">
+                <!-- Front of card (minimal info) -->
+                <div class="tarot-card-front">
+                  <header class="article-header">
+                    <h3 id="article-4-title">
+                      The Architecture of Code: Why Mental Models Beat
+                      Memorization
+                    </h3>
+                  </header>
+                  <div class="article-meta">
+                    <span class="article-author">By: Thinh Doan</span>
+                    <span class="article-date">January 11, 2026</span>
+                  </div>
+                </div>
+                <!-- Back of card (full content) -->
+                <div class="tarot-card-back">
+                  <header class="article-header">
+                    <h3>
+                      The Architecture of Code: Why Mental Models Beat
+                      Memorization
+                    </h3>
+                  </header>
 
-                                <p>
-                                <strong>Important note:</strong> ethically sourced horns are naturally shed (like antlers). If someone tries to sell you a “fresh-cut”
-                                horn, that’s not a bargain—that’s a felony and a curse with your name on it.
-                                </p>
+                  <div class="article-meta">
+                    <span class="article-author">By: Thinh Doan</span>
+                    <span class="article-date">January 11, 2026</span>
+                    <span class="article-category">Category: Spellbook</span>
+                  </div>
 
-                                <p><strong>Here are the most surprising uses hitting the spellmarket right now:</strong></p>
+                  <img
+                    class="article-image"
+                    src="assets/images/article-4-mental-model.png"
+                    alt="Conceptual flexbox mental model illustration showing parent-child relationship and main vs cross axis"
+                    width="800"
+                    height="450"
+                    loading="lazy"
+                  />
 
-                                <p>
-                                <strong>1) Luxury skincare “Glow Serum”</strong><br />
-                                When ground into a micro-shimmer (don’t panic, it’s shed), unicorn keratin allegedly “balances your aura.”
-                                Translation: you’ll look radiant, and your ex will suddenly remember you exist.
-                                </p>
+                  <p class="article-excerpt">
+                    ALERT: Memorizing syntax is a trap. Mental models are the
+                    cheat code. Here's the Flexbox method that makes new tech
+                    feel predictable.
+                  </p>
 
-                                <p>
-                                <strong>2) Anti-spam email filters</strong><br />
-                                A sliver of horn in your office warding ring can detect “malicious intent,” which in practice means it blocks
-                                94% of “quick question” emails and all messages that include “circling back.”
-                                </p>
+                  <div class="article-body">
+                    <p>
+                      Somewhere, right now, a developer is whispering
+                      <code>justify-content: center</code> like it's a spell
+                      that will fix everything. And sometimes it works—until it
+                      doesn't. Syntax is brittle. One wrong word and the magic
+                      fizzles.
+                    </p>
 
-                                <p>
-                                <strong>3) Hangover prevention</strong><br />
-                                Mix one responsibly sourced horn shaving into water and it will “purify toxins.” The Ministry says this is “misleading”
-                                but also refuses to explain why half their staff looks suspiciously well-rested.
-                                </p>
+                    <p>
+                      The upgrade is learning to think like an architect. Code
+                      is a human-designed system with rules, patterns, and a few
+                      "master levers" that control most outcomes. Once you can
+                      spot those levers, you stop guessing—and start predicting.
+                    </p>
 
-                                <p>
-                                <strong>4) Lie detection for dating</strong><br />
-                                Horn-tipped pendants subtly vibrate when someone says, “I’m totally over my ex.”
-                                Warning: may also vibrate during “I love hiking” and “I’ve read that book.”
-                                </p>
+                    <p>
+                      Consider this your <strong>Spellbook Column</strong>: a
+                      repeatable method for mastering any tool faster, using CSS
+                      Flexbox as the case study.
+                    </p>
 
-                                <p>
-                                <strong>5) Home security (the petty kind)</strong><br />
-                                Unicorn horn wards don’t just repel intruders—they redirect them. One homeowner reported an attempted break-in
-                                ended with the burglar politely organizing the pantry and leaving with a heartfelt apology.
-                                </p>
+                    <h4>1) Identify the Relationship Architecture</h4>
+                    <p>
+                      Most bugs are just relationship problems. Code almost
+                      always defines a <strong>Parent ↔ Child</strong> contract,
+                      and we break things when we give orders to the wrong side
+                      of the family.
+                    </p>
 
-                                <p>
-                                <strong>6) Espresso machine stabilization</strong><br />
-                                Turns out horn resonance neutralizes “chaotic vibrations,” meaning your espresso stops tasting like regret.
-                                Baristas are calling it “life-changing” and “unfair to decaf.”
-                                </p>
+                    <p>
+                      In Flexbox, <code>display: flex</code> is a command to the
+                      <strong>Container (Parent)</strong>. It's the parent
+                      saying: "I'm taking control of layout now."
+                    </p>
 
-                                <p>
-                                <strong>7) Instant stain removal</strong><br />
-                                Rub a horn-polished stone on fabric and stains vanish—wine, ink, cursed ichor, you name it.
-                                Side effect: you may develop the urge to judge other people’s laundry choices.
-                                </p>
+                    <p>
+                      <strong>The Strategy:</strong> Ask one question before
+                      touching CSS: <em>Who owns this behavior?</em>
+                    </p>
 
-                                <p>
-                                <strong>8) Anti-ghost boundary lines</strong><br />
-                                A thin chalk made from shed horn dust can keep spirits out of your bedroom, your kitchen, or your personal business.
-                                (It does not, however, keep them out of group chats.)
-                                </p>
+                    <ul>
+                      <li>
+                        If you want to align a group of buttons, talk to the
+                        <code>div</code> holding them.
+                      </li>
+                      <li>
+                        If you want one specific button to grow, talk to that
+                        button.
+                      </li>
+                    </ul>
 
-                                <p>
-                                <strong>9) “Manifestation” wands for influencers</strong><br />
-                                Not to be dramatic, but these are mostly for aesthetics. They do work—technically—by manifesting sponsorships,
-                                ring lights, and a sudden interest in “witchcore minimalism.”
-                                </p>
+                    <h4>2) Locate the Master Levers</h4>
+                    <p>
+                      Most systems are governed by one or two master levers.
+                      Find them, and you control the whole machine. In Flexbox,
+                      the lever is the <strong>Axis</strong>.
+                    </p>
 
-                                <p>
-                                The Unicorn Council declined to comment, but did release a statement reading:
-                                “Please stop putting our shed horns in iced lattes. We can tell.”
-                                </p>
+                    <p>
+                      Flexbox doesn't think "left/right/up/down." It thinks:
+                      <strong>Main Axis</strong> (direction of flow) and
+                      <strong>Cross Axis</strong> (perpendicular direction).
+                    </p>
 
-                                <p>
-                                Meanwhile, wizarding economists predict horn-based products will continue to surge—right up until someone invents a
-                                cheaper alternative (likely “synthetic horn,” which is just plastic with confidence).
-                                </p>
-                            </div>
+                    <ul class="key-points">
+                      <li>
+                        <code>justify-content</code> controls the
+                        <strong>Main Axis</strong>.
+                      </li>
+                      <li>
+                        <code>align-items</code> controls the
+                        <strong>Cross Axis</strong>.
+                      </li>
+                    </ul>
 
-                            <div class="tag-list">
-                                <span class="tag">Unicorns</span>
-                                <span class="tag">Tabloid</span>
-                                <span class="tag">Magic</span>
-                                <span class="tag">Potion-Culture</span>
-                            </div>
-                            </div>
-                        </div>
-                    </article>
+                    <p>
+                      <strong>The Strategy:</strong> When layout looks wrong,
+                      don't property-hop. Ask:
+                      <em>Which axis am I trying to adjust?</em>
+                      If you switch <code>flex-direction</code> from
+                      <code>row</code> to <code>column</code>, the axes swap—but
+                      the logic stays the same.
+                    </p>
 
+                    <h4>3) Translate Syntax Into Human Intent</h4>
+                    <p>
+                      Syntax names are shorthand for real human goals. If you
+                      can translate the code into plain language, you understand
+                      it well enough to use it under pressure.
+                    </p>
 
-                   <!-- Article 5: Emotional Support Hoards -->
-                    <article class="article featured-article tarot-card" tabindex="0" role="article" aria-labelledby="article-5-title" data-card-id="5">
-                    <div class="tarot-card-inner">
-                        <!-- Front of card (minimal info) -->
-                        <div class="tarot-card-front">
-                        <header class="article-header">
-                            <h3 id="article-5-title">SCANDAL: Dragons Demand “Emotional Support Hoards” — Therapists Furious, Knights Confused</h3>
-                        </header>
-                        <div class="article-meta">
-                            <span class="article-author">By: Kimberly Hilliker</span>
-                            <span class="article-date">January 12, 2026</span>
-                        </div>
-                        </div>
-
-                        <!-- Back of card (full content) -->
-                        <div class="tarot-card-back">
-                        <header class="article-header">
-                            <h3>SCANDAL: Dragons Demand “Emotional Support Hoards” — Therapists Furious, Knights Confused</h3>
-                        </header>
-                        <div class="article-meta">
-                            <span class="article-author">By: Kimberly Hilliker</span>
-                            <span class="article-date">January 12, 2026</span>
-                            <span class="article-category">Category: Tabloid-Magic</span>
-                        </div>
-
-                        <!-- Unique article image -->
-                        <img
-                            class="article-image"
-                            src="assets/images/article-5-emotional-support-hoard.png"
-                            alt="A dragon lounging on a glittering pile of pillows, coins, and self-help books while a knight takes notes"
-                            width="800"
-                            height="450"
-                        />
-
-                        <p class="article-excerpt">
-                            Sources say dragons are replacing gold with “healing objects,” hoarding scented candles, weighted blankets, and—disturbingly—journals.
-                        </p>
-
-                        <div class="article-body">
-                            <p>
-                            Move over, traditional treasure. A new trend is sweeping the caverns, and it’s got everyone clutching their pearls
-                            (which, incidentally, are now considered “grounding items”).
-                            Dragons across the realm are allegedly demanding <strong>Emotional Support Hoards</strong>—and yes, it’s exactly what it sounds like.
-                            </p>
-
-                            <p>
-                            Instead of the classic pile of gold, several dragons have been spotted collecting:
-                            </p>
-                            <ul>
-                            <li>Weighted blankets the size of small ships</li>
-                            <li>Scented candles labeled “Eldritch Calm”</li>
-                            <li>Crystals that “block negative vibes” (and also signal Wi-Fi, somehow)</li>
-                            <li>Self-help books like <em>How to Set Boundaries Without Incinerating the Conversation</em></li>
-                            <li>One (1) haunted journal that keeps writing “feel your feelings” unprompted</li>
-                            </ul>
-
-                            <p>
-                            “I used to fight dragons for treasure,” said Sir Bramwell of the Ninth Lance, looking tired in a way armor can’t fix.
-                            “Now I show up and it’s just… a pile of throw pillows and a vision board. I don’t know what I’m supposed to do with that.”
-                            </p>
-
-                            <p>
-                            The Dragon Council released a brief statement: “Gold is fine, but it doesn’t <em>listen</em>.”
-                            They added that hoards are “private spaces for emotional regulation,” and asked adventurers to
-                            “stop projecting their unresolved parental issues onto our lairs.”
-                            </p>
-
-                            <p>
-                            Naturally, therapists are divided. Some praise the dragons for “healthy self-soothing behaviors.”
-                            Others warn that an “over-attachment to retail coping mechanisms” can be dangerous—especially when your client can melt a castle.
-                            </p>
-
-                            <p>
-                            Local merchants, meanwhile, are thriving. One candle-maker reported a 600% increase in sales after releasing a limited edition
-                            scent called <strong>Smoldering Accountability</strong>.
-                            </p>
-
-                            <p>
-                            The Ministry of Magical Assets has attempted to regulate the movement with a new form: <strong>H-OARD-27B</strong> (“Emotional Support Pile Registration”),
-                            but early drafts accidentally listed “compliments” as taxable loot, causing immediate chaos.
-                            </p>
-
-                            <p>
-                            As this article went to press, a dragon in the North was spotted gently arranging their hoard into “zones”:
-                            Rest, Reflection, Rage (fireproof), and Snacks. Witnesses say the Snacks zone is guarded the most aggressively.
-                            Which, honestly, is the most relatable thing a dragon has ever done.
-                            </p>
-                        </div>
-
-                        <div class="tag-list">
-                            <span class="tag">Dragons</span>
-                            <span class="tag">Tabloid</span>
-                            <span class="tag">Wizarding</span>
-                            <span class="tag">Realm-Drama</span>
-                        </div>
-                        </div>
+                    <div
+                      class="intent-table"
+                      role="region"
+                      aria-label="Flexbox properties translated into human intent"
+                    >
+                      <table>
+                        <thead>
+                          <tr>
+                            <th scope="col">Technical Syntax</th>
+                            <th scope="col">The Human Intent</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>justify-content: space-between</code></td>
+                            <td>
+                              Push the items to the edges and distribute the
+                              leftover space evenly.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>flex-grow: 1</code></td>
+                            <td>
+                              If there's extra room, I want this item to claim
+                              it.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><code>flex-wrap: wrap</code></td>
+                            <td>
+                              Don't shrink items into oblivion. If space runs
+                              out, start a new line.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
-                    </article>
 
+                    <h4>4) Reverse-Engineer the Default State</h4>
+                    <p>
+                      Every system has a "natural" behavior when you write zero
+                      code. Understanding the default tells you what the
+                      creators assumed was the most common scenario.
+                    </p>
 
-                    <!-- Article 6: Speed Magic -->
-                    <article class="article featured-article tarot-card" tabindex="0" role="article" aria-labelledby="article-6-title" data-card-id="6">
-                        <div class="tarot-card-inner">
-                            <!-- Front of card (minimal info) -->
-                            <div class="tarot-card-front">
-                            <header class="article-header">
-                                <h3 id="article-6-title">ALERT: Wizards Discover “Speed Magic” — Teleportation Now Requires Less Dramatic Hand-Waving</h3>
-                            </header>
-                            <div class="article-meta">
-                                <span class="article-author">By: Kimberly Hilliker</span>
-                                <span class="article-date">January 12, 2026</span>
-                            </div>
-                            </div>
+                    <p>
+                      <strong>Flexbox Defaults:</strong> A horizontal row,
+                      starting from the left, with no wrapping.
+                    </p>
 
-                            <!-- Back of card (full content) -->
-                            <div class="tarot-card-back">
-                                <header class="article-header">
-                                    <h3>ALERT: Wizards Discover "Speed Magic" — Teleportation Now Requires Less Dramatic Hand-Waving</h3>
-                                </header>
-                                <div class="article-meta">
-                                    <span class="article-author">By: Kimberly Hilliker</span>
-                                    <span class="article-date">January 12, 2026</span>
-                                    <span class="article-category">Category: Performance</span>
-                                </div>
+                    <p>
+                      <strong>The Strategy:</strong> When you're stuck, strip
+                      back to defaults. Remove custom CSS until the layout
+                      returns to its natural state. The last change you
+                      reintroduce is usually the variable fighting the system.
+                    </p>
 
-                                <!-- Unique article image -->
-                                <img
-                                    class="article-image"
-                                src="assets/images/article-6-speedmagic.png"
-                                alt="A wizard angrily staring at a glowing portal stuck on 'Loading...' with a stopwatch"
-                                width="800"
-                                height="450"
-                            />
+                    <h4>
+                      The Takeaway: Syntax Is Temporary, Strategy Is Permanent
+                    </h4>
+                    <p>
+                      Flexbox today. Another framework tomorrow. The approach
+                      doesn't change. Stop memorizing outcomes—start mapping
+                      systems.
+                    </p>
 
-                            <p class="article-excerpt">
-                                After years of slow portals and buffering broomsticks, spellcasters are “optimizing” magic—cutting curse bloat, compressing illusions, and banishing render-blocking runes.
-                            </p>
+                    <ul class="takeaway-list">
+                      <li>Map the hierarchy (who is the parent?)</li>
+                      <li>Identify the levers (what controls direction?)</li>
+                      <li>Translate the intent (what is the human goal?)</li>
+                      <li>
+                        Check the defaults (what happens if I do nothing?)
+                      </li>
+                    </ul>
 
-                            <div class="article-body">
-                                <p>
-                                In what experts are calling “deeply unromantic but extremely effective,” a group of frustrated wizards has begun treating magic like a performance problem.
-                                The result? Faster portals, snappier illusions, and a sharp decline in dramatic chanting that takes eight minutes and three outfit changes.
-                                </p>
+                    <p>
+                      Once you understand the key variables, code stops being
+                      something you follow—and becomes something you control.
+                    </p>
+                  </div>
 
-                                <p>
-                                “Look, I love a good monologue,” admitted Archmage Pell, founder of the new initiative <strong>Core Spell Vitals</strong>.
-                                “But if my teleportation circle takes longer than a kettle boil, it’s not ‘mystical’—it’s <em>bad design</em>.”
-                                </p>
-
-                                <p><strong>So what are they doing differently?</strong></p>
-                                <ul>
-                                <li>
-                                    <strong>Crystal ball compression:</strong> Illusions are now rendered at “reasonable resolutions,”
-                                    reducing cases of accidental 8K prophetic visions that crash mid-doom.
-                                </li>
-                                <li>
-                                    <strong>Lazy-summoning:</strong> Demons, familiars, and mildly judgmental ravens are now conjured only when needed.
-                                    (“We simply don’t need the raven on the landing page,” Pell said, visibly haunted by a past decision.)
-                                </li>
-                                <li>
-                                    <strong>Spell splitting:</strong> Instead of loading an entire castle-wide enchantment at once, wizards now
-                                    cast in smaller chunks—so the chandelier stops flickering like it’s having a personal crisis.
-                                </li>
-                                <li>
-                                    <strong>Banishing render-blocking runes:</strong> Several ancient glyphs were discovered doing nothing but “vibes,”
-                                    and have been respectfully removed to a museum where they can vibe in peace.
-                                </li>
-                                </ul>
-
-                                <p>
-                                The traditionalists are, predictably, furious. “Magic is an <em>art</em>,” cried one elder sorcerer, pausing to
-                                cough dust and dramatic disappointment. “It must be slow! It must be elaborate! There must be at least one unnecessary fog machine!”
-                                </p>
-
-                                <p>
-                                Meanwhile, everyday citizens are noticing improvements. One commuter reported their broomstick now starts instantly,
-                                rather than “thinking about it for a while like a depressed horse.” Another praised the new “optimized” invisibility spell:
-                                “It used to flicker whenever I felt anxiety. Which… was constant. Now it’s stable. That feels suspicious.”
-                                </p>
-
-                                <p>
-                                Even the Ministry weighed in, issuing an advisory:
-                                “Please stop ‘minifying’ curses. We don’t know what that means, but we don’t like how confident you are.”
-                                </p>
-
-                                <p>
-                                As this article went to press, a rogue wizard attempted to implement “caching” on a prophecy.
-                                The prophecy immediately repeated itself for three days straight and refused to update, which—depending on who you ask—
-                                is either a disaster or the most accurate fortune-telling service ever created.
-                                </p>
-                            </div>
-
-                                <div class="tag-list">
-                                    <span class="tag">Magic</span>
-                                    <span class="tag">Wizards</span>
-                                    <span class="tag">Performance</span>
-                                    <span class="tag">Portal-Drama</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
+                  <div class="tag-list" role="group" aria-label="Tags">
+                    <span class="tag">Mental Models</span>
+                    <span class="tag">Programming Fundamentals</span>
+                    <span class="tag">CSS Flexbox</span>
+                    <span class="tag">Problem Solving</span>
+                  </div>
                 </div>
-            </section>
-        </main>
-        
-        <!-- Footer: Copyright information with background image -->
-        <footer class="footer" id="footer" role="contentinfo">
-            
-            <!-- Responsive footer background image -->
-            <img class="site-footer-bg-image"
-                srcset="
-                    assets/images/footer/footer_background-400w.webp 400w,
-                    assets/images/footer/footer_background-600w.webp 600w,
-                    assets/images/footer/footer_background-800w.webp 800w,
-                    assets/images/footer/footer_background-1000w.webp 1000w,
-                    assets/images/footer/footer_background-1200w.webp 1200w,
-                    assets/images/footer/footer_background-1600w.webp 1600w,
-                    assets/images/footer/footer_background-2000w.webp 2000w
-                "
-                sizes="
+              </div>
+            </article>
+
+            <!-- Article 5: Tabloid-Magic -->
+            <article
+              class="article featured-article tarot-card"
+              tabindex="0"
+              aria-labelledby="article-5-title"
+              data-card-id="5"
+            >
+              <div class="tarot-card-inner">
+                <!-- Front of card (minimal info) -->
+                <div class="tarot-card-front">
+                  <header class="article-header">
+                    <h3 id="article-5-title">
+                      SHOCKING: 9 Totally Unhinged Uses for Unicorn Horns (That
+                      Wizards Don’t Want You to Know)
+                    </h3>
+                  </header>
+                  <div class="article-meta">
+                    <span class="article-author">By: Kimberly Hilliker</span>
+                    <span class="article-date">January 12, 2026</span>
+                  </div>
+                </div>
+
+                <!-- Back of card (full content) -->
+                <div class="tarot-card-back">
+                  <header class="article-header">
+                    <h3>
+                      SHOCKING: 9 Totally Unhinged Uses for Unicorn Horns (That
+                      Wizards Don’t Want You to Know)
+                    </h3>
+                  </header>
+                  <div class="article-meta">
+                    <span class="article-author">By: Kimberly Hilliker</span>
+                    <span class="article-date">January 12, 2026</span>
+                    <span class="article-category"
+                      >Category: Tabloid-Magic</span
+                    >
+                  </div>
+
+                  <!-- Unique article image -->
+                  <img
+                    class="article-image"
+                    src="assets/images/article-5-unicornhorn.png"
+                    alt="A glittering unicorn horn on a velvet pillow surrounded by suspiciously labeled potion bottles"
+                    width="800"
+                    height="450"
+                    loading="lazy"
+                  />
+
+                  <p class="article-excerpt">
+                    From skincare to security systems, unicorn horns are being
+                    used for everything except what you’d expect—plus one use we
+                    legally can’t describe.
+                  </p>
+
+                  <div class="article-body">
+                    <p>
+                      You know unicorn horns: majestic, magical, and
+                      historically used for “purity,” “healing,” and “making
+                      kings feel important.” But according to leaked receipts
+                      from the Wizarding Supply Chain (and one exhausted
+                      stablehand who begged us to stop calling), the horn
+                      economy has gone <em>fully modern</em>.
+                    </p>
+
+                    <p>
+                      <strong>Important note:</strong> ethically sourced horns
+                      are naturally shed (like antlers). If someone tries to
+                      sell you a “fresh-cut” horn, that’s not a bargain—that’s a
+                      felony and a curse with your name on it.
+                    </p>
+
+                    <p>
+                      <strong
+                        >Here are the most surprising uses hitting the
+                        spellmarket right now:</strong
+                      >
+                    </p>
+
+                    <p>
+                      <strong>1) Luxury skincare “Glow Serum”</strong><br />
+                      When ground into a micro-shimmer (don’t panic, it’s shed),
+                      unicorn keratin allegedly “balances your aura.”
+                      Translation: you’ll look radiant, and your ex will
+                      suddenly remember you exist.
+                    </p>
+
+                    <p>
+                      <strong>2) Anti-spam email filters</strong><br />
+                      A sliver of horn in your office warding ring can detect
+                      “malicious intent,” which in practice means it blocks 94%
+                      of “quick question” emails and all messages that include
+                      “circling back.”
+                    </p>
+
+                    <p>
+                      <strong>3) Hangover prevention</strong><br />
+                      Mix one responsibly sourced horn shaving into water and it
+                      will “purify toxins.” The Ministry says this is
+                      “misleading” but also refuses to explain why half their
+                      staff looks suspiciously well-rested.
+                    </p>
+
+                    <p>
+                      <strong>4) Lie detection for dating</strong><br />
+                      Horn-tipped pendants subtly vibrate when someone says,
+                      “I’m totally over my ex.” Warning: may also vibrate during
+                      “I love hiking” and “I’ve read that book.”
+                    </p>
+
+                    <p>
+                      <strong>5) Home security (the petty kind)</strong><br />
+                      Unicorn horn wards don’t just repel intruders—they
+                      redirect them. One homeowner reported an attempted
+                      break-in ended with the burglar politely organizing the
+                      pantry and leaving with a heartfelt apology.
+                    </p>
+
+                    <p>
+                      <strong>6) Espresso machine stabilization</strong><br />
+                      Turns out horn resonance neutralizes “chaotic vibrations,”
+                      meaning your espresso stops tasting like regret. Baristas
+                      are calling it “life-changing” and “unfair to decaf.”
+                    </p>
+
+                    <p>
+                      <strong>7) Instant stain removal</strong><br />
+                      Rub a horn-polished stone on fabric and stains
+                      vanish—wine, ink, cursed ichor, you name it. Side effect:
+                      you may develop the urge to judge other people’s laundry
+                      choices.
+                    </p>
+
+                    <p>
+                      <strong>8) Anti-ghost boundary lines</strong><br />
+                      A thin chalk made from shed horn dust can keep spirits out
+                      of your bedroom, your kitchen, or your personal business.
+                      (It does not, however, keep them out of group chats.)
+                    </p>
+
+                    <p>
+                      <strong>9) “Manifestation” wands for influencers</strong
+                      ><br />
+                      Not to be dramatic, but these are mostly for aesthetics.
+                      They do work—technically—by manifesting sponsorships, ring
+                      lights, and a sudden interest in “witchcore minimalism.”
+                    </p>
+
+                    <p>
+                      The Unicorn Council declined to comment, but did release a
+                      statement reading: “Please stop putting our shed horns in
+                      iced lattes. We can tell.”
+                    </p>
+
+                    <p>
+                      Meanwhile, wizarding economists predict horn-based
+                      products will continue to surge—right up until someone
+                      invents a cheaper alternative (likely “synthetic horn,”
+                      which is just plastic with confidence).
+                    </p>
+                  </div>
+
+                  <div class="tag-list">
+                    <span class="tag">Unicorns</span>
+                    <span class="tag">Tabloid</span>
+                    <span class="tag">Magic</span>
+                    <span class="tag">Potion-Culture</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 6: Emotional Support Hoards -->
+            <article
+              class="article featured-article tarot-card"
+              tabindex="0"
+              aria-labelledby="article-6-title"
+              data-card-id="6"
+            >
+              <div class="tarot-card-inner">
+                <!-- Front of card (minimal info) -->
+                <div class="tarot-card-front">
+                  <header class="article-header">
+                    <h3 id="article-6-title">
+                      SCANDAL: Dragons Demand “Emotional Support Hoards” —
+                      Therapists Furious, Knights Confused
+                    </h3>
+                  </header>
+                  <div class="article-meta">
+                    <span class="article-author">By: Kimberly Hilliker</span>
+                    <span class="article-date">January 12, 2026</span>
+                  </div>
+                </div>
+
+                <!-- Back of card (full content) -->
+                <div class="tarot-card-back">
+                  <header class="article-header">
+                    <h3>
+                      SCANDAL: Dragons Demand “Emotional Support Hoards” —
+                      Therapists Furious, Knights Confused
+                    </h3>
+                  </header>
+                  <div class="article-meta">
+                    <span class="article-author">By: Kimberly Hilliker</span>
+                    <span class="article-date">January 12, 2026</span>
+                    <span class="article-category"
+                      >Category: Tabloid-Magic</span
+                    >
+                  </div>
+
+                  <!-- Unique article image -->
+                  <img
+                    class="article-image"
+                    src="assets/images/article-6-emotional-support-hoard.png"
+                    alt="A dragon lounging on a glittering pile of pillows, coins, and self-help books while a knight takes notes"
+                    width="800"
+                    height="450"
+                    loading="lazy"
+                  />
+
+                  <p class="article-excerpt">
+                    Sources say dragons are replacing gold with “healing
+                    objects,” hoarding scented candles, weighted blankets,
+                    and—disturbingly—journals.
+                  </p>
+
+                  <div class="article-body">
+                    <p>
+                      Move over, traditional treasure. A new trend is sweeping
+                      the caverns, and it’s got everyone clutching their pearls
+                      (which, incidentally, are now considered “grounding
+                      items”). Dragons across the realm are allegedly demanding
+                      <strong>Emotional Support Hoards</strong>—and yes, it’s
+                      exactly what it sounds like.
+                    </p>
+
+                    <p>
+                      Instead of the classic pile of gold, several dragons have
+                      been spotted collecting:
+                    </p>
+                    <ul>
+                      <li>Weighted blankets the size of small ships</li>
+                      <li>Scented candles labeled “Eldritch Calm”</li>
+                      <li>
+                        Crystals that “block negative vibes” (and also signal
+                        Wi-Fi, somehow)
+                      </li>
+                      <li>
+                        Self-help books like
+                        <em
+                          >How to Set Boundaries Without Incinerating the
+                          Conversation</em
+                        >
+                      </li>
+                      <li>
+                        One (1) haunted journal that keeps writing “feel your
+                        feelings” unprompted
+                      </li>
+                    </ul>
+
+                    <p>
+                      “I used to fight dragons for treasure,” said Sir Bramwell
+                      of the Ninth Lance, looking tired in a way armor can’t
+                      fix. “Now I show up and it’s just… a pile of throw pillows
+                      and a vision board. I don’t know what I’m supposed to do
+                      with that.”
+                    </p>
+
+                    <p>
+                      The Dragon Council released a brief statement: “Gold is
+                      fine, but it doesn’t <em>listen</em>.” They added that
+                      hoards are “private spaces for emotional regulation,” and
+                      asked adventurers to “stop projecting their unresolved
+                      parental issues onto our lairs.”
+                    </p>
+
+                    <p>
+                      Naturally, therapists are divided. Some praise the dragons
+                      for “healthy self-soothing behaviors.” Others warn that an
+                      “over-attachment to retail coping mechanisms” can be
+                      dangerous—especially when your client can melt a castle.
+                    </p>
+
+                    <p>
+                      Local merchants, meanwhile, are thriving. One candle-maker
+                      reported a 600% increase in sales after releasing a
+                      limited edition scent called
+                      <strong>Smoldering Accountability</strong>.
+                    </p>
+
+                    <p>
+                      The Ministry of Magical Assets has attempted to regulate
+                      the movement with a new form:
+                      <strong>H-OARD-27B</strong> (“Emotional Support Pile
+                      Registration”), but early drafts accidentally listed
+                      “compliments” as taxable loot, causing immediate chaos.
+                    </p>
+
+                    <p>
+                      As this article went to press, a dragon in the North was
+                      spotted gently arranging their hoard into “zones”: Rest,
+                      Reflection, Rage (fireproof), and Snacks. Witnesses say
+                      the Snacks zone is guarded the most aggressively. Which,
+                      honestly, is the most relatable thing a dragon has ever
+                      done.
+                    </p>
+                  </div>
+
+                  <div class="tag-list">
+                    <span class="tag">Dragons</span>
+                    <span class="tag">Tabloid</span>
+                    <span class="tag">Wizarding</span>
+                    <span class="tag">Realm-Drama</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 7: Speed Magic -->
+            <article
+              class="article featured-article tarot-card"
+              tabindex="0"
+              aria-labelledby="article-7-title"
+              data-card-id="7"
+            >
+              <div class="tarot-card-inner">
+                <!-- Front of card (minimal info) -->
+                <div class="tarot-card-front">
+                  <header class="article-header">
+                    <h3 id="article-7-title">
+                      ALERT: Wizards Discover “Speed Magic” — Teleportation Now
+                      Requires Less Dramatic Hand-Waving
+                    </h3>
+                  </header>
+                  <div class="article-meta">
+                    <span class="article-author">By: Kimberly Hilliker</span>
+                    <span class="article-date">January 12, 2026</span>
+                  </div>
+                </div>
+
+                <!-- Back of card (full content) -->
+                <div class="tarot-card-back">
+                  <header class="article-header">
+                    <h3>
+                      ALERT: Wizards Discover "Speed Magic" — Teleportation Now
+                      Requires Less Dramatic Hand-Waving
+                    </h3>
+                  </header>
+                  <div class="article-meta">
+                    <span class="article-author">By: Kimberly Hilliker</span>
+                    <span class="article-date">January 12, 2026</span>
+                    <span class="article-category">Category: Performance</span>
+                  </div>
+
+                  <!-- Unique article image -->
+                  <img
+                    class="article-image"
+                    src="assets/images/article-7-speedmagic.png"
+                    alt="A wizard angrily staring at a glowing portal stuck on 'Loading...' with a stopwatch"
+                    width="800"
+                    height="450"
+                    loading="lazy"
+                  />
+
+                  <p class="article-excerpt">
+                    After years of slow portals and buffering broomsticks,
+                    spellcasters are “optimizing” magic—cutting curse bloat,
+                    compressing illusions, and banishing render-blocking runes.
+                  </p>
+
+                  <div class="article-body">
+                    <p>
+                      In what experts are calling “deeply unromantic but
+                      extremely effective,” a group of frustrated wizards has
+                      begun treating magic like a performance problem. The
+                      result? Faster portals, snappier illusions, and a sharp
+                      decline in dramatic chanting that takes eight minutes and
+                      three outfit changes.
+                    </p>
+
+                    <p>
+                      “Look, I love a good monologue,” admitted Archmage Pell,
+                      founder of the new initiative
+                      <strong>Core Spell Vitals</strong>. “But if my
+                      teleportation circle takes longer than a kettle boil, it’s
+                      not ‘mystical’—it’s <em>bad design</em>.”
+                    </p>
+
+                    <p><strong>So what are they doing differently?</strong></p>
+                    <ul>
+                      <li>
+                        <strong>Crystal ball compression:</strong> Illusions are
+                        now rendered at “reasonable resolutions,” reducing cases
+                        of accidental 8K prophetic visions that crash mid-doom.
+                      </li>
+                      <li>
+                        <strong>Lazy-summoning:</strong> Demons, familiars, and
+                        mildly judgmental ravens are now conjured only when
+                        needed. (“We simply don’t need the raven on the landing
+                        page,” Pell said, visibly haunted by a past decision.)
+                      </li>
+                      <li>
+                        <strong>Spell splitting:</strong> Instead of loading an
+                        entire castle-wide enchantment at once, wizards now cast
+                        in smaller chunks—so the chandelier stops flickering
+                        like it’s having a personal crisis.
+                      </li>
+                      <li>
+                        <strong>Banishing render-blocking runes:</strong>
+                        Several ancient glyphs were discovered doing nothing but
+                        “vibes,” and have been respectfully removed to a museum
+                        where they can vibe in peace.
+                      </li>
+                    </ul>
+
+                    <p>
+                      The traditionalists are, predictably, furious. “Magic is
+                      an <em>art</em>,” cried one elder sorcerer, pausing to
+                      cough dust and dramatic disappointment. “It must be slow!
+                      It must be elaborate! There must be at least one
+                      unnecessary fog machine!”
+                    </p>
+
+                    <p>
+                      Meanwhile, everyday citizens are noticing improvements.
+                      One commuter reported their broomstick now starts
+                      instantly, rather than “thinking about it for a while like
+                      a depressed horse.” Another praised the new “optimized”
+                      invisibility spell: “It used to flicker whenever I felt
+                      anxiety. Which… was constant. Now it’s stable. That feels
+                      suspicious.”
+                    </p>
+
+                    <p>
+                      Even the Ministry weighed in, issuing an advisory: “Please
+                      stop ‘minifying’ curses. We don’t know what that means,
+                      but we don’t like how confident you are.”
+                    </p>
+
+                    <p>
+                      As this article went to press, a rogue wizard attempted to
+                      implement “caching” on a prophecy. The prophecy
+                      immediately repeated itself for three days straight and
+                      refused to update, which—depending on who you ask— is
+                      either a disaster or the most accurate fortune-telling
+                      service ever created.
+                    </p>
+                  </div>
+
+                  <div class="tag-list">
+                    <span class="tag">Magic</span>
+                    <span class="tag">Wizards</span>
+                    <span class="tag">Performance</span>
+                    <span class="tag">Portal-Drama</span>
+                  </div>
+                </div>
+              </div>
+            </article>            
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer: Copyright information with background image -->
+      <footer class="footer" id="footer">
+        <!-- Responsive footer background image -->
+        <img
+          class="site-footer-bg-image"
+          srcset="
+            assets/images/footer/footer_background-400w.webp   400w,
+            assets/images/footer/footer_background-600w.webp   600w,
+            assets/images/footer/footer_background-800w.webp   800w,
+            assets/images/footer/footer_background-1000w.webp 1000w,
+            assets/images/footer/footer_background-1200w.webp 1200w,
+            assets/images/footer/footer_background-1600w.webp 1600w,
+            assets/images/footer/footer_background-2000w.webp 2000w
+          "
+          sizes="
                     (max-width: 400px) 400px,
                     (max-width: 600px) 600px,
                     (max-width: 800px) 800px,
@@ -883,35 +1362,50 @@
                     (max-width: 1600px) 1600px,
                     (min-width: 1601px) 2000px
                 "
-                src="assets/images/footer/footer_background-400w.webp"
-                alt=""
-                aria-hidden="true"
-            />
-            <div class="footer-overlay">
-                <!-- Copyright notice -->
-                <div class="copyright-notice">
-                    <p>&copy; 2026 Ocean Riches. All rights reserved.</p>
-                </div>
+          src="assets/images/footer/footer_background-400w.webp"
+          alt=""
+          aria-hidden="true"
+        />
+        <div class="footer-overlay">
+          <!-- Copyright notice -->
+          <div class="copyright-notice">
+            <p>&copy; 2026 Ocean Riches. All rights reserved.</p>
+          </div>
 
-                <!-- Disclaimer -->
-                <div class="disclaimer">
-                    <p>BCIT SSDP 2026 - WebDevTNT - A04 - Advanced CSS - News Style Portfolio - for Educational purposes only</p>
-                </div>
-            </div>    
-        </footer>
-    </div>
-    
-    <!-- Featured story modal -->
-    <div class="modal" id="featured-modal" aria-hidden="true" role="dialog" aria-modal="true">
-        <div class="modal-content" role="document">
-            <button class="modal-close" type="button" aria-label="Close featured story">×</button>
-            <div class="modal-body" id="featured-modal-body">
-                <!-- Filled by JavaScript -->
-            </div>
+          <!-- Disclaimer -->
+          <div class="disclaimer">
+            <p>
+              BCIT SSDP 2026 - WebDevTNT - A04 - Advanced CSS - News Style
+              Portfolio - for Educational purposes only
+            </p>
+          </div>
         </div>
+      </footer>
+    </div>
+
+    <!-- Featured story modal -->
+    <div
+      class="modal"
+      id="featured-modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="modal-content" role="document">
+        <button
+          class="modal-close"
+          type="button"
+          aria-label="Close featured story"
+        >
+          ×
+        </button>
+        <div class="modal-body" id="featured-modal-body">
+          <!-- Filled by JavaScript -->
+        </div>
+      </div>
     </div>
 
     <!-- JavaScript for ripple effects and tarot card flip functionality -->
     <script src="scripts/script.js"></script>
-</body>
+  </body>
 </html>
