@@ -303,6 +303,8 @@
     const ripple = document.createElement("span");
     ripple.classList.add(CONFIG.CLASSES.RIPPLE);
 
+    // PERFORMANCE OPTIMIZATION: Batch layout reads before writes
+    // Read all layout properties first to avoid forced reflow
     const rect = element.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
@@ -310,14 +312,17 @@
     const { x: entryX, y: entryY, pushX, pushY } = calculateEntryPoint(rect, mouseX, mouseY);
     const size = calculateRippleSize(rect, entryX, entryY);
 
-    setRipplePosition(ripple, entryX, entryY, size, pushX, pushY);
+    // PERFORMANCE OPTIMIZATION: Batch DOM writes in requestAnimationFrame
+    // Applying styles and DOM insertion together lets browser optimize layout
+    requestAnimationFrame(() => {
+      setRipplePosition(ripple, entryX, entryY, size, pushX, pushY);
+      element.appendChild(ripple);
 
-    element.appendChild(ripple);
-
-    // Remove after animation finishes
-    window.setTimeout(() => {
-      if (ripple.parentNode) ripple.remove();
-    }, CONFIG.RIPPLE_DURATION);
+      // Remove after animation finishes
+      window.setTimeout(() => {
+        if (ripple.parentNode) ripple.remove();
+      }, CONFIG.RIPPLE_DURATION);
+    });
   }
 
   /**
@@ -388,6 +393,9 @@
    * @param {HTMLElement} card - Source tarot card
    */
   function setModalFromCardTransform(modalContent, card) {
+    // PERFORMANCE OPTIMIZATION: Batch layout reads before writes
+    // Read all getBoundingClientRect() calls first to avoid forced reflow.
+    // Browser can optimize when reads aren't interleaved with writes.
     const cardRect = card.getBoundingClientRect();
     const modalRect = modalContent.getBoundingClientRect();
 
@@ -402,9 +410,13 @@
     const rawScale = cardRect.width / modalRect.width;
     const fromScale = Math.max(0.25, Math.min(1, rawScale));
 
-    modalContent.style.setProperty("--from-x", `${fromX}px`);
-    modalContent.style.setProperty("--from-y", `${fromY}px`);
-    modalContent.style.setProperty("--from-scale", `${fromScale}`);
+    // PERFORMANCE OPTIMIZATION: Batch DOM writes in requestAnimationFrame
+    // Applying all CSS custom properties together allows browser to batch layout
+    requestAnimationFrame(() => {
+      modalContent.style.setProperty("--from-x", `${fromX}px`);
+      modalContent.style.setProperty("--from-y", `${fromY}px`);
+      modalContent.style.setProperty("--from-scale", `${fromScale}`);
+    });
   }
 
   // ============================================
