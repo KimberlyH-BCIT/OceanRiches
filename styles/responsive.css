@@ -291,10 +291,16 @@
     padding: var(--spacing-md) var(--spacing-lg);
   }
 
-  /* ===== 3-COLUMN GRID =====
+  /* ===== 3-COLUMN GRID FOR FEATURED =====
+     Featured articles in a row of 3. */
+  .featured-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* ===== 4-COLUMN GRID FOR LATEST =====
      Optimal for desktop: more content visible without crowding. */
   .articles-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   /* Footer: match your overlay structure */
@@ -342,10 +348,11 @@
 
   /* More generous gap between featured articles */
   .featured-grid {
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-xl);
   }
 
-  /* ===== 4-COLUMN GRID =====
+  /* ===== 5-COLUMN GRID =====
      Maximum content visibility for large screens. */
   .articles-grid {
     grid-template-columns: repeat(4, 1fr);
