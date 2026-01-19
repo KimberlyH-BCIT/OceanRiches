@@ -1,7 +1,7 @@
 /* ============================================
    script.js
    Interactive JavaScript for OceanRiches site.
-   Handles ripple effects, card flips, and modal interactions.
+   Handles ripple effects, random tarot images, card flips, and modal interactions.
    ============================================
 
    TABLE OF CONTENTS:
@@ -35,6 +35,7 @@
       - initializeFeaturedModal() - Sets up modal event listeners
 
    6. TAROT CARD FLIP SYSTEM
+      - assignRandomTarotImages() - Assigns random background images to card fronts
       - scheduleOpenFromFlip() - Delays modal open until flip completes
       - initializeTarotCards() - Attaches flip and open logic to cards
 
@@ -639,6 +640,55 @@
   // Handles 3D card flip and delayed modal opening.
 
   /**
+   * Assigns random tarot card background images to all card fronts.
+   * 
+   * PROCESS:
+   * 1. Define array of all available tarot card images (tarot-001 to tarot-029)
+   * 2. Create shuffled copy of array for randomization
+   * 3. For each card front, assign next image from shuffled array
+   * 4. Wrap around if more cards than images (reuse shuffled order)
+   * 
+   * RANDOMIZATION:
+   * - Fisher-Yates shuffle ensures even distribution
+   * - Each page load creates new random order
+   * - No duplicates until all images used once
+   * 
+   * WHY FRONT ONLY:
+   * - Background set via inline style on .tarot-card-front
+   * - Back side (.tarot-card-back) unaffected, shows article image
+   * - Maintains card flip functionality
+   */
+  function assignRandomTarotImages() {
+    // Array of all available tarot card images
+    const tarotImages = [
+      "tarot-001.webp", "tarot-002.webp", "tarot-003.webp", "tarot-004.webp",
+      "tarot-005.webp", "tarot-006.webp", "tarot-007.webp", "tarot-008.webp",
+      "tarot-009.webp", "tarot-010.webp", "tarot-011.webp", "tarot-012.webp",
+      "tarot-013.webp", "tarot-014.webp", "tarot-015.webp", "tarot-016.webp",
+      "tarot-017.webp", "tarot-018.webp", "tarot-019.webp", "tarot-020.webp",
+      "tarot-021.webp", "tarot-022.webp", "tarot-023.webp", "tarot-024.webp",
+      "tarot-025.webp", "tarot-026.webp", "tarot-027.webp", "tarot-028.webp",
+      "tarot-29.webp"
+    ];
+
+    // Fisher-Yates shuffle for random distribution
+    const shuffled = [...tarotImages];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    // Select all card fronts and assign random images
+    const cardFronts = document.querySelectorAll(".tarot-card-front");
+    cardFronts.forEach((front, index) => {
+      // Wrap around if more cards than images (reuse shuffled array)
+      const imageIndex = index % shuffled.length;
+      const imagePath = `assets/images/tarot-cards/${shuffled[imageIndex]}`;
+      front.style.backgroundImage = `url('${imagePath}')`;
+    });
+  }
+
+  /**
    * Schedules modal to open after flip animation completes.
    * 
    * TIMING:
@@ -802,12 +852,14 @@
    * Calls all feature initialization functions in order.
    * 
    * ORDER:
-   * 1. Ripple effects (non-blocking visual enhancement)
-   * 2. Tarot cards (core interaction)
-   * 3. Modal (depends on cards being initialized)
-   * 4. Hamburger menu (independent feature)
+   * 1. Random tarot images (visual enhancement, must run before user interaction)
+   * 2. Ripple effects (non-blocking visual enhancement)
+   * 3. Tarot cards (core interaction)
+   * 4. Modal (depends on cards being initialized)
+   * 5. Hamburger menu (independent feature)
    */
   function initializeAll() {
+    assignRandomTarotImages();
     initializeRippleEffects();
     initializeTarotCards();
     initializeFeaturedModal();
