@@ -92,7 +92,7 @@
 
   /* Scale logo */
   .site-logo-image {
-    height: 56px;              /* Up from 40px */
+    height: 60px;              /* Up from 50px */
   }
 
   /* Enlarge headings */
@@ -154,27 +154,41 @@
 @media (min-width: 768px) {
   /* ===== HEADER LAYOUT TRANSFORMATION =====
      Switch from mobile grid to horizontal flexbox layout.
-     Logo on left, navigation spans middle/right. */
+     Logo on left, navigation spans middle/right.
+     
+     RESPONSIVE STRATEGY:
+     - Reduced sizes at 768px to prevent overflow on smaller tablets
+     - flex-wrap allows wrapping if content doesn't fit
+     - Logo: 60px (smaller than desktop 80px)
+     - Title: 1.75rem with flex-shrink and ellipsis for overflow
+     - Gap reduced to var(--spacing-sm) for tighter spacing */
   .site-header {
     display: flex !important;
     flex-direction: row !important;
     justify-content: space-between !important;
     align-items: center !important;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     overflow: visible;
+    padding: var(--spacing-md);
+    flex-wrap: wrap;
   }
 
+  /* Logo sized conservatively for tablet screens */
   .site-logo-image {
-    height: 80px;
+    height: 60px;
     align-self: center;
     flex-shrink: 0;
   }
 
+  /* Title can shrink if needed, with ellipsis for overflow */
   .site-title {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
     margin: 0;
     align-self: center;
-    flex-shrink: 0;
+    flex-shrink: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /* ===== HIDE MOBILE NAVIGATION CONTROLS =====
@@ -197,7 +211,12 @@
   /* ===== NAVIGATION MENU =====
      Override mobile collapsed state.
      Nav becomes horizontal and always visible.
-     Centered between title and badges. */
+     Centered between title and badges.
+     
+     OVERFLOW PREVENTION:
+     - flex-wrap: wrap allows nav items to wrap if needed
+     - Font size reduced to 1rem (from 1.2rem mobile)
+     - Prevents overflow on 768px screens with many nav items */
   .nav-list {
     flex-direction: row !important;
     gap: var(--spacing-sm);
@@ -208,10 +227,11 @@
     align-items: center !important;
     flex: 1;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .nav-item a {
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: var(--spacing-sm) var(--spacing-md);
   }
 
@@ -270,24 +290,31 @@
    - Optimized spacing for larger viewports
    ============================================ */
 @media (min-width: 1024px) {
-  /* Refined header spacing */
+  /* ===== DESKTOP HEADER SIZING =====
+     Increased vertical space and prominence for desktop.
+     - min-height: 200px ensures adequate vertical spacing
+     - padding: var(--spacing-xl) (48px) provides generous whitespace
+     - Logo and title scale up from tablet sizes
+     - Nav links increase to 1.1rem for better readability */
   .site-header {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-xl);
+    gap: var(--spacing-md);
+    min-height: 200px;
   }
 
   /* Larger logo for desktop prominence */
   .site-logo-image {
-    height: 72px;              /* Up from 64px */
+    height: 80px;              /* Up from 60px */
   }
 
   /* Larger title for desktop impact */
   .site-title {
-    font-size: 2.5rem;         /* Up from 2.25rem */
+    font-size: 2.25rem;         /* Up from 1.75rem */
   }
 
   /* Standard nav link size */
   .nav-item a {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
   }
 
   /* Balanced padding for wide screens */

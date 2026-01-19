@@ -335,6 +335,13 @@ p {
    Mobile grid structure:
    Row 1: Logo (spans both columns, centered)
    Row 2: Title (left) | Nav (right) */
+/* ===== HEADER LAYOUT =====
+   Mobile-first grid layout with three columns.
+   - Left: Logo (auto width)
+   - Center: Site title (fills remaining space, 1fr)
+   - Right: Navigation/hamburger (auto width)
+   Grid adapts to flex layout at tablet+ breakpoint (see responsive.css).
+   Smooth transitions for padding changes across breakpoints. */
 .site-header {
   position: relative;
   background-color: var(--color-background);
@@ -343,40 +350,45 @@ p {
   z-index: 1000;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto;
   align-items: center;
-  gap: var(--spacing-sm);
+  column-gap: var(--spacing-sm);
+  transition: padding 0.3s ease;
 }
 
-/* Mobile grid placements */
+/* Mobile grid placements:
+   Logo left, title center, navigation right in single row. */
 .site-logo-image {
-  grid-column: 1 / 3;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  justify-self: start;
+}
+
+.site-title {
+  grid-column: 2 / 3;
   grid-row: 1 / 2;
   justify-self: center;
 }
 
-.site-title {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-  justify-self: center;
-}
-
 .primary-nav {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
   justify-self: end;
+  align-self: center;
 }
 
 /* Decorative background image behind header content.
-   Positioned absolutely behind all header elements (z-index: 0). */
+   Positioned absolutely behind all header elements (z-index: 0).
+   Uses object-fit: stretch to fill header completely.
+   Note: Changed from 'contain' or 'cover' to ensure full coverage. */
 .site-header-bg-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: stretch;
   z-index: 0;
 }
 
@@ -386,7 +398,7 @@ p {
 .site-logo-image {
   position: relative;
   z-index: 1;
-  height: 40px;
+  height: 50px;
   width: auto;
   object-fit: contain;
   filter:
@@ -395,6 +407,7 @@ p {
     drop-shadow(1px 1px 2px var(--color-accent))
     drop-shadow(2px 2px 3px rgba(251, 225, 52, 0.4));
   animation: shimmerLogo 3s ease-in-out 0.5s infinite, breatheLogo 4s ease-in-out infinite;
+  transition: height 0.3s ease;
 }
 
 .site-header .primary-nav {
@@ -777,34 +790,54 @@ p {
   padding: var(--spacing-md) 0;
 }
 
-/* Nav links */
+/* Nav links with pill-style design.
+   - Semi-transparent dark background with blur for glass effect
+   - Golden border with glow for prominence against header background
+   - Heavy text shadows for readability over background image
+   - Font weight 900 for maximum boldness
+   - Smooth transitions for interactive feedback */
 .nav-item a {
   position: relative;
   display: inline-block;
   color: var(--color-secondary);
   text-shadow:
-    -1px -1px 2px rgba(0, 0, 0, 0.8),
-    -2px -2px 3px rgba(0, 0, 0, 0.6),
-    1px 1px 2px var(--color-accent),
-    2px 2px 3px rgba(251, 225, 52, 0.4);
+    -2px -2px 4px rgba(0, 0, 0, 0.95),
+    -3px -3px 6px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(0, 0, 0, 0.85),
+    2px 2px 4px var(--color-accent),
+    3px 3px 6px rgba(251, 225, 52, 0.5);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 900;
   font-size: 1.2rem;
-  padding: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius);
-  transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   will-change: transform;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  border: 2px solid rgba(251, 225, 52, 0.5);
+  box-shadow: 
+    0 0 10px rgba(251, 225, 52, 0.3),
+    inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .nav-item a:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
   transform: translateY(-2px) scale(1.05);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(251, 225, 52, 0.8);
+  box-shadow: 
+    0 0 20px rgba(251, 225, 52, 0.6),
+    inset 0 0 15px rgba(0, 0, 0, 0.6);
   text-shadow:
-    -1px -1px 3px rgba(0, 0, 0, 0.9),
-    -2px -2px 4px rgba(0, 0, 0, 0.7),
-    2px 2px 4px var(--color-accent),
+    -2px -2px 5px rgba(0, 0, 0, 1),
+    -3px -3px 8px rgba(0, 0, 0, 0.9),
+    0 0 12px rgba(0, 0, 0, 0.9),
+    3px 3px 6px var(--color-accent),
+    4px 4px 8px rgba(251, 225, 52, 0.7),
+    0 0 25px rgba(251, 225, 52, 0.4),
     3px 3px 5px rgba(251, 225, 52, 0.6);
 }
 
@@ -1174,14 +1207,17 @@ p {
   font-weight: 900;
   color: var(--color-secondary);
   text-shadow:
-    -1px -1px 2px rgba(0, 0, 0, 0.8),
-    -2px -2px 3px rgba(0, 0, 0, 0.6),
-    1px 1px 2px var(--color-accent),
-    2px 2px 3px rgba(251, 225, 52, 0.4);
+    -2px -2px 4px rgba(0, 0, 0, 0.95),
+    -3px -3px 6px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(0, 0, 0, 0.9),
+    2px 2px 4px var(--color-accent),
+    3px 3px 6px rgba(251, 225, 52, 0.6),
+    0 0 20px rgba(251, 225, 52, 0.3);
   animation: shimmer 3s ease-in-out infinite, breathe 4s ease-in-out infinite;
   white-space: nowrap;
   position: relative;
   z-index: 1;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
 }
 
 
@@ -1451,10 +1487,6 @@ img[alt=""] {
 .nav-list li:first-child a {
   font-weight: 800;
   color: var(--color-accent);
-}
-
-.nav-list li:last-child a {
-  padding-right: 0;
 }
 
 /* Removed nth-child background overrides - tarot cards have their own backgrounds */
